@@ -53,3 +53,26 @@
 .badge {
     font-size: 0.8rem;
 }
+
+.feature-box {
+    text-align: center;
+    padding: 20px;
+}
+
+.icon-img {
+    width: 50px;
+    /* Adjust size as needed */
+    height: 50px;
+    /* Keep icons uniform */
+    margin-bottom: 15px;
+}
+
+.feature-box h5 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.feature-box p {
+    color: #6c757d;
+    margin: 0;
+}
