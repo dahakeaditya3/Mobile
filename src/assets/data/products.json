@@ -1,78 +1,176 @@
 {
     "users": [
         {
-            "id": 1,
+            "Uid": 1,
             "name": "Aditya Dahake",
             "phone": "9876543210",
             "email": "aditya@example.com",
             "gender": "Male",
-            "city": "Amravati"
+            "city": "Amravati",
+            "password": "123456",
+            "confirm-password": "123456"
         },
         {
-            "id": 2,
+            "Uid": 2,
             "name": "Priya Sharma",
             "phone": "9876501234",
             "email": "priya@example.com",
             "gender": "Female",
-            "city": "Pune"
+            "city": "Pune",
+            "password": "123456",
+            "confirm-password": "123456"
         }
     ],
     "products": [
         {
             "id": 1,
+            "sId": 101,
             "name": "iPhone 14",
             "price": 79999,
             "company": "Apple",
-            "image": "assets/iphone14.jpg"
+            "image1": "assets/images/apple.jpg",
+            "image2": "assets/images/apple.jpg",
+            "image3": "assets/images/apple.jpg",
+            "image4": "assets/images/apple.jpg"
         },
         {
             "id": 2,
+            "sId": 101,
             "name": "Samsung Galaxy S23",
             "price": 74999,
             "company": "Samsung",
-            "image": "assets/galaxys23.jpg"
+            "image1": "assets/images/apple.jpg",
+            "image2": "assets/images/apple.jpg",
+            "image3": "assets/images/apple.jpg",
+            "image4": "assets/images/apple.jpg"
         },
         {
             "id": 3,
+            "sId": 101,
             "name": "Redmi Note 12 Pro",
             "price": 24999,
             "company": "Redmi",
-            "image": "assets/redmi-note12pro.jpg"
+            "image1": "assets/images/apple.jpg",
+            "image2": "assets/images/apple.jpg",
+            "image3": "assets/images/apple.jpg",
+            "image4": "assets/images/apple.jpg"
         },
         {
             "id": 4,
+            "sId": 101,
             "name": "Oppo Reno 8",
             "price": 29999,
             "company": "Oppo",
-            "image": "assets/oppo-reno8.jpg"
+            "image1": "assets/images/apple.jpg",
+            "image2": "assets/images/apple.jpg",
+            "image3": "assets/images/apple.jpg",
+            "image4": "assets/images/apple.jpg"
         },
         {
             "id": 5,
+            "sId": 101,
             "name": "Samsung Galaxy A54",
             "price": 35999,
             "company": "Samsung",
-            "image": "assets/galaxya54.jpg"
+            "image1": "assets/images/apple.jpg",
+            "image2": "assets/images/apple.jpg",
+            "image3": "assets/images/apple.jpg",
+            "image4": "assets/images/apple.jpg"
         },
         {
             "id": 6,
+            "sId": 101,
             "name": "iPhone 13",
             "price": 65999,
             "company": "Apple",
-            "image": "assets/iphone13.jpg"
+            "image1": "assets/images/apple.jpg",
+            "image2": "assets/images/apple.jpg",
+            "image3": "assets/images/apple.jpg",
+            "image4": "assets/images/apple.jpg"
+        },
+        {
+            "id": 7,
+            "sId": 101,
+            "name": "Samsung Galaxy S23",
+            "price": 74999,
+            "company": "Samsung",
+            "image1": "assets/images/apple.jpg",
+            "image2": "assets/images/apple.jpg",
+            "image3": "assets/images/apple.jpg",
+            "image4": "assets/images/apple.jpg"
+        },
+        {
+            "id": 8,
+            "sId": 101,
+            "name": "Redmi Note 12 Pro",
+            "price": 24999,
+            "company": "Redmi",
+            "image1": "assets/images/apple.jpg",
+            "image2": "assets/images/apple.jpg",
+            "image3": "assets/images/apple.jpg",
+            "image4": "assets/images/apple.jpg"
+        },
+        {
+            "id": 9,
+            "sId": 101,
+            "name": "Oppo Reno 8",
+            "price": 29999,
+            "company": "Oppo",
+            "image1": "assets/images/apple.jpg",
+            "image2": "assets/images/apple.jpg",
+            "image3": "assets/images/apple.jpg",
+            "image4": "assets/images/apple.jpg"
+        },
+        {
+            "id": 10,
+            "sId": 101,
+            "name": "Samsung Galaxy A54",
+            "price": 35999,
+            "company": "Samsung",
+            "image1": "assets/images/apple.jpg",
+            "image2": "assets/images/apple.jpg",
+            "image3": "assets/images/apple.jpg",
+            "image4": "assets/images/apple.jpg"
+        },
+        {
+            "id": 11,
+            "sId": 101,
+            "name": "iPhone 13",
+            "price": 65999,
+            "company": "Apple",
+            "image1": "assets/images/apple.jpg",
+            "image2": "assets/images/apple.jpg",
+            "image3": "assets/images/apple.jpg",
+            "image4": "assets/images/apple.jpg"
         }
     ],
     "orders": [
         {
             "orderId": 5001,
+            "Uid": 1,
+            "name": "Aditya Dahake",
             "productName": "Wireless Earbuds",
             "price": 1999,
             "address": "123, MG Road, Pune"
         },
         {
             "orderId": 5002,
+            "Uid": 1,
+            "name": "Aditya Dahake",
             "productName": "Smart Watch",
             "price": 2999,
             "address": "45, Central Avenue, Amravati"
+        }
+    ],
+    "seller": [
+        {
+            "sId": 101,
+            "sname": "John Doe",
+            "sphone_no": "9876543210",
+            "scompany_name": "Apple Store India",
+            "s_email": "johndoe@apple.com",
+            "password": "123456",
+            "confirm-password": "123456"
         }
     ]
 }
