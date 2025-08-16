@@ -1,1 +1,109 @@
-<p>seller-profile works!</p>
+<div class="container mt-4" *ngIf="seller">
+    <h2>Seller Profile</h2>
+    <div class="card p-3 mt-3 shadow">
+        <p><strong>ID:</strong> {{ seller.seller_id }}</p>
+        <p><strong>Name:</strong> {{ seller.sname }}</p>
+        <p><strong>Phone:</strong> {{ seller.sphone_no }}</p>
+        <p><strong>Gender:</strong> {{ seller.sgender }}</p>
+        <p><strong>Company:</strong> {{ seller.scompany_name }}</p>
+        <p><strong>Email:</strong> {{ seller.s_email }}</p>
+    </div>
+
+    <div class="mt-3 d-flex gap-2">
+        <button class="btn btn-primary" (click)="showAddProductForm = !showAddProductForm">
+            {{ showAddProductForm ? 'Cancel Add Product' : 'Add Product' }}
+        </button>
+        <button class="btn btn-info text-white" (click)="toggleShowProducts()">
+            {{ showProducts ? 'Hide Products' : 'Show My Products' }}
+        </button>
+        <button class="btn btn-danger" (click)="logout()">Logout</button>
+    </div>
+
+    <!-- Add Product Form -->
+    <div *ngIf="showAddProductForm" class="card p-3 mt-3 shadow">
+        <h3>Add Product</h3>
+        <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+            <div class="mb-3">
+                <label>Product Name</label>
+                <input type="text" formControlName="name" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Price</label>
+                <input type="number" formControlName="price" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Company</label>
+                <input type="text" formControlName="company" class="form-control">
+            </div>
+
+            <!-- File Inputs for Images -->
+            <div class="mb-3">
+                <label>Image 1</label>
+                <input type="file" (change)="onFileSelected($event, 'image1')" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Image 2</label>
+                <input type="file" (change)="onFileSelected($event, 'image2')" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Image 3</label>
+                <input type="file" (change)="onFileSelected($event, 'image3')" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Image 4</label>
+                <input type="file" (change)="onFileSelected($event, 'image4')" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-success">Save Product</button>
+        </form>
+    </div>
+
+    <!-- Show Products -->
+    <div *ngIf="showProducts" class="mt-4 row">
+        <div class="col-md-4 mb-3" *ngFor="let product of sellerProducts; let i = index">
+            <div class="card shadow">
+                <!-- Bootstrap Carousel for product images -->
+                <div id="carousel{{i}}" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item" [class.active]="true" *ngIf="product.image1">
+                            <img [src]="'/assets/uploads/' + product.image1" class="d-block w-100"
+                                alt="{{product.name}}">
+                        </div>
+                        <div class="carousel-item" *ngIf="product.image2">
+                            <img [src]="'/assets/uploads/' + product.image2" class="d-block w-100"
+                                alt="{{product.name}}">
+                        </div>
+                        <div class="carousel-item" *ngIf="product.image3">
+                            <img [src]="'/assets/uploads/' + product.image3" class="d-block w-100"
+                                alt="{{product.name}}">
+                        </div>
+                        <div class="carousel-item" *ngIf="product.image4">
+                            <img [src]="'/assets/uploads/' + product.image4" class="d-block w-100"
+                                alt="{{product.name}}">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + i"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + i"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p><strong>Price:</strong> ₹{{ product.price }}</p>
+                    <p><strong>Company:</strong> {{ product.company }}</p>
+                    <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.products_id)">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

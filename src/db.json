@@ -1,24 +1,262 @@
 {
-  "users": [
+  "customers": [
     {
-      "id": "127a",
+      "id": "8f15",
+      "customer_id": 1755331978163,
+      "name": "abhayraj",
+      "phone": "0987654321",
+      "email": "raj@gmail.com",
+      "gender": "Female",
+      "city": "arvi",
+      "password": "1234567",
+      "confirmPassword": "1234567"
+    },
+    {
+      "id": "fa36",
+      "customer_id": 1755332127547,
       "name": "Aditya dahake",
       "phone": "9579968043",
-      "email": "aditya2gmail.com",
-      "city": "arvi",
-      "password": "123456",
-      "confirm-password": "123456"
+      "email": "aditya@gmail.com",
+      "gender": "Male",
+      "city": "Nagpur",
+      "password": "1234567",
+      "confirmPassword": "1234567"
+    },
+    {
+      "id": "39c0",
+      "name": "Priya gvf Sharma",
+      "phone": "9876101234",
+      "email": "priya2@example.com",
+      "gender": "Female",
+      "city": "Pune",
+      "password": "1234526",
+      "confirmPassword": "1234526"
+    }
+  ],
+  "products": [
+    {
+      "products_id": 1,
+      "seller_id": 101,
+      "name": "iPhone 14",
+      "price": 79999,
+      "company": "Apple",
+      "image1": "assets/images/apple.jpg",
+      "image2": "assets/images/apple.jpg",
+      "image3": "assets/images/apple.jpg",
+      "image4": "assets/images/apple.jpg",
+      "id": "9b0f"
+    },
+    {
+      "products_id": 2,
+      "seller_id": 101,
+      "name": "Samsung Galaxy S23",
+      "price": 74999,
+      "company": "Samsung",
+      "image1": "assets/images/apple.jpg",
+      "image2": "assets/images/apple.jpg",
+      "image3": "assets/images/apple.jpg",
+      "image4": "assets/images/apple.jpg",
+      "id": "b1b6"
+    },
+    {
+      "products_id": 3,
+      "seller_id": 101,
+      "name": "Redmi Note 12 Pro",
+      "price": 24999,
+      "company": "Redmi",
+      "image1": "assets/images/apple.jpg",
+      "image2": "assets/images/apple.jpg",
+      "image3": "assets/images/apple.jpg",
+      "image4": "assets/images/apple.jpg",
+      "id": "a8bd"
+    },
+    {
+      "products_id": 4,
+      "seller_id": 101,
+      "name": "Oppo Reno 8",
+      "price": 29999,
+      "company": "Oppo",
+      "image1": "assets/images/apple.jpg",
+      "image2": "assets/images/apple.jpg",
+      "image3": "assets/images/apple.jpg",
+      "image4": "assets/images/apple.jpg",
+      "id": "bf2a"
+    },
+    {
+      "products_id": 5,
+      "seller_id": 101,
+      "name": "Samsung Galaxy A54",
+      "price": 35999,
+      "company": "Samsung",
+      "image1": "assets/images/apple.jpg",
+      "image2": "assets/images/apple.jpg",
+      "image3": "assets/images/apple.jpg",
+      "image4": "assets/images/apple.jpg",
+      "id": "0640"
+    },
+    {
+      "products_id": 6,
+      "seller_id": 101,
+      "name": "iPhone 13",
+      "price": 65999,
+      "company": "Apple",
+      "image1": "assets/images/apple.jpg",
+      "image2": "assets/images/apple.jpg",
+      "image3": "assets/images/apple.jpg",
+      "image4": "assets/images/apple.jpg",
+      "id": "aa3d"
+    },
+    {
+      "products_id": 7,
+      "seller_id": 101,
+      "name": "Samsung Galaxy S23",
+      "price": 74999,
+      "company": "Samsung",
+      "image1": "assets/images/apple.jpg",
+      "image2": "assets/images/apple.jpg",
+      "image3": "assets/images/apple.jpg",
+      "image4": "assets/images/apple.jpg",
+      "id": "2bce"
+    },
+    {
+      "products_id": 8,
+      "seller_id": 101,
+      "name": "Redmi Note 12 Pro",
+      "price": 24999,
+      "company": "Redmi",
+      "image1": "assets/images/apple.jpg",
+      "image2": "assets/images/apple.jpg",
+      "image3": "assets/images/apple.jpg",
+      "image4": "assets/images/apple.jpg",
+      "id": "d700"
+    },
+    {
+      "products_id": 9,
+      "seller_id": 101,
+      "name": "Oppo Reno 8",
+      "price": 29999,
+      "company": "Oppo",
+      "image1": "assets/images/apple.jpg",
+      "image2": "assets/images/apple.jpg",
+      "image3": "assets/images/apple.jpg",
+      "image4": "assets/images/apple.jpg",
+      "id": "b92c"
+    },
+    {
+      "products_id": 10,
+      "seller_id": 101,
+      "name": "Samsung Galaxy A54",
+      "price": 35999,
+      "company": "Samsung",
+      "image1": "assets/images/apple.jpg",
+      "image2": "assets/images/apple.jpg",
+      "image3": "assets/images/apple.jpg",
+      "image4": "assets/images/apple.jpg",
+      "id": "5d08"
+    },
+    {
+      "products_id": 11,
+      "seller_id": 101,
+      "name": "iPhone 13",
+      "price": 65999,
+      "company": "Apple",
+      "image1": "assets/images/apple.jpg",
+      "image2": "assets/images/apple.jpg",
+      "image3": "assets/images/apple.jpg",
+      "image4": "assets/images/apple.jpg",
+      "id": "dc2d"
+    },
+    {
+      "id": "dbda",
+      "products_id": 1755342040388,
+      "seller_id": 1755334803407,
+      "name": "mobile",
+      "price": 1235,
+      "company": "tata",
+      "image1": "",
+      "image2": "",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "843c",
+      "products_id": 1755342485179,
+      "seller_id": 1755334803407,
+      "name": "samasung",
+      "price": 67777,
+      "company": "tata",
+      "image1": "",
+      "image2": "",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "504c",
+      "products_id": 1755345091455,
+      "seller_id": 1755334803407,
+      "name": "redmi",
+      "price": 2999999,
+      "company": "redmi",
+      "image1": "1fe2a023f46489bc9083c9a77de1112d4839c4b7.png",
+      "image2": "",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "8782",
+      "products_id": 1755345225271,
+      "seller_id": 1755334803407,
+      "name": "cfcvhgcfgt",
+      "price": 123456789,
+      "company": "cfhbkjbk",
+      "image1": "c4a6bd7cfc75f912cc5de90aa079b83fbd1cfb93.png",
+      "image2": "brandstore-02-1-600x1856-1.jpg",
+      "image3": "c4a6bd7cfc75f912cc5de90aa079b83fbd1cfb93 (1).png",
+      "image4": ""
+    }
+  ],
+  "orders": [
+    {
+      "order_id": 5001,
+      "customer_id": 1,
+      "name": "Aditya Dahake",
+      "productName": "Wireless Earbuds",
+      "price": 1999,
+      "address": "123, MG Road, Pune",
+      "id": "6523"
+    },
+    {
+      "order_id": 5002,
+      "customer_id": 1,
+      "name": "Aditya Dahake",
+      "productName": "Smart Watch",
+      "price": 2999,
+      "address": "45, Central Avenue, Amravati",
+      "id": "3959"
     }
   ],
   "seller": [
     {
-      "id": "cac3",
-      "sname": "abhay baghile",
-      "sphone_no": "9579968043",
-      "s_email": "abhay@gmail.com",
-      "scompany_name": "mobify",
+      "seller_id": 101,
+      "sname": "John Doe",
+      "sphone_no": "9876543210",
+      "sgender": "Male",
+      "scompany_name": "Apple Store India",
+      "s_email": "johndoe@apple.com",
       "password": "123456",
-      "confirm-password": "123456"
+      "confirmPassword": "123456",
+      "id": "5b88"
+    },
+    {
+      "id": "e01b",
+      "seller_id": 1755334803407,
+      "sname": "abhay",
+      "sphone_no": "1234567890",
+      "sgender": "Male",
+      "scompany_name": "tata",
+      "s_email": "abhay@gmail.com",
+      "password": "12345678",
+      "confirmPassword": "12345678"
     }
   ]
 }

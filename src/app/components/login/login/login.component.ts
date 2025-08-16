@@ -1,36 +1,67 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  imports: [ReactiveFormsModule, CommonModule],
+  templateUrl: './login.component.html'
 })
-export class LoginComponent {
-  username = '';
-  password = '';
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
-  constructor(private router: Router) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
-  login() {
-    if (this.username && this.password) {
-      if (this.username.includes('seller')) {
-        this.router.navigate(['/seller-profile']);
-      } else {
-        this.router.navigate(['/user-profile']);
-      }
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      role: ['', Validators.required]
+    });
+  }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const { email, password, role } = this.loginForm.value;
+
+      // Choose API endpoint based on role
+      const apiUrl = role === 'customer'
+        ? 'http://localhost:3000/customers'
+        : 'http://localhost:3000/seller';
+
+      this.http.get<any[]>(`${apiUrl}?email=${email}&password=${password}`)
+        .subscribe((res) => {
+          if (res.length > 0) {
+            const user = res[0];
+            localStorage.setItem('loggedInUser', JSON.stringify(user)); // store user
+            alert(`${role} login successful!`);
+
+            if (role === 'customer') {
+              this.router.navigate(['/customerprofile']);
+            } else {
+              this.router.navigate(['/sellerprofile']);
+            }
+          } else {
+            alert('Invalid email or password');
+          }
+        });
     }
   }
 
-  goToRegister() {
-    this.router.navigate(['/register']);
+  onForgotPassword() {
+    alert('Redirecting to Forgot Password Page...');
+    this.router.navigate(['/forgot-password']);
   }
 
-  forgotPassword() {
-    alert('Forgot password flow here.');
+  onCreateCustomer() {
+    this.router.navigate(['/register']);  // customer register page
   }
+
+  onCreateSeller() {
+    this.router.navigate(['/seller-register']);  // seller register page
+  }
+
 }

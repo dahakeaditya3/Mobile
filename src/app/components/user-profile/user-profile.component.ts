@@ -1,21 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user-profile',
+  selector: 'app-customer-profile',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="container mt-5">
-      <h2>User Profile</h2>
-      <pre>{{ user | json }}</pre>
-    </div>
-  `
+  templateUrl: './user-profile.component.html'
 })
-export class UserProfileComponent {
-  user: any;
-  constructor(private router: Router) {
-    this.user = this.router.getCurrentNavigation()?.extras.state?.['user'];
+export class UserProfileComponent implements OnInit {
+  customer: any;
+
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    this.customer = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+    if (!this.customer || !this.customer.customer_id) {
+      this.router.navigate(['/']); // redirect if not logged in
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('loggedInUser');
+    this.router.navigate(['/']);
   }
 }
