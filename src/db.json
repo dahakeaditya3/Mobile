@@ -31,6 +31,17 @@
       "city": "Pune",
       "password": "1234526",
       "confirmPassword": "1234526"
+    },
+    {
+      "id": "6164",
+      "customer_id": 1755406226779,
+      "name": "ram chavhan",
+      "phone": "1234561234",
+      "email": "ram@gamil.com",
+      "gender": "Male",
+      "city": "Wardha",
+      "password": "12345678",
+      "confirmPassword": "12345678"
     }
   ],
   "products": [

@@ -1,7 +1,152 @@
-body {
-    background: #f8f9fa;
+/* Center the card like your register page */
+.login-container {
+    display: flex;
+    justify-content: center;
+    /* horizontal center */
+    align-items: center;
+    /* vertical center */
+    min-height: 100vh;
+    background: #f4f6f9;
+    padding: 24px;
+    /* breathing room on small screens */
 }
 
+/* Card size + shape */
 .card {
-    border-radius: 10px;
+    width: 100%;
+    max-width: 950px;
+    /* same width feel as register */
+    margin: auto;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+}
+
+/* Right/left panels (keep your current layout) */
+.form-section {
+    padding: 48px;
+}
+
+.form-section h2 {
+    color: #198754;
+}
+
+.welcome-section {
+    background: linear-gradient(135deg, #20c997, #198754);
+    color: #fff;
+    padding: 48px;
+    text-align: center;
+    position: relative;
+}
+
+/* subtle decorative shapes like the reference design */
+.welcome-section::before,
+.welcome-section::after {
+    content: "";
+    position: absolute;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    transform: rotate(25deg);
+}
+
+.welcome-section::before {
+    width: 120px;
+    height: 120px;
+    top: 12%;
+    right: 14%;
+}
+
+.welcome-section::after {
+    width: 70px;
+    height: 70px;
+    bottom: 12%;
+    left: 16%;
+}
+
+/* Inputs: rounded pill look */
+.styled-input,
+.form-select.styled-input {
+    border-radius: 999px;
+    padding: 12px 18px;
+    border: 1px solid #e3e7ed;
+    background: #f7f9fb;
+    box-shadow: none;
+}
+
+.styled-input:focus,
+.form-select.styled-input:focus {
+    border-color: #198754;
+    background: #fff;
+    box-shadow: 0 0 0 .2rem rgba(25, 135, 84, .15);
+}
+
+/* Primary action button */
+.btn-success {
+    border-radius: 999px;
+    background-color: #198754;
+    border-color: #198754;
+}
+
+.btn-success:hover {
+    background-color: #16734a;
+    border-color: #16734a;
+}
+
+/* Extra buttons you already have — keep them, just style */
+.form-section .d-flex.flex-column.gap-2 .btn-outline-success,
+.form-section .d-flex.flex-column.gap-2 .btn-outline-info {
+    border-radius: 999px;
+    padding: 10px 16px;
+}
+
+.form-section .btn-outline-success {
+    border-color: #198754;
+    color: #198754;
+}
+
+.form-section .btn-outline-success:hover {
+    background: #198754;
+    color: #fff;
+}
+
+.form-section .btn-outline-info {
+    border-color: #0dcaf0;
+    color: #0dcaf0;
+}
+
+.form-section .btn-outline-info:hover {
+    background: #0dcaf0;
+    color: #fff;
+}
+
+/* Forgot password link color */
+.form-section .btn-link.text-success {
+    color: #198754 !important;
+}
+
+/* Responsive tweaks */
+@media (max-width: 991.98px) {
+
+    .form-section,
+    .welcome-section {
+        padding: 32px;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    /* Show form first on mobile without changing HTML */
+    .row.g-0 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-section {
+        order: 1;
+    }
+
+    .welcome-section {
+        order: 2;
+    }
 }

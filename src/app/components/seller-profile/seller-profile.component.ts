@@ -8,7 +8,8 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-seller-profile',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './seller-profile.component.html'
+  templateUrl: './seller-profile.component.html',
+  styleUrls: ['./seller-profile.component.css']
 })
 export class SellerProfileComponent implements OnInit {
   seller: any;
@@ -39,7 +40,7 @@ export class SellerProfileComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('loggedInUser');
-    this.router.navigate(['/']);
+    this.router.navigate(['home']);
   }
 
   // Handle file selection and store only filenames
@@ -86,12 +87,22 @@ export class SellerProfileComponent implements OnInit {
     });
   }
 
-  deleteProduct(productId: number) {
+  deleteProduct(product: any) {
     if (confirm('Are you sure this product is sold?')) {
-      this.http.delete(`http://localhost:3000/products/${productId}`).subscribe(() => {
-        alert('Product deleted successfully!');
-        this.loadSellerProducts();
+      this.http.delete(`http://localhost:3000/products/${product.id}`).subscribe({
+        next: () => {
+          alert('Product deleted successfully!');
+
+          // Remove from local array
+          this.sellerProducts = this.sellerProducts.filter(p => p.id !== product.id);
+        },
+        error: (err) => {
+          console.error('Delete failed:', err);
+          alert('Failed to delete product. Please try again.');
+        }
       });
     }
   }
+
+
 }

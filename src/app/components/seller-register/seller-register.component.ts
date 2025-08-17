@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   selector: 'app-seller-register',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './seller-register.component.html'
+  templateUrl: './seller-register.component.html',
+  styleUrls: ['./seller-register.component.css']
 })
 export class SellerRegisterComponent implements OnInit {
   sellerForm!: FormGroup;

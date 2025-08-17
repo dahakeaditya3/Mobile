@@ -1,109 +1,117 @@
-<div class="container mt-4" *ngIf="seller">
-    <h2>Seller Profile</h2>
-    <div class="card p-3 mt-3 shadow">
+<div class="container mt-5 seller-profile-page" *ngIf="seller">
+
+  <!-- Seller Info -->
+  <div class="text-center mb-4">
+    <h2 class="fw-bold text-success">👤 Seller Profile</h2>
+  </div>
+
+  <div class="card shadow-lg border-0 rounded-4 p-4 profile-card">
+    <div class="row">
+      <div class="col-md-6">
         <p><strong>ID:</strong> {{ seller.seller_id }}</p>
         <p><strong>Name:</strong> {{ seller.sname }}</p>
         <p><strong>Phone:</strong> {{ seller.sphone_no }}</p>
+      </div>
+      <div class="col-md-6">
         <p><strong>Gender:</strong> {{ seller.sgender }}</p>
         <p><strong>Company:</strong> {{ seller.scompany_name }}</p>
         <p><strong>Email:</strong> {{ seller.s_email }}</p>
+      </div>
     </div>
+  </div>
 
-    <div class="mt-3 d-flex gap-2">
-        <button class="btn btn-primary" (click)="showAddProductForm = !showAddProductForm">
-            {{ showAddProductForm ? 'Cancel Add Product' : 'Add Product' }}
-        </button>
-        <button class="btn btn-info text-white" (click)="toggleShowProducts()">
-            {{ showProducts ? 'Hide Products' : 'Show My Products' }}
-        </button>
-        <button class="btn btn-danger" (click)="logout()">Logout</button>
-    </div>
+  <!-- Action Buttons -->
+  <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
+    <button class="btn btn-success px-4 rounded-pill shadow-sm"
+            (click)="showAddProductForm = !showAddProductForm">
+      {{ showAddProductForm ? 'Cancel Add Product' : '➕ Add Product' }}
+    </button>
+    <button class="btn btn-info text-white px-4 rounded-pill shadow-sm"
+            (click)="toggleShowProducts()">
+      {{ showProducts ? 'Hide Products' : '📦 Show My Products' }}
+    </button>
+    <button class="btn btn-danger px-4 rounded-pill shadow-sm" (click)="logout()">🚪 Logout</button>
+  </div>
 
-    <!-- Add Product Form -->
-    <div *ngIf="showAddProductForm" class="card p-3 mt-3 shadow">
-        <h3>Add Product</h3>
-        <form [formGroup]="productForm" (ngSubmit)="addProduct()">
-            <div class="mb-3">
-                <label>Product Name</label>
-                <input type="text" formControlName="name" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label>Price</label>
-                <input type="number" formControlName="price" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label>Company</label>
-                <input type="text" formControlName="company" class="form-control">
-            </div>
-
-            <!-- File Inputs for Images -->
-            <div class="mb-3">
-                <label>Image 1</label>
-                <input type="file" (change)="onFileSelected($event, 'image1')" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label>Image 2</label>
-                <input type="file" (change)="onFileSelected($event, 'image2')" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label>Image 3</label>
-                <input type="file" (change)="onFileSelected($event, 'image3')" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label>Image 4</label>
-                <input type="file" (change)="onFileSelected($event, 'image4')" class="form-control">
-            </div>
-
-            <button type="submit" class="btn btn-success">Save Product</button>
-        </form>
-    </div>
-
-    <!-- Show Products -->
-    <div *ngIf="showProducts" class="mt-4 row">
-        <div class="col-md-4 mb-3" *ngFor="let product of sellerProducts; let i = index">
-            <div class="card shadow">
-                <!-- Bootstrap Carousel for product images -->
-                <div id="carousel{{i}}" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item" [class.active]="true" *ngIf="product.image1">
-                            <img [src]="'/assets/uploads/' + product.image1" class="d-block w-100"
-                                alt="{{product.name}}">
-                        </div>
-                        <div class="carousel-item" *ngIf="product.image2">
-                            <img [src]="'/assets/uploads/' + product.image2" class="d-block w-100"
-                                alt="{{product.name}}">
-                        </div>
-                        <div class="carousel-item" *ngIf="product.image3">
-                            <img [src]="'/assets/uploads/' + product.image3" class="d-block w-100"
-                                alt="{{product.name}}">
-                        </div>
-                        <div class="carousel-item" *ngIf="product.image4">
-                            <img [src]="'/assets/uploads/' + product.image4" class="d-block w-100"
-                                alt="{{product.name}}">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + i"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + i"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p><strong>Price:</strong> ₹{{ product.price }}</p>
-                    <p><strong>Company:</strong> {{ product.company }}</p>
-                    <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.products_id)">
-                        Delete
-                    </button>
-                </div>
-            </div>
+  <!-- Add Product Form -->
+  <div *ngIf="showAddProductForm" class="card shadow-lg border-0 rounded-4 p-4 mt-4">
+    <h4 class="fw-bold text-success mb-3">Add New Product</h4>
+    <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Product Name</label>
+          <input type="text" formControlName="name" class="form-control rounded-pill">
         </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Price</label>
+          <input type="number" formControlName="price" class="form-control rounded-pill">
+        </div>
+        <div class="col-md-12 mb-3">
+          <label class="form-label fw-semibold">Company</label>
+          <input type="text" formControlName="company" class="form-control rounded-pill">
+        </div>
+      </div>
+
+      <!-- File Inputs -->
+      <div class="row">
+        <div class="col-md-6 mb-3" *ngFor="let img of [1,2,3,4]">
+          <label class="form-label fw-semibold">Image {{img}}</label>
+          <input type="file" (change)="onFileSelected($event, 'image' + img)" class="form-control rounded-pill">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success rounded-pill px-5 mt-3 shadow-sm">💾 Save Product</button>
+    </form>
+  </div>
+
+  <!-- Product List -->
+  <div *ngIf="showProducts" class="mt-5">
+    <h4 class="fw-bold text-success mb-4 text-center">📦 My Products</h4>
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let product of sellerProducts; let i = index">
+        <div class="card product-card shadow-lg border-0 rounded-4">
+          <!-- Carousel -->
+          <div id="carousel{{i}}" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" *ngIf="product.image1">
+                <img [src]="'/assets/uploads/' + product.image1" class="d-block w-100 rounded-top"
+                     alt="{{product.name}}">
+              </div>
+              <div class="carousel-item" *ngIf="product.image2">
+                <img [src]="'/assets/uploads/' + product.image2" class="d-block w-100 rounded-top"
+                     alt="{{product.name}}">
+              </div>
+              <div class="carousel-item" *ngIf="product.image3">
+                <img [src]="'/assets/uploads/' + product.image3" class="d-block w-100 rounded-top"
+                     alt="{{product.name}}">
+              </div>
+              <div class="carousel-item" *ngIf="product.image4">
+                <img [src]="'/assets/uploads/' + product.image4" class="d-block w-100 rounded-top"
+                     alt="{{product.name}}">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + i"
+                    data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + i"
+                    data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
+          </div>
+
+          <div class="card-body text-center">
+            <h5 class="card-title text-success fw-bold">{{ product.name }}</h5>
+            <p class="mb-1"><strong>Price:</strong> ₹{{ product.price }}</p>
+            <p class="mb-2"><strong>Company:</strong> {{ product.company }}</p>
+            <button class="btn btn-danger btn-sm rounded-pill px-4 shadow-sm"
+                    (click)="deleteProduct(product.products_id)">
+              🗑 Delete
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
 </div>

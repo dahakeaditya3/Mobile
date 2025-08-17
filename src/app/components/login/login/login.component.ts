@@ -8,7 +8,8 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;

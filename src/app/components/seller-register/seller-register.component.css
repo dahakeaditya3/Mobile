@@ -1,0 +1,34 @@
+.registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f4f6f9;
+}
+
+.card {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.welcome-section {
+    background: linear-gradient(135deg, #20c997, #198754);
+    text-align: center;
+    padding: 40px;
+}
+
+.form-section h2 {
+    color: #198754;
+}
+
+.styled-input {
+    border-radius: 50px;
+    padding: 12px 20px;
+    border: 1px solid #ced4da;
+    box-shadow: none;
+}
+
+.styled-input:focus {
+    border-color: #198754;
+    box-shadow: 0 0 5px rgba(25, 135, 84, 0.4);
+}
