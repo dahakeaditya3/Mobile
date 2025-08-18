@@ -156,6 +156,40 @@
     margin: 0;
 }
 
+/* Card animation */
+.product-card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image animation */
+.product-img {
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.4s ease-in-out;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.1);
+}
+
+/* Button animation */
+button {
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #004085 !important;
+    transform: scale(1.05);
+}
+
+
 
 .footer-section {
     background-color: #0b1221;
