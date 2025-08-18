@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <!-- Profile Button -->
+    <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-outline-secondary" (click)="goToProfile()">
+            👤 Profile
+        </button>
+    </div>
+
+    <h2 class="text-center mb-4">Available Products</h2>
+    <div class="row g-4">
+        <div class="col-md-4 col-sm-6" *ngFor="let product of products">
+            <div class="card h-100 shadow-sm rounded-3">
+                <img [src]="product.image1" class="card-img-top" alt="{{ product.name }}" />
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p><strong>Company:</strong> {{ product.company }}</p>
+                    <p><strong>Price:</strong> ₹{{ product.price }}</p>
+                    <button class="btn btn-primary w-100" (click)="orderNow(product)">Order Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

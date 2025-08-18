@@ -1,14 +1,14 @@
 <div class="registration-container">
   <div class="card shadow-lg">
     <div class="row g-0">
-      
+
       <!-- Left Panel -->
       <div class="col-md-5 welcome-section d-flex flex-column justify-content-center align-items-center">
         <h2 class="text-white mb-3">Welcome Seller!</h2>
         <p class="text-white-50 px-3 text-center">
           To keep connected with us please login with your personal info
         </p>
-        <button class="btn btn-outline-light mt-3 px-4 py-2 rounded-pill">SIGN IN</button>
+        <button class="btn btn-outline-light mt-3 px-4 py-2 rounded-pill" (click)="goTologin()">SIGN IN</button>
       </div>
 
       <!-- Right Panel -->
@@ -33,7 +33,8 @@
           </div>
 
           <div class="mb-3">
-            <input type="text" formControlName="scompany_name" class="form-control styled-input" placeholder="Company Name" />
+            <input type="text" formControlName="scompany_name" class="form-control styled-input"
+              placeholder="Company Name" />
           </div>
 
           <div class="mb-3">
@@ -41,11 +42,13 @@
           </div>
 
           <div class="mb-3">
-            <input type="password" formControlName="password" class="form-control styled-input" placeholder="Password" />
+            <input type="password" formControlName="password" class="form-control styled-input"
+              placeholder="Password" />
           </div>
 
           <div class="mb-3">
-            <input type="password" formControlName="confirmPassword" class="form-control styled-input" placeholder="Confirm Password" />
+            <input type="password" formControlName="confirmPassword" class="form-control styled-input"
+              placeholder="Confirm Password" />
           </div>
 
           <button type="submit" class="btn btn-success w-100 rounded-pill py-2">SIGN UP</button>

@@ -23,14 +23,14 @@
                     <form class="d-flex w-100">
                         <input class="form-control me-2" type="search" placeholder="Search products..."
                             aria-label="Search">
-                        <button class="btn btn-primary" type="submit">Search</button>
+                        <button class="btn btn-success" type="submit">Search</button>
                     </form>
                 </div>
 
                 <!-- Right Buttons -->
                 <div class="d-flex ms-lg-auto flex-wrap gap-2">
                     <a href="login" class="btn btn-outline-light">Login</a>
-                    <a href="register" class="btn btn-primary">Sign Up</a>
+                    <a href="register" class="btn btn-success">Sign Up</a>
                 </div>
 
             </div>
@@ -88,38 +88,39 @@
     </div>
 </div>
 
-<div class="container-fluid bg-secondary py-4">
-    <div class="container mt-4">
-  <!-- Title & View All button -->
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="fw-bold">Our Products</h2>
-    <button class="btn btn-primary shadow" (click)="toggleView()">
-      {{ showAll ? 'Show Less' : 'View All' }}
-    </button>
-  </div>
-
-  <!-- Products Grid -->
-  <div class="row">
-    <div
-      class="col-md-4 mb-4"
-      *ngFor="let product of (showAll ? products : products.slice(0,9))"
-    >
-      <div class="card product-card h-100 shadow-sm">
-        <img
-          [src]="product.image1 || 'assets/images/default.png'"
-          class="card-img-top product-img"
-          alt="{{ product.name }}"
-        />
-        <div class="card-body text-center">
-          <h5 class="card-title fw-semibold">{{ product.name }}</h5>
-          <p class="text-muted">{{ product.company }}</p>
-          <p class="fw-bold fs-5">₹{{ product.price }}</p>
+<div class="container-fluid bg-secondary py-5">
+    <div class="container">
+        <!-- Title & View All button -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold text-white mb-0">Our Products</h2>
+            <button class="btn btn-success shadow-sm px-4" (click)="toggleView()">
+                {{ showAll ? 'Show Less' : 'View All' }}
+            </button>
         </div>
-      </div>
+
+        <!-- Products Grid -->
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let product of (showAll ? products : products.slice(0,9))">
+                <div class="card product-card h-100 shadow-sm border-0 rounded-4">
+                    <!-- Image -->
+                    <div class="image-wrapper">
+                        <img [src]="product.image1 || 'assets/images/default.png'" class="product-img"
+                            alt="{{ product.name }}" />
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-semibold">{{ product.name }}</h5>
+                        <p class="text-muted mb-1">{{ product.company }}</p>
+                        <p class="fw-bold fs-5 text-success">₹{{ product.price }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-</div>
+
+
+
 
 
 <footer class="footer-section">

@@ -5,6 +5,8 @@ import { SellerProfileComponent } from './components/seller-profile/seller-profi
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register/register.component';
 import { SellerRegisterComponent } from './components/seller-register/seller-register.component';
+import { MainPageComponent } from './components/main-page/main-page/main-page.component';
+import { OrderComponent } from './components/order/order/order.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -14,6 +16,8 @@ export const routes: Routes = [
     { path: 'customerprofile', component: UserProfileComponent },
     { path: 'sellerprofile', component: SellerProfileComponent },
     { path: 'seller-register', component: SellerRegisterComponent },
+    { path: 'dashboard', component: MainPageComponent },
+    { path: 'order/:id', component: OrderComponent },
     { path: '', redirectTo: 'login', pathMatch: 'full' }
 
 ];

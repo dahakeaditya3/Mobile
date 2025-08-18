@@ -46,4 +46,8 @@ export class SellerRegisterComponent implements OnInit {
       alert('Please fill all required fields');
     }
   }
+
+  goTologin() {
+    this.router.navigate(['login']);
+  }
 }

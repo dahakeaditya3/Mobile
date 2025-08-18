@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
             alert(`${role} login successful!`);
 
             if (role === 'customer') {
-              this.router.navigate(['/customerprofile']);
+              this.router.navigate(['/dashboard']);
             } else {
               this.router.navigate(['/sellerprofile']);
             }
