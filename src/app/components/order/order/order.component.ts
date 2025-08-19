@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductService, Product } from '../../../services/product.service';
 import { OrderService } from '../../../services/order.service';
+import { FooterComponent } from "../../footer/footer.component";
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FooterComponent],
   templateUrl: './order.component.html'
 })
 export class OrderComponent implements OnInit {

@@ -1,14 +1,130 @@
-<div class="container mt-4">
-    <!-- Profile Button -->
-    <div class="d-flex justify-content-end mb-3">
-        <button class="btn btn-outline-secondary" (click)="goToProfile()">
-            👤 Profile
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(90deg, #1c2340, #3b185f);">
+    <div class="container-fluid px-4">
+
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+            <i class="bi bi-phone-fill me-2 text-warning"></i> Mobify
+        </a>
+
+        <!-- Toggler for Mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
         </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+
+            <!-- Center Search Bar -->
+            <form class="d-flex mx-auto w-50">
+                <div class="input-group">
+                    <input class="form-control rounded-start-pill shadow-sm" type="search"
+                        placeholder="Search products...">
+                    <button class="btn btn-success rounded-end-pill px-4">Search</button>
+                </div>
+            </form>
+
+            <!-- Right Nav Links -->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold">
+                <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">My Orders</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+
+            <!-- Space then Profile -->
+            <ul class="navbar-nav ms-4"> <!-- ms-4 adds spacing -->
+                <li class="nav-item d-flex align-items-center">
+                    <a class="nav-link d-flex align-items-center fw-semibold" href="#">
+                        <i class="bi bi-person-circle fs-5 me-2"></i> Profile
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container mt-4">
+    <!-- Carousel Section -->
+    <div id="productCarousel" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="3000">
+
+        <!-- Indicators (Dots) -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2"></button>
+        </div>
+
+        <div class="carousel-inner rounded-3 shadow">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <div class="d-flex align-items-center p-4"
+                    style="background-color: #1c2340; color: white; border-radius: 15px;">
+                    <div class="w-50">
+                        <h6>Best Deal Online on smart watches</h6>
+                        <h2 class="fw-bold">SMART WEARABLE.</h2>
+                        <p>UP to 80% OFF</p>
+                    </div>
+                    <div class="w-50 text-center">
+                        <img src="assets/images/watch.png" class="d-block w-75 mx-auto" alt="Smart Watch">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <div class="d-flex align-items-center p-4"
+                    style="background-color: #1c2340; color: white; border-radius: 15px;">
+                    <div class="w-50">
+                        <h6>Exclusive Offer on Headphones</h6>
+                        <h2 class="fw-bold">WIRELESS SOUND.</h2>
+                        <p>Flat 50% OFF</p>
+                    </div>
+                    <div class="w-50 text-center">
+                        <img src="assets/images/headphones.png" class="d-block w-75 mx-auto" alt="Headphones">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <div class="d-flex align-items-center p-4"
+                    style="background-color: #1c2340; color: white; border-radius: 15px;">
+                    <div class="w-50">
+                        <h6>Special Offer on Mobiles</h6>
+                        <h2 class="fw-bold">SMARTPHONES.</h2>
+                        <p>Save up to ₹5000</p>
+                    </div>
+                    <div class="w-50 text-center">
+                        <img src="assets/images/mobile.png" class="d-block w-75 mx-auto" alt="Mobile">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Filters Section -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label class="form-label fw-bold">Sort by Price</label>
+            <select class="form-select shadow-sm rounded-pill" (change)="onPriceFilterChange($event)">
+                <option value="">-- Select --</option>
+                <option value="lowToHigh">Low to High</option>
+                <option value="highToLow">High to Low</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label fw-bold">Filter by Company</label>
+            <select class="form-select shadow-sm rounded-pill" (change)="onCompanyFilterChange($event)">
+                <option value="">-- All Companies --</option>
+                <option *ngFor="let company of companies" [value]="company">{{ company }}</option>
+            </select>
+        </div>
     </div>
 
-    <h2 class="text-center mb-4">Available Products</h2>
+    <!-- Products Section -->
     <div class="row g-4">
-        <div class="col-md-4 col-sm-6" *ngFor="let product of products">
+        <div class="col-md-4 col-sm-6" *ngFor="let product of paginatedProducts">
             <div class="card h-100 shadow-sm rounded-3">
                 <img [src]="product.image1" class="card-img-top" alt="{{ product.name }}" />
                 <div class="card-body">
@@ -20,4 +136,23 @@
             </div>
         </div>
     </div>
+
+    <!-- Pagination -->
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+                <a class="page-link" (click)="prevPage()">Previous</a>
+            </li>
+
+            <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+                [class.active]="currentPage === i + 1">
+                <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+            </li>
+
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <a class="page-link" (click)="nextPage()">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
+<app-footer></app-footer>

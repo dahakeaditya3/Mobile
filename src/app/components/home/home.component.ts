@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,  // <--- important
-  imports: [CommonModule],  // <--- this enables *ngFor, *ngIf
+  imports: [CommonModule, FooterComponent],  // <--- this enables *ngFor, *ngIf
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

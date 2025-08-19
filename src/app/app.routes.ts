@@ -7,9 +7,11 @@ import { RegisterComponent } from './components/register/register/register.compo
 import { SellerRegisterComponent } from './components/seller-register/seller-register.component';
 import { MainPageComponent } from './components/main-page/main-page/main-page.component';
 import { OrderComponent } from './components/order/order/order.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
+    { path: 'footer', component: FooterComponent },
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },

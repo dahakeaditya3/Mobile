@@ -189,34 +189,3 @@
     max-height: 100%;
     object-fit: contain;
 }
-
-
-
-
-.footer-section {
-    background-color: #0b1221;
-    /* Main footer bg */
-}
-
-.top-footer {
-    background-color: #1d2434;
-    /* Top part bg */
-}
-
-.btn-teal {
-    background-color: #20c997;
-    color: white;
-    border: none;
-}
-
-.btn-teal:hover {
-    background-color: #17a589;
-}
-
-.footer-bottom a {
-    font-size: 1.2rem;
-}
-
-.footer-bottom a:hover {
-    color: #20c997;
-}
