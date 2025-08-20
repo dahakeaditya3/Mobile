@@ -3,8 +3,8 @@
     <div class="container-fluid px-4">
 
         <!-- Logo -->
-        <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-            <i class="bi bi-phone-fill me-2 text-warning"></i> Mobify
+        <a class="navbar-brand fw-bold" href="#">
+            <img src="assets/images/mobify.png" alt="Mobify Logo" height="40" class="me-2">
         </a>
 
         <!-- Toggler for Mobile -->
@@ -27,15 +27,15 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold">
                 <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">My Orders</a></li>
+                <li class="nav-item"><a class="nav-link" href="myorder">My Orders</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
             </ul>
 
             <!-- Space then Profile -->
             <ul class="navbar-nav ms-4"> <!-- ms-4 adds spacing -->
                 <li class="nav-item d-flex align-items-center">
-                    <a class="nav-link d-flex align-items-center fw-semibold" href="#">
-                        <i class="bi bi-person-circle fs-5 me-2"></i> Profile
+                    <a class="nav-link d-flex align-items-center fw-semibold" href="customerprofile">
+                        <i class="bi bi-person-circle fs-5 me-2"> </i> Profile
                     </a>
                 </li>
             </ul>
@@ -57,7 +57,7 @@
 
         <div class="carousel-inner rounded-3 shadow">
             <!-- Slide 1 -->
-            <div class="carousel-item active">
+            <div class="carousel-item active" style="background-image: url('assets/images/image.png');">
                 <div class="d-flex align-items-center p-4"
                     style="background-color: #1c2340; color: white; border-radius: 15px;">
                     <div class="w-50">
@@ -66,7 +66,8 @@
                         <p>UP to 80% OFF</p>
                     </div>
                     <div class="w-50 text-center">
-                        <img src="assets/images/watch.png" class="d-block w-75 mx-auto" alt="Smart Watch">
+                        <img src="assets/images/smart.jpg" class="d-block w-75 mx-auto" alt="Smart Watch"
+                            style="height: 200px;">
                     </div>
                 </div>
             </div>
@@ -81,7 +82,8 @@
                         <p>Flat 50% OFF</p>
                     </div>
                     <div class="w-50 text-center">
-                        <img src="assets/images/headphones.png" class="d-block w-75 mx-auto" alt="Headphones">
+                        <img src="assets/images/image.png" class="d-block w-75 mx-auto" alt="Headphones"
+                            style="height: 200px;">
                     </div>
                 </div>
             </div>
@@ -96,7 +98,8 @@
                         <p>Save up to ₹5000</p>
                     </div>
                     <div class="w-50 text-center">
-                        <img src="assets/images/mobile.png" class="d-block w-75 mx-auto" alt="Mobile">
+                        <img src="assets/images/mo.jpg" class="d-block w-75 mx-auto" alt="Mobile"
+                            style="height: 200px;">
                     </div>
                 </div>
             </div>
@@ -124,7 +127,7 @@
 
     <!-- Products Section -->
     <div class="row g-4">
-        <div class="col-md-4 col-sm-6" *ngFor="let product of paginatedProducts">
+        <div class="col-md-3 col-sm-6" *ngFor="let product of paginatedProducts">
             <div class="card h-100 shadow-sm rounded-3">
                 <img [src]="product.image1" class="card-img-top" alt="{{ product.name }}" />
                 <div class="card-body">

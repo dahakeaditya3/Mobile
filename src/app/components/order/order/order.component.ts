@@ -10,7 +10,8 @@ import { FooterComponent } from "../../footer/footer.component";
   selector: 'app-order',
   standalone: true,
   imports: [CommonModule, FormsModule, FooterComponent],
-  templateUrl: './order.component.html'
+  templateUrl: './order.component.html',
+  styleUrl: './order.component.css'
 })
 export class OrderComponent implements OnInit {
   product!: Product;
@@ -42,14 +43,39 @@ export class OrderComponent implements OnInit {
     const today = new Date();
     const orderDate = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
 
+    // ✅ Get logged in customer from localStorage
+    const storedUser = localStorage.getItem('loggedInUser');
+    let customer_id: number | null = null;
+    let customerName = '';
+    let customerPhone = '';
+    let customerAddress = '';
+
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+
+      // ✅ IMPORTANT: use customer_id, not id
+      customer_id = user.customer_id;
+      customerName = user.name;
+      customerPhone = user.phone;
+      customerAddress = user.city; // or address if exists
+    }
+
     const newOrder = {
       productId: this.product.id,
       productName: this.product.name,
       price: this.product.price,
-      images: [this.product.image1, this.product.image2, this.product.image3, this.product.image4],
-      customerName: this.customer.name,
-      customerPhone: this.customer.phone,
-      customerAddress: this.customer.address,
+      images: [
+        this.product.image1,
+        this.product.image2,
+        this.product.image3,
+        this.product.image4
+      ],
+
+      // customer info
+      customer_id: customer_id,
+      customerName: customerName,
+      customerPhone: customerPhone,
+      customerAddress: customerAddress,
       orderDate: orderDate
     };
 
@@ -58,4 +84,6 @@ export class OrderComponent implements OnInit {
       this.router.navigate(['/main-page']);
     });
   }
+
+
 }

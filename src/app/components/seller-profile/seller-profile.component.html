@@ -22,16 +22,15 @@
 
   <!-- Action Buttons -->
   <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
-    <button class="btn btn-success px-4 rounded-pill shadow-sm"
-            (click)="showAddProductForm = !showAddProductForm">
+    <button class="btn btn-success px-4 rounded-pill shadow-sm" (click)="showAddProductForm = !showAddProductForm">
       {{ showAddProductForm ? 'Cancel Add Product' : '➕ Add Product' }}
     </button>
-    <button class="btn btn-info text-white px-4 rounded-pill shadow-sm"
-            (click)="toggleShowProducts()">
+    <button class="btn btn-info text-white px-4 rounded-pill shadow-sm" (click)="toggleShowProducts()">
       {{ showProducts ? 'Hide Products' : '📦 Show My Products' }}
     </button>
     <button class="btn btn-danger px-4 rounded-pill shadow-sm" (click)="logout()">🚪 Logout</button>
   </div>
+  <button><a href="sellerorder">see my order</a></button>
 
   <!-- Add Product Form -->
   <div *ngIf="showAddProductForm" class="card shadow-lg border-0 rounded-4 p-4 mt-4">
@@ -75,27 +74,27 @@
             <div class="carousel-inner">
               <div class="carousel-item active" *ngIf="product.image1">
                 <img [src]="'/assets/uploads/' + product.image1" class="d-block w-100 rounded-top"
-                     alt="{{product.name}}">
+                  alt="{{product.name}}">
               </div>
               <div class="carousel-item" *ngIf="product.image2">
                 <img [src]="'/assets/uploads/' + product.image2" class="d-block w-100 rounded-top"
-                     alt="{{product.name}}">
+                  alt="{{product.name}}">
               </div>
               <div class="carousel-item" *ngIf="product.image3">
                 <img [src]="'/assets/uploads/' + product.image3" class="d-block w-100 rounded-top"
-                     alt="{{product.name}}">
+                  alt="{{product.name}}">
               </div>
               <div class="carousel-item" *ngIf="product.image4">
                 <img [src]="'/assets/uploads/' + product.image4" class="d-block w-100 rounded-top"
-                     alt="{{product.name}}">
+                  alt="{{product.name}}">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + i"
-                    data-bs-slide="prev">
+              data-bs-slide="prev">
               <span class="carousel-control-prev-icon"></span>
             </button>
             <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + i"
-                    data-bs-slide="next">
+              data-bs-slide="next">
               <span class="carousel-control-next-icon"></span>
             </button>
           </div>
@@ -105,7 +104,7 @@
             <p class="mb-1"><strong>Price:</strong> ₹{{ product.price }}</p>
             <p class="mb-2"><strong>Company:</strong> {{ product.company }}</p>
             <button class="btn btn-danger btn-sm rounded-pill px-4 shadow-sm"
-                    (click)="deleteProduct(product.products_id)">
+              (click)="deleteProduct(product.products_id)">
               🗑 Delete
             </button>
           </div>

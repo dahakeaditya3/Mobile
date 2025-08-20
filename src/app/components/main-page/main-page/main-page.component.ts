@@ -104,7 +104,4 @@ export class MainPageComponent implements OnInit {
     this.router.navigate(['/order', product.id]);
   }
 
-  goToProfile() {
-    this.router.navigate(['/customerprofile']);
-  }
 }
