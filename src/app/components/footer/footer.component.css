@@ -1,27 +1,30 @@
+/* Top subscribe section */
+.subscribe-section {
+    background-color: #2d3345;
+    padding: 30px 60px;
+}
+
+/* Footer background */
 .footer-section {
-    background-color: #0b1221;
-    /* Main footer bg */
+    background-color: #121829;
+    font-size: 14px;
 }
 
-.top-footer {
-    background-color: #1d2434;
-    /* Top part bg */
+.footer-section ul li {
+    margin-bottom: 8px;
+    color: #bdbdbd;
 }
 
-.btn-teal {
-    background-color: #20c997;
-    color: white;
-    border: none;
+.footer-section ul li:hover {
+    color: #ffffff;
+    cursor: pointer;
 }
 
-.btn-teal:hover {
-    background-color: #17a589;
+.social-icons a {
+    color: #bdbdbd;
+    transition: 0.3s;
 }
 
-.footer-bottom a {
-    font-size: 1.2rem;
-}
-
-.footer-bottom a:hover {
-    color: #20c997;
+.social-icons a:hover {
+    color: #00cba9;
 }

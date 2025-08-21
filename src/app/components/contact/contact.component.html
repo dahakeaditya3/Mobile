@@ -49,23 +49,86 @@
             </div>
         </div>
     </nav>
+    <div class="container contact-page ">
+        <div class="row contact-wrapper rounded p-4">
 
-
-    <!-- Hero Banner Content -->
-    <section class="hero-section d-flex align-items-center text-white">
-        <div class="container">
-            <div class="text-start hero-content">
-                <h1 class="fw-bolder display-3 mb-4">Raining Offers For<br />Hot Summer!</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa libero quibusdam quam quia sed <br>
-                    sapiente enim error deleniti praesentium exercitationem ipsam quaerat deserunt officia assumenda
-                    voluptas magni, aut earum itaque.</p>
-                <p class="lead fs-4 mb-4">25% Off On All Products</p>
+            <!-- Left Side -->
+            <div class="col-md-5 border-end d-flex flex-column justify-content-between">
                 <div>
-                    <a href="#" class="btn btn-primary btn-lg me-3 px-4">Shop Now</a>
-                    <a href="#" class="btn btn-outline-light btn-lg px-4">Find More</a>
+                    <h3 class="fw-bold">Contact Us</h3>
+                    <p class="text-muted">Any question? We would be happy to help you!</p>
+
+                    <div class="d-flex align-items-center mb-3 contact-box">
+                        <i class="bi bi-telephone fs-5 me-3"></i>
+                        <span>+0123456789</span>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-3 contact-box bg-dark text-white p-2 rounded">
+                        <i class="bi bi-envelope fs-5 me-3"></i>
+                        <span>example&#64;email.com</span>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-3 contact-box">
+                        <i class="bi bi-geo-alt fs-5 me-3"></i>
+                        <span>775 Rolling Green Rd.</span>
+                    </div>
+                </div>
+
+                <!-- Social icons -->
+                <div class="d-flex gap-3 mt-4 social">
+                    <a href="#"><i class="bi bi-facebook fs-5"></i></a>
+                    <a href="#"><i class="bi bi-twitter fs-5"></i></a>
+                    <a href="#"><i class="bi bi-github fs-5"></i></a>
+                    <a href="#"><i class="bi bi-linkedin fs-5"></i></a>
+                    <a href="#"><i class="bi bi-instagram fs-5"></i></a>
                 </div>
             </div>
+
+            <!-- Right Side Form -->
+            <div class="col-md-7 ps-4 d-flex flex-column">
+                <form class="h-100 d-flex flex-column" (ngSubmit)="submitForm()">
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">First Name:</label>
+                            <input type="text" class="form-control" [(ngModel)]="contactForm.firstName" name="firstName"
+                                placeholder="Your first name">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Last Name:</label>
+                            <input type="text" class="form-control" [(ngModel)]="contactForm.lastName" name="lastName"
+                                placeholder="Your last name">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email:</label>
+                        <input type="email" class="form-control" [(ngModel)]="contactForm.email" name="email"
+                            placeholder="youremail&#64;email.com">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number:</label>
+                        <input type="text" class="form-control" [(ngModel)]="contactForm.phone" name="phone"
+                            placeholder="+9876543210">
+                    </div>
+
+                    <div class="mb-3 flex-grow-1">
+                        <label class="form-label">Message:</label>
+                        <textarea class="form-control h-100" [(ngModel)]="contactForm.message" name="message"
+                            placeholder="Type your message here..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark w-100 fw-bold mt-auto">
+                        Send Message <i class="bi bi-send ms-2"></i>
+                    </button>
+                </form>
+            </div>
         </div>
-    </section>
+    </div>
+
 
 </div>
+
+
+<app-footer></app-footer>

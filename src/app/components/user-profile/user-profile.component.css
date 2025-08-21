@@ -1,3 +1,25 @@
+.navbar .nav-link {
+    color: #fff !important;
+    margin: 0 8px;
+    transition: 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: #ffc107 !important;
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+}
+
+form input {
+    border: 1px solid #ddd;
+}
+
+form button {
+    font-weight: 500;
+}
+
 .profile-card {
     max-width: 500px;
     background: #fff;

@@ -1,23 +1,27 @@
 .seller-profile-page {
-    background: #f8f9fa;
+    background: linear-gradient(to right, #f8f9fa, #e9f7ef);
+    min-height: 100vh;
     padding-bottom: 50px;
 }
 
 .profile-card {
-    background: #ffffff;
-    transition: transform 0.2s ease-in-out;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .profile-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .product-card {
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .carousel img {
@@ -25,6 +29,20 @@
     object-fit: cover;
 }
 
-button {
+.navbar {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+}
+
+.nav-link {
+    cursor: pointer;
     font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #d4f5d4 !important;
 }

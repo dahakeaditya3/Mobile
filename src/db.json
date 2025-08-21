@@ -189,54 +189,6 @@
       "id": "dc2d"
     },
     {
-      "id": "dbda",
-      "products_id": 1755342040388,
-      "seller_id": 1755334803407,
-      "name": "mobile",
-      "price": 1235,
-      "company": "tata",
-      "image1": "",
-      "image2": "",
-      "image3": "",
-      "image4": ""
-    },
-    {
-      "id": "843c",
-      "products_id": 1755342485179,
-      "seller_id": 1755334803407,
-      "name": "samasung",
-      "price": 67777,
-      "company": "tata",
-      "image1": "",
-      "image2": "",
-      "image3": "",
-      "image4": ""
-    },
-    {
-      "id": "504c",
-      "products_id": 1755345091455,
-      "seller_id": 1755334803407,
-      "name": "redmi",
-      "price": 2999999,
-      "company": "redmi",
-      "image1": "1fe2a023f46489bc9083c9a77de1112d4839c4b7.png",
-      "image2": "",
-      "image3": "",
-      "image4": ""
-    },
-    {
-      "id": "8782",
-      "products_id": 1755345225271,
-      "seller_id": 1755334803407,
-      "name": "cfcvhgcfgt",
-      "price": 123456789,
-      "company": "cfhbkjbk",
-      "image1": "c4a6bd7cfc75f912cc5de90aa079b83fbd1cfb93.png",
-      "image2": "brandstore-02-1-600x1856-1.jpg",
-      "image3": "c4a6bd7cfc75f912cc5de90aa079b83fbd1cfb93 (1).png",
-      "image4": ""
-    },
-    {
       "id": "89fb",
       "products_id": 1755593570874,
       "seller_id": 1755334803407,
@@ -244,6 +196,30 @@
       "price": 120000,
       "company": "realme",
       "image1": "iphone.webp",
+      "image2": "",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1766",
+      "products_id": 1755757868338,
+      "seller_id": 1755334803407,
+      "name": "Redmi Note 8",
+      "price": 15000,
+      "company": "Redmi",
+      "image1": "redmi.webp",
+      "image2": "",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "6ca8",
+      "products_id": 1755759042194,
+      "seller_id": 1755334803407,
+      "name": "Realme",
+      "price": 111111,
+      "company": "oppo",
+      "image1": "assets/images/app.jfif",
       "image2": "",
       "image3": "",
       "image4": ""
@@ -492,6 +468,23 @@
       "customerPhone": "9579968043",
       "customerAddress": "Nagpur",
       "orderDate": "20-8-2025"
+    },
+    {
+      "id": "590b",
+      "productId": "b92c",
+      "productName": "Oppo Reno 8",
+      "price": 29999,
+      "images": [
+        "assets/images/oppo38.webp",
+        "assets/images/apple.jpg",
+        "assets/images/apple.jpg",
+        "assets/images/apple.jpg"
+      ],
+      "customer_id": 1755332127547,
+      "customerName": "Aditya dahake",
+      "customerPhone": "9579968043",
+      "customerAddress": "Nagpur",
+      "orderDate": "21-8-2025"
     }
   ],
   "seller": [
@@ -519,3 +512,4 @@
     }
   ]
 }
+

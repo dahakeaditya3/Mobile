@@ -14,21 +14,20 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 
 export const routes: Routes = [
-    { path: '', component: FooterComponent },
+    { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'contact', component: ContactComponent },
     { path: 'footer', component: FooterComponent },
-    { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'customerprofile', component: UserProfileComponent },
-    { path: 'sellerprofile', component: SellerProfileComponent },
     { path: 'seller-register', component: SellerRegisterComponent },
     { path: 'dashboard', component: MainPageComponent },
     { path: 'order/:id', component: OrderComponent },
     { path: 'myorder', component: MyOrderComponent },
+    { path: 'customerprofile', component: UserProfileComponent },
+    { path: 'sellerprofile', component: SellerProfileComponent },
     { path: 'sellerorder', component: SellerOrdersComponent },
-    { path: 'about', component: AboutComponent },
-    { path: 'contact', component: ContactComponent },
     { path: '', redirectTo: 'login', pathMatch: 'full' }
 
 ];

@@ -1,12 +1,27 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'app-contact-us',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule, FooterComponent],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
+  contactForm = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: ''
+  };
 
+  submitForm() {
+    console.log("Form Data: ", this.contactForm);
+    alert('Message Sent Successfully!');
+    this.contactForm = { firstName: '', lastName: '', email: '', phone: '', message: '' };
+  }
 }

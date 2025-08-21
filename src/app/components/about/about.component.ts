@@ -25,12 +25,12 @@ export class AboutComponent {
 
   services = [
     {
-      title: 'Mobile Development',
+      title: 'Inventory Management:',
       description: 'We build scalable and robust mobile applications tailored to your needs.',
       icon: 'bi bi-phone',
     },
     {
-      title: 'Mobility Services',
+      title: 'Digital Marketing',
       description: 'Helping businesses stay connected with advanced mobility solutions.',
       icon: 'bi bi-people',
     },
@@ -45,7 +45,7 @@ export class AboutComponent {
       icon: 'bi bi-brush',
     },
     {
-      title: 'Cloud Integration',
+      title: 'Data Analytics',
       description: 'Seamless integration with cloud platforms to ensure scalability and security.',
       icon: 'bi bi-cloud-arrow-up',
     },

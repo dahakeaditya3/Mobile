@@ -9,3 +9,4 @@ export interface ISeller {
     password: string,
     confirmPassword: string
 }
+

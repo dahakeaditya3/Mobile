@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-seller-profile',
   standalone: true,
@@ -92,8 +93,6 @@ export class SellerProfileComponent implements OnInit {
       this.http.delete(`http://localhost:3000/products/${product.id}`).subscribe({
         next: () => {
           alert('Product deleted successfully!');
-
-          // Remove from local array
           this.sellerProducts = this.sellerProducts.filter(p => p.id !== product.id);
         },
         error: (err) => {
@@ -103,6 +102,4 @@ export class SellerProfileComponent implements OnInit {
       });
     }
   }
-
-
 }
