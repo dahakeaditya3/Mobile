@@ -14,40 +14,53 @@
       <!-- Right Panel -->
       <div class="col-md-7 form-section p-5">
         <h2 class="mb-4 text-center fw-bold">Create Seller Account</h2>
-        <form [formGroup]="sellerForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="sellerRegisterForm" (ngSubmit)="onSubmit()">
 
           <div class="mb-3">
-            <input type="text" formControlName="sname" class="form-control styled-input" placeholder="Seller Name" />
+            <input type="text" formControlName="sellerName" class="form-control styled-input"
+              placeholder="Seller Name" />
           </div>
 
           <div class="mb-3">
-            <input type="text" formControlName="sphone_no" class="form-control styled-input" placeholder="Phone" />
-          </div>
-
-          <div class="mb-3">
-            <select formControlName="sgender" class="form-select styled-input">
-              <option value="">-- Select Gender --</option>
-              <option>Male</option>
-              <option>Female</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <input type="text" formControlName="scompany_name" class="form-control styled-input"
+            <input type="text" formControlName="storeName" class="form-control styled-input"
               placeholder="Company Name" />
           </div>
 
           <div class="mb-3">
-            <input type="email" formControlName="s_email" class="form-control styled-input" placeholder="Email" />
+            <input type="email" formControlName="email" class="form-control styled-input" placeholder="Email" />
           </div>
 
           <div class="mb-3">
-            <input type="password" formControlName="password" class="form-control styled-input"
+            <input type="text" formControlName="phoneNo" class="form-control styled-input" placeholder="Phone" />
+          </div>
+
+          <div class="mb-3">
+            <select formControlName="state" class="form-select styled-input">
+              <option value="">-- Select State --</option>
+              <option>Maharashtra</option>
+              <option>Gujrat</option>
+              <option>Punjab</option>
+              <option>Bihar</option>
+              <option>Bengal</option>
+              <option>Tamilnadu</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <input type="text" formControlName="city" class="form-control styled-input" placeholder="City Name" />
+          </div>
+
+          <div class="mb-3">
+            <input type="text" formControlName="address" class="form-control styled-input" placeholder="Address" />
+          </div>
+
+          <div class="mb-3">
+            <input type="password" formControlName="passwordHash" class="form-control styled-input"
               placeholder="Password" />
           </div>
 
           <div class="mb-3">
-            <input type="password" formControlName="confirmPassword" class="form-control styled-input"
+            <input type="password" formControlName="confirmPasswordHash" class="form-control styled-input"
               placeholder="Confirm Password" />
           </div>
 

@@ -1,46 +1,42 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { SellerService } from './../../services/seller.service';
 import { CommonModule } from '@angular/common';
-import { SellerService } from '../../services/seller.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-seller-register',
+  selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './seller-register.component.html',
   styleUrls: ['./seller-register.component.css']
 })
 export class SellerRegisterComponent implements OnInit {
-  sellerForm!: FormGroup;
-
+  sellerRegisterForm!: FormGroup;
   router = inject(Router);
 
-  constructor(private fb: FormBuilder, private sellerService: SellerService) { }
+  constructor(private fb: FormBuilder, private SellerService: SellerService) { }
 
   ngOnInit(): void {
-    this.sellerForm = this.fb.group({
-      sname: ['', Validators.required],
-      sphone_no: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-      sgender: ['', Validators.required],
-      scompany_name: ['', Validators.required],
-      s_email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+    this.sellerRegisterForm = this.fb.group({
+      sellerName: ['', Validators.required],
+      storeName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNo: ['', Validators.required],
+      state: ['', Validators.required],
+      city: ['', Validators.required],
+      address: ['', Validators.required],
+      passwordHash: ['', Validators.required],
+      confirmPasswordHash: ['', Validators.required]
     });
   }
 
   onSubmit() {
-    if (this.sellerForm.valid) {
-      const newSeller = {
-        seller_id: Date.now(),   // Auto generated seller_id
-        ...this.sellerForm.value
-      };
-
-      this.sellerService.registerSeller(newSeller).subscribe(() => {
+    if (this.sellerRegisterForm.valid) {
+      this.SellerService.registerSeller(this.sellerRegisterForm.value).subscribe(() => {
         alert('Seller registered successfully');
-        this.router.navigateByUrl("login")
-        this.sellerForm.reset();
+        this.router.navigateByUrl("login");
+        this.sellerRegisterForm.reset();
       });
     } else {
       alert('Please fill all required fields');

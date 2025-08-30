@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { ProductService, Product } from '../../../services/product.service';
+import { ProductService } from '../../../services/product.service';
 import { FooterComponent } from '../../footer/footer.component';
+import { IProduct } from '../../../models/interface/products.interface';
 
 @Component({
   selector: 'app-main-page',
@@ -12,9 +13,9 @@ import { FooterComponent } from '../../footer/footer.component';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  products: Product[] = [];
-  filteredProducts: Product[] = [];
-  paginatedProducts: Product[] = [];
+  products: IProduct[] = [];
+  filteredProducts: IProduct[] = [];
+  paginatedProducts: IProduct[] = [];
   companies: string[] = [];
 
   // Pagination
@@ -29,10 +30,10 @@ export class MainPageComponent implements OnInit {
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe({
+    this.productService.GetAllProducts().subscribe({
       next: (data) => {
         this.products = data;
-        this.companies = [...new Set(data.map(p => p.company))]; // unique companies
+        this.companies = [...new Set(data.map(p => p.productCompany))]; // unique companies
         this.applyFilters();
       },
       error: (err) => console.error('Error loading products:', err)
@@ -45,7 +46,7 @@ export class MainPageComponent implements OnInit {
 
     // Company filter
     if (this.selectedCompany) {
-      result = result.filter(p => p.company === this.selectedCompany);
+      result = result.filter(p => p.productCompany === this.selectedCompany);
     }
 
     // Price filter
@@ -100,8 +101,8 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  orderNow(product: Product) {
-    this.router.navigate(['/order', product.id]);
+  orderNow(product: IProduct) {
+    this.router.navigate(['/order', product.productId]);
   }
 
 }

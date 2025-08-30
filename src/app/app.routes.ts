@@ -8,7 +8,6 @@ import { SellerRegisterComponent } from './components/seller-register/seller-reg
 import { MainPageComponent } from './components/main-page/main-page/main-page.component';
 import { OrderComponent } from './components/order/order/order.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { MyOrderComponent } from './components/my-order/my-order.component';
 import { SellerOrdersComponent } from './components/seller-orders/seller-orders.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -23,8 +22,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'seller-register', component: SellerRegisterComponent },
     { path: 'dashboard', component: MainPageComponent },
-    { path: 'order/:id', component: OrderComponent },
-    { path: 'myorder', component: MyOrderComponent },
+    //   { path: '/order/:id', component: OrderComponent },
     { path: 'customerprofile', component: UserProfileComponent },
     { path: 'sellerprofile', component: SellerProfileComponent },
     { path: 'sellerorder', component: SellerOrdersComponent },

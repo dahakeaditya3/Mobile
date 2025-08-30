@@ -1,105 +1,127 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-
+import { ISeller } from '../../models/interface/seller.interface';
+import { SellerService } from '../../services/seller.service';
+import { ProductService } from '../../services/product.service';
+import { IProduct } from '../../models/interface/products.interface';
 
 @Component({
   selector: 'app-seller-profile',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './seller-profile.component.html',
-  styleUrls: ['./seller-profile.component.css']
+  // styleUrls: ['./seller-profile.component.css']
 })
 export class SellerProfileComponent implements OnInit {
-  seller: any;
-  showAddProductForm = false;
+  seller: ISeller | null = null;
+  updateMode = false;
+  sellerForm!: FormGroup;
   showProducts = false;
-  productForm!: FormGroup;
-  sellerProducts: any[] = [];
-  selectedFiles: any = {}; // store filenames only
+  sellerProducts: IProduct[] = [];
 
-  constructor(private router: Router, private fb: FormBuilder, private http: HttpClient) { }
+  constructor(
+    private sellerService: SellerService,
+    private productService: ProductService,
+    private fb: FormBuilder,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.seller = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
-    if (!this.seller || !this.seller.seller_id) {
-      this.router.navigate(['/']);
-    }
+    const storedUser = localStorage.getItem('loggedInUser');
+    const sellerData = storedUser ? JSON.parse(storedUser) : null;
 
-    this.productForm = this.fb.group({
-      name: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(1)]],
-      company: ['', Validators.required],
-      image1: [''],
-      image2: [''],
-      image3: [''],
-      image4: ['']
+    if (!sellerData || !sellerData.sellerId) {
+      this.router.navigate(['/login']);
+    } else {
+      this.loadSeller(sellerData.sellerId);
+    }
+  }
+
+  loadSeller(id: number) {
+    this.sellerService.getSellerById(id).subscribe({
+      next: (data) => {
+        this.seller = data;
+        this.buildForm();
+      },
+      error: (err) => console.error('Error loading seller:', err)
     });
+  }
+
+  buildForm() {
+    if (!this.seller) return;
+    this.sellerForm = this.fb.group({
+      sellerName: [this.seller.sellerName, Validators.required],
+      storeName: [this.seller.storeName, Validators.required],
+      email: [this.seller.email, [Validators.required, Validators.email]],
+      phoneNo: [this.seller.phoneNo, Validators.required],
+      state: [this.seller.state],
+      city: [this.seller.city],
+      address: [this.seller.address]
+    });
+  }
+
+  enableUpdate() {
+    this.updateMode = true;
+  }
+
+  saveProfile() {
+    if (this.sellerForm.invalid || !this.seller) return;
+    const updatedSeller = { ...this.seller, ...this.sellerForm.value };
+    this.sellerService.updateSellerById(this.seller.sellerId, updatedSeller).subscribe({
+      next: (res) => {
+        this.seller = res;
+        this.updateMode = false;
+      },
+      error: (err) => console.error('Error updating profile:', err)
+    });
+  }
+
+  cancelUpdate() {
+    this.updateMode = false;
+    this.buildForm();
+  }
+
+  goToChangePassword() {
+    this.router.navigate(['/seller/change-password']);
   }
 
   logout() {
     localStorage.removeItem('loggedInUser');
-    this.router.navigate(['home']);
+    this.router.navigate(['/home']);
   }
 
-  // Handle file selection and store only filenames
-  onFileSelected(event: any, field: string) {
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.selectedFiles[field] = file.name;
-      // Optional: show a preview if you want
-    }
-  }
-
-  addProduct() {
-    if (this.productForm.valid) {
-      const newProduct = {
-        products_id: Date.now(),
-        seller_id: this.seller.seller_id,
-        ...this.productForm.value,
-        image1: this.selectedFiles.image1 || '',
-        image2: this.selectedFiles.image2 || '',
-        image3: this.selectedFiles.image3 || '',
-        image4: this.selectedFiles.image4 || ''
-      };
-
-      this.http.post('http://localhost:3000/products', newProduct).subscribe(() => {
-        alert('Product added successfully!');
-        this.productForm.reset();
-        this.selectedFiles = {};
-        this.showAddProductForm = false;
-        if (this.showProducts) this.loadSellerProducts();
-      });
-    } else {
-      alert('Please fill all required fields!');
-    }
-  }
-
+  // =========================
+  // Products logic
+  // =========================
   toggleShowProducts() {
     this.showProducts = !this.showProducts;
-    if (this.showProducts) this.loadSellerProducts();
+    if (this.showProducts && this.seller) {
+      this.loadSellerProducts(this.seller.sellerId);
+    }
   }
 
-  loadSellerProducts() {
-    this.http.get<any[]>('http://localhost:3000/products').subscribe((products) => {
-      this.sellerProducts = products.filter(p => p.seller_id === this.seller.seller_id);
+  loadSellerProducts(sellerId: number) {
+    this.productService.GetProductsBySeller(sellerId).subscribe({
+      next: (products) => this.sellerProducts = products,
+      error: (err) => console.error('Failed to load products:', err)
     });
   }
 
-  deleteProduct(product: any) {
-    if (confirm('Are you sure this product is sold?')) {
-      this.http.delete(`http://localhost:3000/products/${product.id}`).subscribe({
-        next: () => {
-          alert('Product deleted successfully!');
-          this.sellerProducts = this.sellerProducts.filter(p => p.id !== product.id);
-        },
-        error: (err) => {
-          console.error('Delete failed:', err);
-          alert('Failed to delete product. Please try again.');
-        }
-      });
-    }
+  deleteProduct(productId: number) {
+    if (!confirm('Are you sure you want to delete this product?')) return;
+
+    this.productService.deleteProduct(productId).subscribe({
+      next: () => {
+        alert('Product deleted successfully!');
+        // Remove deleted product from the local array
+        this.sellerProducts = this.sellerProducts.filter(p => p.productId !== productId);
+      },
+      error: (err) => {
+        console.error('Delete failed:', err);
+        alert('Failed to delete product.');
+      }
+    });
   }
 }

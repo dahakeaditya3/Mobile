@@ -1,23 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ISeller } from '../models/interface/seller.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SellerService {
-  private apiUrl = 'http://localhost:3000/seller'; // json-server endpoint
+  private apiUrl = 'https://localhost:7125/api/Seller'; // base API
 
   constructor(private http: HttpClient) { }
 
-  registerSeller(seller: any): Observable<any> {
-    return this.http.post(this.apiUrl, seller);
+  // Register seller
+  registerSeller(seller: ISeller): Observable<any> {
+    return this.http.post(`${this.apiUrl}/addSeller`, seller);
   }
 
-  getCurrentSeller() {
-    // for now just fetch first seller (later use login auth id)
-    return this.http.get<any>(`${this.apiUrl}/1`);
+  // Get seller by ID (profile page)
+  getSellerById(id: number): Observable<ISeller> {
+    return this.http.get<ISeller>(`${this.apiUrl}/${id}`);
+  }
+
+  // Update seller by ID
+  updateSellerById(id: number, updatedSeller: ISeller): Observable<ISeller> {
+    return this.http.put<ISeller>(`${this.apiUrl}/${id}`, updatedSeller);
   }
 }
-
-

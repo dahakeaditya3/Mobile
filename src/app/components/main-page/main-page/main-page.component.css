@@ -4,6 +4,10 @@
     transition: 0.3s;
 }
 
+.navbar .nav-link :active {
+    color: #ffc107;
+}
+
 .navbar .nav-link:hover {
     color: #ffc107 !important;
 }

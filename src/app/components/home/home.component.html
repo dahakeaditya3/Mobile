@@ -118,13 +118,13 @@
                 <div class="card product-card h-100 shadow-sm border-0 rounded-4">
                     <!-- Image -->
                     <div class="image-wrapper">
-                        <img [src]="product.image1 || 'assets/images/default.png'" class="product-img"
-                            alt="{{ product.name }}" />
+                        <img [src]="product.imageUrl1 || 'assets/images/default.png'" class="product-img"
+                            alt="{{ product.imageUrl1 }}" />
                     </div>
                     <!-- Card Body -->
                     <div class="card-body text-center">
-                        <h5 class="card-title fw-semibold">{{ product.name }}</h5>
-                        <p class="text-muted mb-1">{{ product.company }}</p>
+                        <h5 class="card-title fw-semibold">{{ product.productName}}</h5>
+                        <p class="text-muted mb-1">{{ product.productCompany }}</p>
                         <p class="fw-bold fs-5 text-success">₹{{ product.price }}</p>
                     </div>
                 </div>

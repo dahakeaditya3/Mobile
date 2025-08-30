@@ -1,116 +1,55 @@
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(90deg, #1c2340, #3b185f);">
-    <div class="container-fluid px-4">
+<div class="container mt-4" *ngIf="customer">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Customer Profile</h2>
 
-        <!-- Logo -->
-        <a class="navbar-brand fw-bold" href="#">
-            <img src="assets/images/mobify.png" alt="Mobify Logo" height="40" class="me-2">
-        </a>
+        <!-- Profile info -->
+        <div *ngIf="!updateMode" class="text-center">
+            <p><strong>Name:</strong> {{ customer.customerName }}</p>
+            <p><strong>Email:</strong> {{ customer.email }}</p>
+            <p><strong>Phone:</strong> {{ customer.phoneNo }}</p>
+            <p><strong>Gender:</strong> {{ customer.gender }}</p>
+            <p><strong>City:</strong> {{ customer.city }}</p>
+            <p><strong>Created At:</strong> {{ customer.createdAt | date }}</p>
 
-        <!-- Toggler for Mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarContent">
-
-            <!-- Center Search Bar -->
-            <form class="d-flex mx-auto w-50">
-                <div class="input-group">
-                    <input class="form-control rounded-start-pill shadow-sm" type="search"
-                        placeholder="Search products...">
-                    <button class="btn btn-success rounded-end-pill px-4">Search</button>
-                </div>
-            </form>
-
-            <!-- Right Nav Links -->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold">
-                <li class="nav-item"><a class="nav-link active" href="dashboard">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="myorder">My Orders</a></li>
-            </ul>
-
-            <!-- Space then Profile -->
-            <ul class="navbar-nav ms-4"> <!-- ms-4 adds spacing -->
-                <li class="nav-item d-flex align-items-center">
-                    <a class="nav-link d-flex align-items-center fw-semibold" href="customerprofile">
-                        <i class="bi bi-person-circle fs-5 me-2"> </i> Profile
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="container mt-5" *ngIf="customer">
-    <div class="profile-card shadow-lg border-0 rounded-4 p-4 mx-auto text-center">
-        <!-- Profile Image -->
-        <div class="profile-img-wrapper mx-auto mb-3">
-            <img src="assets/images/user.jpg" alt="Profile" class="profile-img rounded-circle shadow-sm" />
+            <div class="mt-3 d-flex justify-content-center gap-3">
+                <button class="btn btn-primary" (click)="enableUpdate()">✏️ Update Profile</button>
+                <button class="btn btn-danger" (click)="logout()">🚪 Logout</button>
+            </div>
         </div>
 
-        <!-- VIEW MODE -->
-        <ng-container *ngIf="!isEditMode; else editForm">
-            <h3 class="fw-bold text-primary">{{ customer.name }}</h3>
-            <p class="text-muted mb-3">Customer ID: {{ customer.customer_id }}</p>
-
-            <div class="text-start px-3">
-                <p><strong>📞 Phone:</strong> {{ customer.phone }}</p>
-                <p><strong>✉️ Email:</strong> {{ customer.email }}</p>
-                <p><strong>⚧ Gender:</strong> {{ customer.gender }}</p>
-                <p><strong>🏙️ City:</strong> {{ customer.city }}</p>
+        <!-- Update form -->
+        <!-- <form *ngIf="updateMode" [formGroup]="customerForm" (ngSubmit)="saveProfile()" class="mt-3">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" formControlName="customerName" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" formControlName="email" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Phone</label>
+                    <input type="text" class="form-control" formControlName="phoneNo" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Gender</label>
+                    <input type="text" class="form-control" formControlName="gender" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">City</label>
+                    <input type="text" class="form-control" formControlName="city" />
+                </div>
             </div>
 
-            <!-- Buttons -->
-            <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
-                <button class="btn btn-outline-primary px-4 py-2 shadow-sm rounded-pill" (click)="editProfile()">
-                    ✏️ Edit Profile
-                </button>
-                <button class="btn btn-danger px-4 py-2 shadow-sm rounded-pill" (click)="logout()">
-                    🚪 Logout
-                </button>
+            <div class="mt-3 d-flex justify-content-center gap-3">
+                <button type="button" class="btn btn-secondary" (click)="cancelUpdate()">Cancel</button>
+                <button type="submit" class="btn btn-success">Save Changes</button>
             </div>
-        </ng-container>
-
-        <!-- EDIT MODE -->
-        <ng-template #editForm>
-            <h3 class="fw-bold text-primary mb-3">Edit Profile</h3>
-            <form #profileForm="ngForm" (ngSubmit)="saveProfile()">
-                <div class="mb-3 text-start">
-                    <label class="form-label fw-semibold">Name</label>
-                    <input type="text" class="form-control" [(ngModel)]="customer.name" name="name" required>
-                </div>
-                <div class="mb-3 text-start">
-                    <label class="form-label fw-semibold">Phone</label>
-                    <input type="text" class="form-control" [(ngModel)]="customer.phone" name="phone" required>
-                </div>
-                <div class="mb-3 text-start">
-                    <label class="form-label fw-semibold">Email</label>
-                    <input type="email" class="form-control" [(ngModel)]="customer.email" name="email" required>
-                </div>
-                <div class="mb-3 text-start">
-                    <label class="form-label fw-semibold">Gender</label>
-                    <select class="form-select" [(ngModel)]="customer.gender" name="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div class="mb-3 text-start">
-                    <label class="form-label fw-semibold">City</label>
-                    <input type="text" class="form-control" [(ngModel)]="customer.city" name="city" required>
-                </div>
-
-                <!-- Form Buttons -->
-                <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
-                    <button type="submit" class="btn btn-success px-4 py-2 shadow-sm rounded-pill">
-                        💾 Save
-                    </button>
-                    <button type="button" class="btn btn-secondary px-4 py-2 shadow-sm rounded-pill"
-                        (click)="cancelEdit()">
-                        ❌ Cancel
-                    </button>
-                </div>
-            </form>
-        </ng-template>
+        </form> -->
     </div>
+</div>
+
+<div class="text-center mt-5" *ngIf="!customer">
+    <p>Loading customer profile...</p>
 </div>

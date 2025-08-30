@@ -1,52 +1,85 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ICustomer } from './../../models/interface/customer.interface';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ICustomer } from '../../models/interface/customer.interface';
+import { CustomerService } from '../../services/customer.service';
 
 @Component({
-  selector: 'app-customer-profile',
+  selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './user-profile.component.html'
 })
 export class UserProfileComponent implements OnInit {
-  customer!: ICustomer | null;
-  isEditMode: boolean = false; // toggle for form
+  customer: ICustomer | null = null;
+  updateMode = false;
+  customerForm!: FormGroup;
 
-  constructor(private router: Router) { }
+  constructor(
+    private customerService: CustomerService,
+    private fb: FormBuilder,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     const storedUser = localStorage.getItem('loggedInUser');
-    this.customer = storedUser ? JSON.parse(storedUser) : null;
+    const customerData = storedUser ? JSON.parse(storedUser) : null;
 
-    if (!this.customer || !this.customer.customer_id) {
-      this.router.navigate(['/']);
+    if (!customerData || !customerData.customerId) {
+      this.router.navigate(['/login']);
+    } else {
+      this.loadCustomer(customerData.customerId);
     }
   }
 
-  logout(): void {
+  loadCustomer(id: number) {
+    this.customerService.getCustomerById(id).subscribe({
+      next: (data) => {
+        this.customer = data;
+        this.buildForm();
+      },
+      error: (err) => console.error('Error loading customer:', err)
+    });
+  }
+
+  buildForm() {
+    if (!this.customer) return;
+
+    this.customerForm = this.fb.group({
+      customerName: [this.customer.customerName, Validators.required],
+      email: [this.customer.email, [Validators.required, Validators.email]],
+      phoneNo: [this.customer.phoneNo, Validators.required],
+      city: [this.customer.city, Validators.required],
+      gender: [this.customer.gender, Validators.required]
+    });
+  }
+
+  enableUpdate() {
+    this.updateMode = true;
+  }
+
+  // saveProfile() {
+  //   if (!this.customerForm.valid || !this.customer) return;
+
+  //   const updatedCustomer: ICustomer = { ...this.customer, ...this.customerForm.value };
+
+  //   this.customerService.updateCustomer(updatedCustomer).subscribe({
+  //     next: (res) => {
+  //       this.customer = res;
+  //       this.updateMode = false;
+  //     },
+  //     error: (err) => console.error('Error updating profile:', err)
+  //   });
+  // }
+
+  cancelUpdate() {
+    this.updateMode = false;
+    this.buildForm();
+  }
+
+  logout() {
     localStorage.removeItem('loggedInUser');
-    this.router.navigate(['/']);
-  }
-
-  editProfile(): void {
-    this.isEditMode = true;
-  }
-
-  saveProfile(): void {
-    if (this.customer) {
-      localStorage.setItem('loggedInUser', JSON.stringify(this.customer));
-      this.isEditMode = false;
-      alert('Profile updated successfully!');
-    }
-  }
-
-  cancelEdit(): void {
-    this.isEditMode = false;
-    // reload from storage to discard unsaved changes
-    const storedUser = localStorage.getItem('loggedInUser');
-    this.customer = storedUser ? JSON.parse(storedUser) : null;
+    this.router.navigate(['/home']);
   }
 }

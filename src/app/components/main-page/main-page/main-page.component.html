@@ -127,10 +127,10 @@
     <div class="row g-4">
         <div class="col-md-3 col-sm-6" *ngFor="let product of paginatedProducts">
             <div class="card h-100 shadow-sm rounded-3">
-                <img [src]="product.image1" class="card-img-top" alt="{{ product.name }}" />
+                <img [src]="product.imageUrl1" class="card-img-top" alt="{{ product.productName }}" />
                 <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p><strong>Company:</strong> {{ product.company }}</p>
+                    <h5 class="card-title">{{ product.productName }}</h5>
+                    <p><strong>Company:</strong> {{ product.productCompany }}</p>
                     <p><strong>Price:</strong> ₹{{ product.price }}</p>
                     <button class="btn btn-primary w-100" (click)="orderNow(product)">Order Now</button>
                 </div>

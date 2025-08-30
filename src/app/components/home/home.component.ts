@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth.service';
 import { FooterComponent } from '../footer/footer.component';
+import { IProduct } from '../../models/interface/products.interface';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-products',
-  standalone: true,  // <--- important
-  imports: [CommonModule, FooterComponent],  // <--- this enables *ngFor, *ngIf
+  standalone: true,
+  imports: [CommonModule, FooterComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  products: any[] = [];
+  products: IProduct[] = [];
   showAll: boolean = false;
 
-  constructor(private productService: AuthService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe((data) => {
+    this.productService.GetAllProducts().subscribe((data) => {
       this.products = data;
     });
   }

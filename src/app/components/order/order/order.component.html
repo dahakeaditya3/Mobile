@@ -1,70 +1,33 @@
 <div class="container mt-4" *ngIf="product">
-    <h2 class="text-center mb-4">Order Product</h2>
+    <div class="card p-3 shadow-lg">
+        <h3>{{ product.productName }}</h3>
+        <p><b>Company:</b> {{ product.productCompany }}</p>
+        <p><b>Price:</b> ₹{{ product.price }}</p>
 
-    <div class="row">
-        <!-- Left Column: Product Images -->
-        <div class="col-md-6">
-            <div class="row g-3 mb-4">
-                <div class="col-6" *ngIf="product.image1">
-                    <div class="card h-100 shadow-sm">
-                        <img [src]="product.image1" class="card-img-top product-img" alt="Product image 1">
-                    </div>
-                </div>
-                <div class="col-6" *ngIf="product.image2">
-                    <div class="card h-100 shadow-sm">
-                        <img [src]="product.image2" class="card-img-top product-img" alt="Product image 2">
-                    </div>
-                </div>
-                <div class="col-6" *ngIf="product.image3">
-                    <div class="card h-100 shadow-sm">
-                        <img [src]="product.image3" class="card-img-top product-img" alt="Product image 3">
-                    </div>
-                </div>
-                <div class="col-6" *ngIf="product.image4">
-                    <div class="card h-100 shadow-sm">
-                        <img [src]="product.image4" class="card-img-top product-img" alt="Product image 4">
-                    </div>
-                </div>
-            </div>
-        </div>
+        <hr />
 
-        <!-- Right Column: Product Info + Buy -->
-        <div class="col-md-6">
-            <div class="card p-3 shadow-sm mb-4">
-                <h4>{{ product.name }}</h4>
-                <p><strong>Company:</strong> {{ product.company }}</p>
-                <p><strong>Price:</strong> ₹{{ product.price }}</p>
+        <h4>🛒 Place Your Order</h4>
+        <form #orderForm="ngForm" (ngSubmit)="submitOrder(orderForm)">
+            <div class="mb-3">
+                <label class="form-label">Receiver Name</label>
+                <input type="text" class="form-control" name="receiverName" [(ngModel)]="order.receiverName" required />
             </div>
 
-            <!-- Buy button -->
-            <div *ngIf="!showForm">
-                <button class="btn btn-success w-100" (click)="buyNow()">Buy Now</button>
+            <div class="mb-3">
+                <label class="form-label">Receiver Phone</label>
+                <input type="text" class="form-control" name="receiverPhoneNo" [(ngModel)]="order.receiverPhoneNo"
+                    required />
             </div>
 
-            <!-- Order Form -->
-            <form *ngIf="showForm" (ngSubmit)="submitOrder()" class="card p-3 shadow-sm mt-3">
-                <h5>Enter Your Details</h5>
-                <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" [(ngModel)]="customer.name" name="name" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Phone</label>
-                    <input type="text" [(ngModel)]="customer.phone" name="phone" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Address</label>
-                    <textarea [(ngModel)]="customer.address" name="address" class="form-control" required></textarea>
-                </div>
+            <div class="mb-3">
+                <label class="form-label">Shipping Address</label>
+                <textarea class="form-control" name="shippingAddress" [(ngModel)]="order.shippingAddress"
+                    required></textarea>
+            </div>
 
-                <!-- Confirm & Cancel buttons -->
-                <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-primary flex-fill">Confirm Order</button>
-                    <button type="button" class="btn btn-secondary flex-fill" (click)="showForm=false">Cancel</button>
-                </div>
-            </form>
-        </div>
+            <button type="submit" class="btn btn-primary" [disabled]="orderForm.invalid">
+                Submit Order
+            </button>
+        </form>
     </div>
 </div>
-
-<app-footer>

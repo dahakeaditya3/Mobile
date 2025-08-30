@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
 
       // Choose API endpoint based on role
       const apiUrl = role === 'customer'
-        ? 'http://localhost:3000/customers'
-        : 'http://localhost:3000/seller';
+        ? 'https://localhost:7125/api/Customer/GetAllCustomers'
+        : 'https://localhost:7125/api/Seller/GetAllSellers';
 
       this.http.get<any[]>(`${apiUrl}?email=${email}&password=${password}`)
         .subscribe((res) => {

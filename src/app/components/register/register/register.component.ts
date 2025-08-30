@@ -13,34 +13,27 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-
   router = inject(Router);
 
   constructor(private fb: FormBuilder, private customerService: CustomerService) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      name: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      customerName: ['', Validators.required],
+      phoneNo: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       gender: ['', Validators.required],
       city: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
+      passwordHash: ['', Validators.required],
+      confirmPasswordHash: ['', Validators.required]
     });
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
-      // Generate auto customer_id
-      const newCustomer = {
-        customer_id: Date.now(), // unique ID using timestamp
-        ...this.registerForm.value
-      };
-
-      this.customerService.registerCustomer(newCustomer).subscribe(() => {
+      this.customerService.registerCustomer(this.registerForm.value).subscribe(() => {
         alert('Customer registered successfully');
-        this.router.navigateByUrl("login")
+        this.router.navigateByUrl("login");
         this.registerForm.reset();
       });
     } else {
