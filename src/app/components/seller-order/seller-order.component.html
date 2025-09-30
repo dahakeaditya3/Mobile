@@ -1,0 +1,53 @@
+<app-seller-nav></app-seller-nav>
+
+<div class="container mt-4">
+    <h3>My Orders</h3>
+    <div class="row g-4">
+        <div class="col-md-4" *ngFor="let order of orders">
+            <div class="card h-100 shadow-sm rounded-3">
+
+                <div id="carousel{{order.id}}" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" *ngIf="order.product.images.image1">
+                            <img [src]="'data:image/png;base64,' + order.product.images.image1" class="d-block w-75"
+                                alt="Image 1">
+
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" attr.data-bs-target="#carousel{{order.id}}"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon bg-secondary"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" attr.data-bs-target="#carousel{{order.id}}"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon bg-secondary"></span>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <table class="table-borderless">
+                        <tr class="text-center">
+                            <td class="ps-2">
+                                <h5 class="card-title">{{ order.product.name }}</h5>
+                                <p><strong>Company:</strong> {{ order.product.company }}</p>
+                                <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+                                <p><strong>Total Price:</strong> ₹{{ order.totalPrice }}</p>
+                            </td>
+                            <td class="ps-5">
+                                <h6>Customer Info:</h6>
+                                <p><strong>Name:</strong> {{ order.customer.name }}</p>
+                                <p><strong>Contact:</strong> {{ order.customer.contact }}</p>
+                                <p><strong>Gender:</strong> {{ order.customer.gender }}</p>
+                                <p><strong>City:</strong> {{ order.customer.city }}</p>
+                                <p><strong>Email:</strong> {{ order.customer.email }}</p>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

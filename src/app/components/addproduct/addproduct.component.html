@@ -1,0 +1,46 @@
+<app-seller-nav></app-seller-nav>
+
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-4 animate-fade-in-up">
+        <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 fw-bold text-center text-primary">Add New Product</h3>
+
+            <form [formGroup]="productForm" (ngSubmit)="submit()" class="row g-4">
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Product Name</label>
+                    <input type="text" class="form-control form-control-lg interactive-input"
+                        formControlName="productName">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Company</label>
+                    <input type="text" class="form-control form-control-lg interactive-input"
+                        formControlName="productCompany">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Price</label>
+                    <input type="number" class="form-control form-control-lg interactive-input" formControlName="price">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-semibold">Description</label>
+                    <textarea class="form-control interactive-input" formControlName="description" rows="3"></textarea>
+                </div>
+
+                <div class="col-md-3 col-6" *ngFor="let img of ['image1','image2','image3','image4']">
+                    <label class="form-label fw-semibold">{{ img | titlecase }}</label>
+                    <input type="file" class="form-control interactive-input" (change)="onFileSelected($event, img)">
+                </div>
+
+                <div class="col-12 text-center">
+                    <button class="btn btn-gradient btn-lg px-5 py-2 rounded-4 shadow-sm" type="submit">
+                       Add Product
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

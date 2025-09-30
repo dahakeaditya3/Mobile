@@ -1,55 +1,42 @@
-<div class="login-container">
-  <div class="card shadow-lg">
-    <div class="row g-0">
+<div class="container">
+  <div class="register-wrapper">
+    <div class="register-left d-flex flex-column justify-content-center align-items-center d-none d-md-flex">
+      <div class="overlay"></div>
+      <h1 class="text-white">Photography</h1>
+      <p class="text-white">Click for your shoot. Journey everywhere.</p>
+    </div>
 
-      <!-- Left Panel -->
-      <div class="col-md-5 welcome-section d-flex flex-column justify-content-center align-items-center">
-        <h2 class="text-white mb-3">Welcome Back!</h2>
-        <p class="text-white-50 px-3 text-center">
-          To keep connected with us please login with your personal info
-        </p>
-        <button class="btn btn-outline-light mt-3 px-4 py-2 rounded-pill">SIGN UP</button>
-      </div>
+    <div class="register-right">
+      <div class="form-container animate-slide-in">
+        <h2 class="mb-4 text-center">Login Here</h2>
 
-      <!-- Right Panel -->
-      <div class="col-md-7 form-section p-5">
-        <h2 class="mb-4 text-center fw-bold">Login</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        <form (ngSubmit)="submit()">
           <div class="mb-3">
-            <input type="email" formControlName="email" class="form-control styled-input" placeholder="Email" />
+            <label>Email</label>
+            <input [(ngModel)]="email" name="email" type="email" class="form-control" required>
           </div>
-
           <div class="mb-3">
-            <input type="password" formControlName="password" class="form-control styled-input" placeholder="Password" />
+            <label>Password</label>
+            <input [(ngModel)]="password" name="password" type="password" class="form-control" required>
           </div>
-
           <div class="mb-3">
-            <select formControlName="role" class="form-select styled-input">
-              <option value="">-- Select Role --</option>
-              <option value="customer">Customer</option>
-              <option value="seller">Seller</option>
+            <label>Role</label>
+            <select [(ngModel)]="role" name="role" class="form-select">
+              <option>Customer</option>
+              <option>Seller</option>
             </select>
           </div>
 
-          <button type="submit" class="btn btn-success w-100 rounded-pill py-2">LOGIN</button>
-
-          <!-- Extra Buttons -->
-          <div class="mt-4 d-flex flex-column gap-2 text-center">
-            <button type="button" class="btn btn-link p-0 text-success" (click)="onForgotPassword()">
-              Forgot Password?
-            </button>
-            <button type="button" class="btn btn-outline-success rounded-pill" (click)="onCreateCustomer()">
-              Create Customer Account
-            </button>
-            <button type="button" class="btn btn-outline-info rounded-pill" (click)="onCreateSeller()">
-              Create Seller Account
-            </button>
-          </div>
-
+          <button class="btn btn-primary mt-2" type="submit">Login</button>
+          <button type="submit" class="btn btn-success mt-3" routerLink="/customerregister">
+            Register for Customer
+          </button>
+          <button type="submit" class="btn btn-success mt-3" routerLink="/sellerregister">
+            Register for Seller
+          </button>
         </form>
       </div>
-
     </div>
   </div>
 </div>

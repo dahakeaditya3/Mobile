@@ -1,0 +1,20 @@
+<app-seller-nav></app-seller-nav>
+
+<div class="container mt-5">
+    <h2>My Products</h2>
+
+    <div class="row g-4">
+        <div class="col-md-3 col-sm-6" *ngFor="let product of products">
+            <div class="card h-100 shadow-sm rounded-3"> <img *ngIf="product.image1Base64"
+                    [src]="'data:image/png;base64,'+product.image1Base64" class="card-img-top"
+                    alt="{{product.productName}}" />
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.productName }}</h5>
+                    <p><strong>Company:</strong> {{ product.productCompany }}</p>
+                    <p><strong>Price:</strong> ₹{{ product.price }}</p>
+                    <button class="btn btn-danger w-100" (click)="delete(product.productId)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

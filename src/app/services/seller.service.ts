@@ -1,28 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Seller } from '../models/seller';
 import { Observable } from 'rxjs';
-import { ISeller } from '../models/interface/seller.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class SellerService {
-  private apiUrl = 'https://localhost:7125/api/Seller'; // base API
+  private baseUrl = 'https://localhost:7087/api/sellers';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  // Register seller
-  registerSeller(seller: ISeller): Observable<any> {
-    return this.http.post(`${this.apiUrl}/addSeller`, seller);
+  getProfile(sellerId: number): Observable<Seller> {
+    return this.http.get<Seller>(`${this.baseUrl}/${sellerId}`);
   }
 
-  // Get seller by ID (profile page)
-  getSellerById(id: number): Observable<ISeller> {
-    return this.http.get<ISeller>(`${this.apiUrl}/${id}`);
+  updateProfile(seller: Seller): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${seller.sellerId}`, seller);
   }
 
-  // Update seller by ID
-  updateSellerById(id: number, updatedSeller: ISeller): Observable<ISeller> {
-    return this.http.put<ISeller>(`${this.apiUrl}/${id}`, updatedSeller);
+  uploadProfilePicture(file: File): Observable<{ fileUrl: string }> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<{ fileUrl: string }>(`${this.baseUrl}/upload-profile-picture`, formData);
   }
 }

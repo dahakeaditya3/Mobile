@@ -1,69 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+export class LoginComponent {
+  email = '';
+  password = '';
+  role = 'Customer';
+  error = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      role: ['', Validators.required]
+  submit() {
+    this.authService.login(this.email, this.password, this.role).subscribe({
+      next: res => {
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('userId', res.userId.toString());
+        localStorage.setItem('role', res.role);
+
+        if (res.role === 'Customer') this.router.navigate(['/main']);
+        else this.router.navigate(['/seller-dashboard']);
+      },
+      error: err => this.error = 'Invalid credentials'
     });
   }
-
-  onSubmit() {
-    if (this.loginForm.valid) {
-      const { email, password, role } = this.loginForm.value;
-
-      // Choose API endpoint based on role
-      const apiUrl = role === 'customer'
-        ? 'https://localhost:7125/api/Customer/GetAllCustomers'
-        : 'https://localhost:7125/api/Seller/GetAllSellers';
-
-      this.http.get<any[]>(`${apiUrl}?email=${email}&password=${password}`)
-        .subscribe((res) => {
-          if (res.length > 0) {
-            const user = res[0];
-            localStorage.setItem('loggedInUser', JSON.stringify(user)); // store user
-            alert(`${role} login successful!`);
-
-            if (role === 'customer') {
-              this.router.navigate(['/dashboard']);
-
-            } else {
-              this.router.navigate(['/sellerprofile']);
-            }
-          } else {
-            alert('Invalid email or password');
-          }
-        });
-    }
-  }
-
-  onForgotPassword() {
-    alert('Redirecting to Forgot Password Page...');
-    this.router.navigate(['/forgot-password']);
-  }
-
-  onCreateCustomer() {
-    this.router.navigate(['/register']);  // customer register page
-  }
-
-  onCreateSeller() {
-    this.router.navigate(['/seller-register']);  // seller register page
-  }
-
 }

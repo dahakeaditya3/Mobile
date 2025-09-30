@@ -1,0 +1,53 @@
+
+.regi-left {
+  background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center/cover;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+.regi-left .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.form-container {
+  max-width: 600px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.animate-slide-in {
+  animation: slideIn 0.6s ease-in-out;
+}
+.animate-fade {
+  animation: fadeIn 0.8s ease;
+}
+
+.btn {
+  border-radius: 8px;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+    margin: 0 10px;
+  }
+}

@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { ProductService } from '../../../services/product.service';
 import { FooterComponent } from '../../footer/footer.component';
-import { IProduct } from '../../../models/interface/products.interface';
+import { Router } from '@angular/router';
+import { IProduct } from '../../../models/product';
+import { ProductService } from '../../../services/product.service';
+import { CustomerNavComponent } from "../../customer-nav/customer-nav.component";
+import { FormsModule } from '@angular/forms';
+import { OrderCreate } from '../../../models/order';
+import { OrderService } from '../../../services/order.service';
+
+declare var bootstrap: any; 
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [CommonModule, FooterComponent],
+  imports: [CommonModule, FooterComponent, CustomerNavComponent, FormsModule],
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
@@ -18,38 +24,37 @@ export class MainPageComponent implements OnInit {
   paginatedProducts: IProduct[] = [];
   companies: string[] = [];
 
-  // Pagination
   currentPage: number = 1;
   itemsPerPage: number = 12;
   totalPages: number = 0;
 
-  // Filters
   selectedPriceOrder: string = '';
   selectedCompany: string = '';
 
-  constructor(private productService: ProductService, private router: Router) { }
+  selectedProduct: IProduct | null = null;
+  quantity: number = 1;
+  totalPrice: number = 0;
+
+  constructor(private productService: ProductService, private orderService: OrderService, private router: Router) { }
 
   ngOnInit(): void {
-    this.productService.GetAllProducts().subscribe({
+    this.productService.getAll().subscribe({
       next: (data) => {
         this.products = data;
-        this.companies = [...new Set(data.map(p => p.productCompany))]; // unique companies
+        this.companies = [...new Set(data.map(p => p.productCompany))];
         this.applyFilters();
       },
       error: (err) => console.error('Error loading products:', err)
     });
   }
 
-  // Apply both filters together
   applyFilters(): void {
     let result = [...this.products];
 
-    // Company filter
     if (this.selectedCompany) {
       result = result.filter(p => p.productCompany === this.selectedCompany);
     }
 
-    // Price filter
     if (this.selectedPriceOrder === 'lowToHigh') {
       result.sort((a, b) => a.price - b.price);
     } else if (this.selectedPriceOrder === 'highToLow') {
@@ -62,7 +67,6 @@ export class MainPageComponent implements OnInit {
     this.updatePaginatedProducts();
   }
 
-  // Filter change handlers
   onPriceFilterChange(event: any) {
     this.selectedPriceOrder = event.target.value;
     this.applyFilters();
@@ -73,7 +77,6 @@ export class MainPageComponent implements OnInit {
     this.applyFilters();
   }
 
-  // Pagination
   updatePaginatedProducts(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
@@ -102,7 +105,49 @@ export class MainPageComponent implements OnInit {
   }
 
   orderNow(product: IProduct) {
-    this.router.navigate(['/order', product.productId]);
+    this.selectedProduct = product;
+    this.quantity = 1;
+    this.updateTotal();
+
+    const offcanvasEl = document.getElementById('orderCanvas');
+    if (offcanvasEl) {
+      const bsOffcanvas = new bootstrap.Offcanvas(offcanvasEl);
+      bsOffcanvas.show();
+    }
   }
 
+  updateTotal() {
+    if (this.selectedProduct) {
+      this.totalPrice = this.selectedProduct.price * this.quantity;
+    }
+  }
+
+  bookNow() {
+    if (this.selectedProduct) {
+      const customerId = Number(localStorage.getItem('userId')); // 👈 must be stored at login
+
+      if (!customerId) {
+        alert("No customer logged in!");
+        return;
+      }
+
+      const newOrder: OrderCreate = {
+        customerId: customerId,
+        productId: this.selectedProduct.productId,
+        quantity: this.quantity
+      };
+
+      this.orderService.createOrder(newOrder).subscribe({
+        next: (order) => {
+          alert(`Order placed! Order ID: ${order.id}, Total: ₹${order.totalPrice}`);
+        
+          this.router.navigate(['/customer-order']);
+        },
+        error: (err) => {
+          console.error('Order failed:', err);
+          alert('Failed to place order');
+        }
+      });
+    }
+  }
 }

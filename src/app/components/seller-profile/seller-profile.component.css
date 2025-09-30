@@ -1,195 +1,64 @@
-/* ===== Full Page Container ===== */
-.profile-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    width: 100%;
-    padding: 30px;
-    background: #f5f7fa;
-    box-sizing: border-box;
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  padding: 20px;
+  cursor: pointer;
 }
 
-/* ===== Card Styling ===== */
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+}
+
 .profile-card {
-    background-color: #fff;
-    border-radius: 15px;
-    padding: 30px;
-    max-width: 1100px;
-    width: 100%;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-/* ===== Profile Header ===== */
-.profile-header {
-    margin-bottom: 20px;
+.profile-left {
+  flex: 0 0 280px;
+  background: #fff;
+  border-right: 1px solid #eee;
 }
 
-.profile-image {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid #007bff;
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid hsl(39, 70%, 52%);
 }
 
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.profile-right {
+  flex: 1;
+  background: #fff;
 }
 
-/* ===== Profile Details ===== */
-.profile-details p {
-    font-size: 16px;
-    margin: 5px 0;
-    color: #333;
+.profile-form input[readonly] {
+  background-color: #f8f9fa;
+  border: 1px solid #e3e6ea;
+  color: #6c757d;
+  cursor: not-allowed;
 }
 
-/* ===== Form Styling ===== */
-form .form-label {
-    font-weight: 500;
-    color: #555;
+.profile-form input:not([readonly]) {
+  border: 1px solid #0d6efd;
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.2);
 }
 
-form input,
-form textarea {
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    padding: 8px 12px;
-    font-size: 14px;
+button {
+  transition: all 0.3s ease-in-out;
 }
 
-form textarea {
-    resize: none;
-}
-
-/* ===== Buttons ===== */
-button.btn {
-    border-radius: 8px;
-    padding: 8px 20px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-/* Color Variants */
-button.btn-warning {
-    background-color: #ffc107;
-    color: #fff;
-    border: none;
-}
-
-button.btn-warning:hover {
-    background-color: #e0a800;
-}
-
-button.btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-}
-
-button.btn-primary:hover {
-    background-color: #0069d9;
-}
-
-button.btn-success {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-}
-
-button.btn-success:hover {
-    background-color: #218838;
-}
-
-button.btn-danger {
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-}
-
-button.btn-danger:hover {
-    background-color: #c82333;
-}
-
-button.btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
-    border: none;
-}
-
-button.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
-/* ===== Products Section ===== */
-.mt-4 h3 {
-    color: #007bff;
-    font-weight: 600;
-    text-align: center;
-}
-
-.card {
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-}
-
-.card-body h5 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.card-body p {
-    font-size: 14px;
-    margin-bottom: 4px;
-    color: #555;
-}
-
-.card img {
-    height: 200px;
-    object-fit: cover;
-}
-
-/* ===== Scrollable Products Grid if overflow ===== */
-.mt-4 .row {
-    max-height: 70vh;
-    overflow-y: auto;
-    padding: 5px;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 992px) {
-    .profile-card {
-        padding: 20px;
-    }
-
-    .card img {
-        height: 150px;
-    }
-}
-
-@media (max-width: 576px) {
-    .profile-card {
-        padding: 15px;
-    }
-
-    form input,
-    form textarea {
-        font-size: 13px;
-    }
-
-    .card img {
-        height: 120px;
-    }
+button:hover {
+  transform: translateY(-2px);
 }

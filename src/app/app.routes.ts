@@ -1,31 +1,46 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login/login.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { SellerProfileComponent } from './components/seller-profile/seller-profile.component';
 import { HomeComponent } from './components/home/home.component';
-import { RegisterComponent } from './components/register/register/register.component';
-import { SellerRegisterComponent } from './components/seller-register/seller-register.component';
-import { MainPageComponent } from './components/main-page/main-page/main-page.component';
-import { OrderComponent } from './components/order/order/order.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { SellerOrdersComponent } from './components/seller-orders/seller-orders.component';
-import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { CustomerRegisterComponent } from './components/customer-register/customer-register.component';
+import { AboutComponent } from './components/about/about.component';
+import { SellerRegisterComponent } from './components/seller-register/seller-register.component';
+import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
+import { CustomerGuard } from './guards/guards/customer.guard';
+import { SellerProfileComponent } from './components/seller-profile/seller-profile.component';
+import { AddProductComponent } from './components/addproduct/addproduct.component';
+import { LoginComponent } from './components/login/login/login.component';
+import { SellerGuard } from './guards/guards/seller.guard';
+import { MainPageComponent } from './components/main-page/main-page/main-page.component';
+import { SellerDashboardComponent } from './components/seller-dashboard/seller-dashboard.component';
+import { SellerNavComponent } from './components/seller-nav/seller-nav.component';
+import { ShowProductsComponent } from './components/showproduct/showproduct.component';
+import { CustomerOrdersComponent } from './components/customer-order/customer-order.component';
+import { PublicGuard } from './guards/public.guard';
+import { SellerOrdersComponent } from './components/seller-order/seller-order.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'home', component: HomeComponent },
-    { path: 'about', component: AboutComponent },
-    { path: 'contact', component: ContactComponent },
-    { path: 'footer', component: FooterComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'seller-register', component: SellerRegisterComponent },
-    { path: 'dashboard', component: MainPageComponent },
-    //   { path: '/order/:id', component: OrderComponent },
-    { path: 'customerprofile', component: UserProfileComponent },
-    { path: 'sellerprofile', component: SellerProfileComponent },
-    { path: 'sellerorder', component: SellerOrdersComponent },
-    { path: '', redirectTo: 'login', pathMatch: 'full' }
+    { path: '', component: HomeComponent, canActivate: [PublicGuard] },
+    { path: 'home', component: HomeComponent, canActivate: [PublicGuard] },
+    { path: 'about', component: AboutComponent, canActivate: [PublicGuard] },
+    { path: 'contact', component: ContactComponent, canActivate: [PublicGuard] },
+
+    { path: 'customerregister', component: CustomerRegisterComponent, canActivate: [PublicGuard] },
+    { path: 'sellerregister', component: SellerRegisterComponent, canActivate: [PublicGuard] },
+    { path: 'login', component: LoginComponent, canActivate: [PublicGuard] },
+
+    { path: 'main', component: MainPageComponent, canActivate: [CustomerGuard] },
+    { path: 'customer-profile', component: CustomerProfileComponent, canActivate: [CustomerGuard] },
+    { path: 'customer-order', component: CustomerOrdersComponent, canActivate: [CustomerGuard] },
+
+    { path: 'seller-profile', component: SellerProfileComponent, canActivate: [SellerGuard] },
+    { path: 'addproduct', component: AddProductComponent, canActivate: [SellerGuard] },
+    { path: 'seller-dashboard', component: SellerDashboardComponent, canActivate: [SellerGuard] },
+    { path: 'seller-order', component: SellerOrdersComponent, canActivate: [SellerGuard] },
+    { path: 'showproduct', component: ShowProductsComponent },
+    { path: 'seller-nav', component: SellerNavComponent, canActivate: [SellerGuard] },
+    { path: '**', redirectTo: 'home' }
+
 
 ];
+
+

@@ -1,34 +1,32 @@
-<!-- Top Banner -->
-<div class="subscribe-section py-5 text-white d-flex justify-content-between align-items-center">
-  <div>
-    <h2><span class="text-success fw-bold">Free</span> until you’re ready to launch</h2>
-  </div>
-  <div class="d-flex">
-    <input type="text" class="form-control me-2 rounded-2"
-           placeholder="Enter Your ph.no"
-           [(ngModel)]="phoneNumber">
-    <button class="btn btn-success fw-bold" (click)="requestCode()">Request Code</button>
+<!-- Top CTA Section -->
+<div class="footer-cta">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <h2>
+      <span class="highlight">Free</span> until you’re ready to launch
+    </h2>
+
+    <div class="cta-form mt-3 mt-md-0 d-flex">
+      <input type="text" placeholder="Enter Your ph.no" class="form-control" />
+      <button class="btn btn-request" (click)="requestCode()">Request Code</button>
+    </div>
   </div>
 </div>
 
-<!-- Footer -->
-<footer class="footer-section py-5 text-white">
+<footer class="footer-main">
   <div class="container">
-    <div class="row">
-      <!-- Products -->
-      <div class="col-md-3 mb-4">
-        <h6 class="fw-bold">PRODUCTS</h6>
-        <ul class="list-unstyled mt-3">
+    <div class="row text-start text-md-left">
+      <div class="col-6 col-md-3 mb-4">
+        <h6 class="footer-title">PRODUCTS</h6>
+        <ul class="list-unstyled">
           <li>Drag And Drop</li>
           <li>Visual Studio X</li>
           <li>Easy Content</li>
         </ul>
       </div>
 
-      <!-- Resources -->
-      <div class="col-md-3 mb-4">
-        <h6 class="fw-bold">RESOURCES</h6>
-        <ul class="list-unstyled mt-3">
+      <div class="col-6 col-md-3 mb-4">
+        <h6 class="footer-title">RESOURCES</h6>
+        <ul class="list-unstyled">
           <li>Industries and tools</li>
           <li>Use cases</li>
           <li>Blog</li>
@@ -37,10 +35,9 @@
         </ul>
       </div>
 
-      <!-- Company -->
-      <div class="col-md-3 mb-4">
-        <h6 class="fw-bold">COMPANY</h6>
-        <ul class="list-unstyled mt-3">
+      <div class="col-6 col-md-3 mb-4">
+        <h6 class="footer-title">COMPANY</h6>
+        <ul class="list-unstyled">
           <li>Diversity & inclusion</li>
           <li>About us</li>
           <li>Press</li>
@@ -49,10 +46,9 @@
         </ul>
       </div>
 
-      <!-- Support -->
-      <div class="col-md-3 mb-4">
-        <h6 class="fw-bold">SUPPORT</h6>
-        <ul class="list-unstyled mt-3">
+      <div class="col-6 col-md-3 mb-4">
+        <h6 class="footer-title">SUPPORT</h6>
+        <ul class="list-unstyled">
           <li>Documentation</li>
           <li>Tutorials & guides</li>
           <li>Webinars</li>
@@ -61,16 +57,15 @@
       </div>
     </div>
 
-    <!-- Bottom -->
-    <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
-      <p class="mb-0">&copy; 2020 Appy. All rights reserved.</p>
-      <p class="mb-0">Terms · Privacy Policy</p>
-      <div class="social-icons d-flex gap-3">
-        <a href="#"><i class="bi bi-facebook fs-5"></i></a>
-        <a href="#"><i class="bi bi-twitter fs-5"></i></a>
-        <a href="#"><i class="bi bi-github fs-5"></i></a>
-        <a href="#"><i class="bi bi-linkedin fs-5"></i></a>
-        <a href="#"><i class="bi bi-instagram fs-5"></i></a>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center mt-4">
+      <p class="mb-2 mb-md-0">© 2020 Appy. All rights reserved.</p>
+      <p class="mb-2 mb-md-0">Terms · Privacy Policy</p>
+      <div class="social-icons d-flex gap-3 mt-2 mt-md-0">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-github"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
       </div>
     </div>
   </div>

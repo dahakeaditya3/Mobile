@@ -1,0 +1,48 @@
+
+
+/* Navbar */
+.navbar-custom {
+  background: #333;
+  color: #fff;
+  height: 60px;
+}
+
+/* Brand */
+.navbar-brand {
+  font-size: 1.2rem;
+}
+.navbar-brand .highlight {
+  color: yellow;
+}
+
+/* Links */
+.nav-links li {
+  list-style: none;
+  cursor: pointer;
+}
+.nav-links a {
+  text-decoration: none;
+  color: #ddd;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: #fff;
+}
+
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    padding: 20px;
+    cursor: pointer;
+}
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+}

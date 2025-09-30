@@ -1,17 +1,44 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IOrder } from '../models/interface/order.interface';
+import { CustomerOrder, Order, OrderCreate } from '../models/order';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class OrderService {
-  private apiUrl = 'https://localhost:7125/api/Orders';
+  private baseUrl = 'https://localhost:7087/api/orders';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  createOrder(order: IOrder): Observable<IOrder> {
-    return this.http.post<IOrder>(this.apiUrl, order);
+  getAll(): Observable<Order[]> {
+    return this.http.get<Order[]>(this.baseUrl);
   }
+
+  getById(id: number): Observable<Order> {
+    return this.http.get<Order>(`${this.baseUrl}/${id}`);
+  }
+
+  getBySellerId(sellerId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.baseUrl}/byseller/${sellerId}`);
+  }
+
+  getByCustomerId(customerId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.baseUrl}/bycustomer/${customerId}`);
+  }
+
+  delete(orderId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${orderId}`);
+  }
+
+    createOrder(order: OrderCreate): Observable<Order> {
+    return this.http.post<Order>(this.baseUrl, order);
+  }
+
+   getOrdersByCustomer(customerId: number): Observable<CustomerOrder[]> {
+    return this.http.get<CustomerOrder[]>(`${this.baseUrl}/bycustomer/${customerId}`);
+  }
+
+  getOrdersBySeller(sellerId: number): Observable<CustomerOrder[]> {
+  return this.http.get<CustomerOrder[]>(`${this.baseUrl}/byseller/${sellerId}`);
 }
+}
+

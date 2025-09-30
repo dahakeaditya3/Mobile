@@ -18,9 +18,9 @@ export class AboutComponent {
   ];
 
   attorneys = [
-    { name: 'Wade Warren', role: 'Attorney', img: 'assets/images/ee.webp' },
+    { name: 'Wade Warren', role: 'Attorney', img: 'assets/images/riya.jpg' },
     { name: 'Jerome Bell', role: 'Attorney', img: 'assets/images/riya.jpg' },
-    { name: 'Arlene McCoy', role: 'Attorney', img: 'assets/images/shreya.webp' }
+    { name: 'Arlene McCoy', role: 'Attorney', img: 'assets/images/riya.jpg' }
   ];
 
   services = [

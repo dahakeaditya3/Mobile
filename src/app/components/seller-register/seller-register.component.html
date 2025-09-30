@@ -1,73 +1,101 @@
-<div class="registration-container">
-  <div class="card shadow-lg">
-    <div class="row g-0">
+<div class="container-fluid">
+    <div class="row">
+        <div
+            class="regi-left col-lg-6 d-none d-lg-flex flex-column justify-content-center align-items-center text-center vh-100">
+            <div class="overlay"></div>
+            <h1 class="text-white fw-bold display-4 animate-fade">Photography</h1>
+            <p class="text-white fs-5 animate-slide-in">Click for your shoot. Journey everywhere.</p>
+        </div>
 
-      <!-- Left Panel -->
-      <div class="col-md-5 welcome-section d-flex flex-column justify-content-center align-items-center">
-        <h2 class="text-white mb-3">Welcome Seller!</h2>
-        <p class="text-white-50 px-3 text-center">
-          To keep connected with us please login with your personal info
-        </p>
-        <button class="btn btn-outline-light mt-3 px-4 py-2 rounded-pill" (click)="goTologin()">SIGN IN</button>
-      </div>
+        <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center m-lg-0 p-5 vh-100">
+            <div class="form-container shadow-lg rounded-4 p-3 animate-slide-in">
+                <h2 class="mb-2 text-center fw-bold">Seller Registration</h2>
 
-      <!-- Right Panel -->
-      <div class="col-md-7 form-section p-5">
-        <h2 class="mb-4 text-center fw-bold">Create Seller Account</h2>
-        <form [formGroup]="sellerRegisterForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+                    <div class="mb-2">
+                        <label class="form-label">Name</label>
+                        <input type="text" formControlName="sellerName" class="form-control" placeholder="Enter name" />
+                        <div *ngIf="f['sellerName']?.errors?.['required'] && (f['sellerName']?.touched || submitted)"
+                            class="text-danger small">Name is required</div>
+                    </div>
 
-          <div class="mb-3">
-            <input type="text" formControlName="sellerName" class="form-control styled-input"
-              placeholder="Seller Name" />
-          </div>
+                    <div class="mb-0 mb-md-2">
+                        <label class="form-label">Shop Name</label>
+                        <input type="text" formControlName="storeName" class="form-control"
+                            placeholder="Enter shop name" />
+                        <div *ngIf="f['storeName']?.errors?.['required'] && (f['storeName']?.touched || submitted)"
+                            class="text-danger small">Shop Name is required</div>
+                    </div>
 
-          <div class="mb-3">
-            <input type="text" formControlName="storeName" class="form-control styled-input"
-              placeholder="Company Name" />
-          </div>
+                    <div class="mb-0 mb-md-2">
+                        <label class="form-label">Email</label>
+                        <input type="email" formControlName="email" class="form-control" placeholder="Enter email" />
+                        <div *ngIf="submitted && f['email'].errors" class="text-danger small">
+                            <span *ngIf="f['email'].errors['required']">Email is required</span>
+                            <span *ngIf="f['email'].errors['email']">Enter valid email</span>
+                        </div>
+                    </div>
 
-          <div class="mb-3">
-            <input type="email" formControlName="email" class="form-control styled-input" placeholder="Email" />
-          </div>
+                    <div class="mb-0 mb-md-2">
+                        <label class="form-label">Contact</label>
+                        <input type="text" formControlName="contact" class="form-control"
+                            placeholder="10-digit number" />
+                        <div *ngIf="submitted && f['contact'].errors" class="text-danger small">
+                            <span *ngIf="f['contact'].errors['required']">Contact is required</span>
+                            <span *ngIf="f['contact'].errors['pattern']">Must be 10 digits</span>
+                        </div>
+                    </div>
 
-          <div class="mb-3">
-            <input type="text" formControlName="phoneNo" class="form-control styled-input" placeholder="Phone" />
-          </div>
+                    <div class="mb-0 mb-md-2">
+                        <label class="form-label">State</label>
+                        <input type="text" formControlName="state" class="form-control" placeholder="Enter State" />
+                        <div *ngIf="submitted && f['state'].errors" class="text-danger small">State is required</div>
+                    </div>
 
-          <div class="mb-3">
-            <select formControlName="state" class="form-select styled-input">
-              <option value="">-- Select State --</option>
-              <option>Maharashtra</option>
-              <option>Gujrat</option>
-              <option>Punjab</option>
-              <option>Bihar</option>
-              <option>Bengal</option>
-              <option>Tamilnadu</option>
-            </select>
-          </div>
+                    <div class="mb-0 mb-md-2">
+                        <label class="form-label">City</label>
+                        <input type="text" formControlName="city" class="form-control" placeholder="Enter shop city" />
+                        <div *ngIf="submitted && f['city'].errors" class="text-danger small">City is required</div>
+                    </div>
 
-          <div class="mb-3">
-            <input type="text" formControlName="city" class="form-control styled-input" placeholder="City Name" />
-          </div>
+                    <div class="mb-0 mb-md-2">
+                        <label class="form-label">Address</label>
+                        <input type="text" formControlName="address" class="form-control"
+                            placeholder="Enter Shop Address" />
+                        <div *ngIf="submitted && f['address'].errors" class="text-danger small">Address is required
+                        </div>
+                    </div>
 
-          <div class="mb-3">
-            <input type="text" formControlName="address" class="form-control styled-input" placeholder="Address" />
-          </div>
+                    <div class="mb-0 mb-md-2">
+                        <label class="form-label">Password</label>
+                        <input type="password" formControlName="password" class="form-control"
+                            placeholder="Enter password" />
+                        <div *ngIf="submitted && f['password'].errors" class="text-danger small">
+                            <span *ngIf="f['password'].errors['required']">Password is required</span>
+                            <span *ngIf="f['password'].errors['minlength']">At least 6 characters</span>
+                        </div>
+                    </div>
 
-          <div class="mb-3">
-            <input type="password" formControlName="passwordHash" class="form-control styled-input"
-              placeholder="Password" />
-          </div>
+                    <div class="mb-1 mb-md-3">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" formControlName="confirmPassword" class="form-control"
+                            placeholder="Re-enter password" />
+                        <div *ngIf="submitted && f['confirmPassword'].errors" class="text-danger small">
+                            <span *ngIf="f['confirmPassword'].errors['required']">Confirm password is required</span>
+                            <span *ngIf="f['confirmPassword'].errors['passwordMismatch']">Passwords do not match</span>
+                        </div>
+                    </div>
 
-          <div class="mb-3">
-            <input type="password" formControlName="confirmPasswordHash" class="form-control styled-input"
-              placeholder="Confirm Password" />
-          </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between gap-2 mt-4">
+                        <button type="button" class="btn btn-primary w-100 w-md-50" routerLink="/login">Login</button>
+                        <button type="submit" class="btn btn-success w-100 w-md-50"
+                            routerLink="/sellerregister">Register</button>
+                    </div>
 
-          <button type="submit" class="btn btn-success w-100 rounded-pill py-2">SIGN UP</button>
-        </form>
-      </div>
-
+                    <div *ngIf="successMessage" class="alert alert-success mt-3 animate-fade">{{ successMessage }}</div>
+                    <div *ngIf="errorMessage" class="alert alert-danger mt-3 animate-fade">{{ errorMessage }}</div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
