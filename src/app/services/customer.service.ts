@@ -5,7 +5,7 @@ import { Customer } from '../models/customer';
 
 @Injectable({ providedIn: 'root' })
 export class CustomerService {
-  private baseUrl = 'https://localhost:7087/api/customers';
+  private baseUrl = 'https://localhost:7011/api/customers';
 
   constructor(private http: HttpClient) { }
 

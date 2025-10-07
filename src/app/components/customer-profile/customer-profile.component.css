@@ -1,64 +1,56 @@
-.profile-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 90vh;
-  padding: 20px;
-  cursor: pointer;
+.profile-page-wrapper {
+  min-height: 92vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4 50%, #fbc2eb);
+  padding: 40px 15px;
 }
 
-.profile-pic {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  object-fit: cover;
-}
-
-.profile-card {
-  display: flex;
-  width: 100%;
-  max-width: 1000px;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.profile-left {
-  flex: 0 0 280px;
-  background: #fff;
-  border-right: 1px solid #eee;
+.gradient-left {
+  min-height: 650px;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .profile-photo {
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #ddd;
+  border: 3px solid hsl(39, 70%, 52%);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-.profile-right {
-  flex: 1;
-  background: #fff;
+.input-animate {
+  transition: all 0.2s ease;
 }
 
-.profile-form input[readonly] {
-  background-color: #f8f9fa;
-  border: 1px solid #e3e6ea;
-  color: #6c757d;
-  cursor: not-allowed;
+.input-animate:focus {
+  border-color: #4facfe;
+  box-shadow: 0 0 6px rgba(79, 172, 254, 0.6);
 }
 
-.profile-form input:not([readonly]) {
-  border: 1px solid #0d6efd;
-  box-shadow: 0 0 5px rgba(13, 110, 253, 0.2);
+
+.btn-animate {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-button {
-  transition: all 0.3s ease-in-out;
+.btn-animate:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-button:hover {
-  transform: translateY(-2px);
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 4px solid #fff;
+  transition: transform .3s ease;
+}
+
+.profile-photo:hover {
+  transform: scale(1.05);
+}
+
+.profile-form {
+  padding: 30px 0px;
 }

@@ -12,7 +12,7 @@ export interface AuthResponse {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private baseUrl = 'https://localhost:7087/api/auth';
+  private baseUrl = 'https://localhost:7011/api/auth';
 
   constructor(private http: HttpClient) {}
 

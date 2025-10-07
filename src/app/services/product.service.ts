@@ -6,7 +6,7 @@ import { IProduct, ProductCreate } from '../models/product';
 @Injectable({ providedIn: 'root' })
 export class ProductService {
   private http = inject(HttpClient);
-  private baseUrl = 'https://localhost:7087/api/products';
+  private baseUrl = 'https://localhost:7011/api/products';
 
   getAll(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.baseUrl);

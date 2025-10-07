@@ -1,20 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FooterComponent } from "../footer/footer.component";
+import { NavComponent } from "../nav/nav.component";
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, FooterComponent],
+  imports: [CommonModule, FooterComponent, NavComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
 export class AboutComponent {
   stats = [
-    { value: '10+', label: 'Years Experience' },
-    { value: '99Cr+', label: 'Users' },
-    { value: '50000+', label: 'Positive Reviews' },
-    { value: '600+', label: 'Trusted Partners' }
+    { value: '10 + ', label: 'Years Experience' },
+    { value: '99Cr +', label: 'Users' },
+    { value: '50000 +', label: 'Positive Reviews' },
+    { value: '600 +', label: 'Trusted Partners' }
   ];
 
   attorneys = [

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { ProductCreate } from '../../models/product';
@@ -17,15 +17,16 @@ export class AddProductComponent {
 
   constructor(private fb: FormBuilder, private productService: ProductService) {
     this.productForm = this.fb.group({
-      productName: [''],
-      productCompany: [''],
-      price: [''],
-      description: [''],
-      image1: [null],
+      productName: ['', [Validators.required, Validators.minLength(3)]],
+      productCompany: ['', [Validators.required]],
+      price: ['', [Validators.required, Validators.min(1)]],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      image1: [null, [Validators.required]],
       image2: [null],
       image3: [null],
       image4: [null]
     });
+
   }
 
   onFileSelected(event: any, controlName: string) {
@@ -35,6 +36,11 @@ export class AddProductComponent {
   }
 
   submit() {
+    if (this.productForm.invalid) {
+      this.productForm.markAllAsTouched(); // Show all validation errors
+      return;
+    }
+
     const sellerId = Number(localStorage.getItem('userId'));
     const product: ProductCreate = {
       ...this.productForm.value,
@@ -49,4 +55,5 @@ export class AddProductComponent {
       error: (err) => console.error('Error adding product:', err)
     });
   }
+
 }

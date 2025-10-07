@@ -1,76 +1,86 @@
 <app-seller-nav></app-seller-nav>
 
-<div class="profile-wrapper">
-    <div class="profile-card shadow-lg rounded-3">
-        <div class="profile-left text-center p-4">
-            <img [src]="sellerForm.value.profilePictureUrl || 'assets/images/Aditya.jpg'" alt="Profile Picture"
-                class="profile-photo mb-3">
-            <h5 class="fw-bold">{{ sellerForm.value.sellerName }}</h5>
-            <p class="text-muted small">{{ sellerForm.value.email }}</p>
+<div class="profile-page-wrapper d-flex justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center bg-light rounded-4 shadow mt-lg-5">
+            <div
+                class="col-md-4 text-center gradient-left text-white d-flex flex-column align-items-center justify-content-center p-5 rounded-4">
+                <img [src]="sellerForm.value.profilePictureUrl || 'assets/images/Aditya.jpg'" alt="Profile Picture"
+                    class="profile-photo mb-3 rounded-circle shadow">
 
-            <input type="file" class="form-control form-control-sm mt-2" (change)="onFileSelected($event)"
-                [disabled]="!isEditing">
+                <h5 class="fw-bold mb-1">{{ sellerForm.value.sellerName }}</h5>
+                <p class="small mb-3">{{ sellerForm.value.email }}</p>
 
-            <div class="mt-3">
-                <button class="btn btn-danger fw-semibold" (click)="logout()">Logout</button>
-            </div>
-        </div>
-
-
-        <div class="profile-right p-4">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="fw-bold">Profile Settings</h4>
-                <button class="btn btn-primary btn-sm shadow-sm" (click)="toggleEdit()">
-                    <i class="bi" [ngClass]="isEditing ? 'bi-x-circle' : 'bi-pencil-square'"></i>
-                    {{ isEditing ? 'Cancel' : 'Edit' }}
-                </button>
+                <button class="btn btn-danger fw-semibold px-4 shadow btn-animate" (click)="logout()">Logout</button>
             </div>
 
-            <form [formGroup]="sellerForm" class="profile-form">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label class="form-label">Seller Name</label>
-                        <input formControlName="sellerName" class="form-control" [readonly]="!isEditing">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Store Name</label>
-                        <input formControlName="storeName" class="form-control" [readonly]="!isEditing">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Email</label>
-                        <input formControlName="email" class="form-control" [readonly]="!isEditing">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Contact</label>
-                        <input formControlName="contact" class="form-control" [readonly]="!isEditing">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">State</label>
-                        <input formControlName="state" class="form-control" [readonly]="!isEditing">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">City</label>
-                        <input formControlName="city" class="form-control" [readonly]="!isEditing">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">Address</label>
-                        <input formControlName="address" class="form-control" [readonly]="!isEditing">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">Created On</label>
-                        <input formControlName="creadedOn" class="form-control" readonly>
-                    </div>
-
+            <div class="col-md-8 p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="fw-bold mb-0">Profile Settings</h4>
+                    <button class="btn btn-outline-primary btn shadow btn-animate" (click)="toggleEdit()">
+                        <i class="bi" [ngClass]="isEditing ? 'bi-x-circle' : 'bi-pencil-square'"></i>
+                        {{ isEditing ? 'Cancel' : 'Edit' }}
+                    </button>
                 </div>
 
-                <button *ngIf="isEditing" class="btn btn-success mt-4 px-4 shadow-sm" type="button"
-                    (click)="updateProfile()">
-                    <i class="bi bi-check2-circle"></i> Save Profile
-                </button>
-            </form>
+                <form [formGroup]="sellerForm" class="profile-form">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label">Seller Name</label>
+                            <input formControlName="sellerName" class="form-control rounded-3 input-animate"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Store Name</label>
+                            <input formControlName="storeName" class="form-control rounded-3 input-animate"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input formControlName="email" class="form-control rounded-3 input-animate"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Contact</label>
+                            <input formControlName="contact" class="form-control rounded-3 input-animate"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">State</label>
+                            <input formControlName="state" class="form-control rounded-3 input-animate"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">City</label>
+                            <input formControlName="city" class="form-control rounded-3 input-animate"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Address</label>
+                            <input formControlName="address" class="form-control rounded-3 input-animate"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Created On</label>
+                            <input formControlName="creadedOn" class="form-control rounded-3" readonly>
+                        </div>
+                    </div>
+
+                    <button *ngIf="isEditing" class="btn btn-success mt-4 px-4 shadow btn-animate" type="button"
+                        (click)="updateProfile()">
+                        <i class="bi bi-check2-circle"></i> Save Profile
+                    </button>
+                </form>
+            </div>
         </div>
+
     </div>
 </div>

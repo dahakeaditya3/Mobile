@@ -3,26 +3,30 @@ import { FormBuilder, Validators, ReactiveFormsModule, FormGroup, AbstractContro
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { ToastService } from '../../services/toast.service'; // 👈 import toast service
 
 @Component({
   selector: 'app-customer-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './seller-register.component.html',
   styleUrls: ['./seller-register.component.css']
 })
 export class SellerRegisterComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
-  successMessage = '';
-  errorMessage = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private toast: ToastService // 👈 inject toast
+  ) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group(
       {
-        sellerName: ['', [Validators.required]],   // 👈 FIXED
+        sellerName: ['', [Validators.required]],
         storeName: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
         contact: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
@@ -65,14 +69,15 @@ export class SellerRegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.successMessage = '';
-    this.errorMessage = '';
 
-    if (this.registerForm.invalid) return;
+    if (this.registerForm.invalid) {
+      this.toast.show('Please fill all required fields!', 'error');
+      return;
+    }
 
     const sellerData = {
-      sellerName: this.registerForm.value.sellerName, // 👈 FIXED
-      storeName: this.registerForm.value.storeName, 
+      sellerName: this.registerForm.value.sellerName,
+      storeName: this.registerForm.value.storeName,
       email: this.registerForm.value.email,
       contact: this.registerForm.value.contact,
       state: this.registerForm.value.state,
@@ -83,19 +88,17 @@ export class SellerRegisterComponent implements OnInit {
       createdOn: new Date()
     };
 
-
-    this.http.post('https://localhost:7087/api/Sellers', sellerData)
-      .subscribe({
-        next: () => {
-          alert(this.successMessage = 'Registration successful 🎉');
-          this.router.navigateByUrl('/login');
-          this.registerForm.reset();
-          this.submitted = false;
-        },
-        error: (err) => {
-          console.error(err);
-          this.errorMessage = 'Something went wrong. Try again!';
-        }
-      });
+    this.http.post('https://localhost:7011/api/Sellers', sellerData).subscribe({
+      next: () => {
+        this.toast.show('Seller Registered Successfully 🎉', 'success'); 
+        this.router.navigateByUrl('/login');
+        this.registerForm.reset();
+        this.submitted = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.toast.show('Something went wrong. Try again!', 'error'); //
+      }
+    });
   }
 }

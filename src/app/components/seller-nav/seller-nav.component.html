@@ -1,31 +1,35 @@
-<nav class="navbar-custom d-flex align-items-center justify-content-between px-4 py-4">
-   
-    <a class="navbar-brand fw-bold" href="#">
-        <img src="assets/images/mobify.png" alt="Mobify Logo" height="40" class="me-2">
+<nav class="navbar navbar-expand-lg navbar-dark px-4">
+    <a class="navbar-brand fw-bold" href="home">
+        <img src="assets/images/logo.png" alt="Mobify Logo" width="100px" height="50px" class="me-2">
     </a>
 
-    <ul class="nav ms-start gap-4 offset-7">
-        <li class="nav-item">
-            <a class="btn btn-outline-light nav-btn" routerLink="/seller-dashboard">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="btn btn-outline-light nav-btn" routerLink="/addproduct">Add Products</a>
-        </li>
-        <li class="nav-item">
-            <a class="btn btn-outline-light nav-btn" routerLink="/showproduct">My Products</a>
-        </li>
-        <li class="nav-item">
-            <a class="btn btn-outline-light nav-btn" routerLink="/seller-order">Orders</a>
-        </li>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+            <li class="nav-item">
+                <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/seller-dashboard">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/addproduct">Add Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/showproduct">My Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/seller-order">Orders</a>
+            </li>
+        </ul>
 
-    <ul class="navbar-nav ms-4"> 
-        <li class="nav-item d-flex align-items-center">
-            <a class="nav-link d-flex align-items-center fw-semibold" href="seller-profile">
-                <i class="bi bi-person-circle fs-5 me-2"> </i> Profile
-            </a>
-        </li>
-    </ul>
-
+        <ul class="navbar-nav me-0 me-lg-2">
+            <li class="nav-item d-flex align-items-center">
+                <a class="nav-link d-flex align-items-center fw-semibold" href="seller-profile">
+                    <i class="bi bi-person-circle fs-5 me-1 text-light"></i> <strong class="text-light">Profile</strong>
+                </a>
+            </li>
+        </ul>
+    </div>
 </nav>

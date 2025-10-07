@@ -3,40 +3,81 @@
 <div class="container my-5">
     <div class="card shadow-lg border-0 rounded-4 animate-fade-in-up">
         <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 fw-bold text-center text-primary">Add New Product</h3>
+            <h3 class="mb-4 fw-bold text-center">Add New Product</h3>
 
             <form [formGroup]="productForm" (ngSubmit)="submit()" class="row g-4">
 
+                <!-- Product Name -->
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">Product Name</label>
                     <input type="text" class="form-control form-control-lg interactive-input"
                         formControlName="productName">
+                    <div class="text-danger mt-1"
+                        *ngIf="productForm.get('productName')?.touched && productForm.get('productName')?.invalid">
+                        <small *ngIf="productForm.get('productName')?.errors?.['required']">Product Name is
+                            required.</small>
+                        <small *ngIf="productForm.get('productName')?.errors?.['minlength']">Minimum 3 characters
+                            required.</small>
+                    </div>
                 </div>
 
+                <!-- Company -->
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">Company</label>
                     <input type="text" class="form-control form-control-lg interactive-input"
                         formControlName="productCompany">
+                    <div class="text-danger mt-1"
+                        *ngIf="productForm.get('productCompany')?.touched && productForm.get('productCompany')?.invalid">
+                        <small>Company name is required.</small>
+                    </div>
                 </div>
 
+                <!-- Price -->
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">Price</label>
                     <input type="number" class="form-control form-control-lg interactive-input" formControlName="price">
+                    <div class="text-danger mt-1"
+                        *ngIf="productForm.get('price')?.touched && productForm.get('price')?.invalid">
+                        <small *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</small>
+                        <small *ngIf="productForm.get('price')?.errors?.['min']">Price must be greater than 0.</small>
+                    </div>
                 </div>
 
+                <!-- Description -->
                 <div class="col-12">
                     <label class="form-label fw-semibold">Description</label>
                     <textarea class="form-control interactive-input" formControlName="description" rows="3"></textarea>
+                    <div class="text-danger mt-1"
+                        *ngIf="productForm.get('description')?.touched && productForm.get('description')?.invalid">
+                        <small *ngIf="productForm.get('description')?.errors?.['required']">Description is
+                            required.</small>
+                        <small *ngIf="productForm.get('description')?.errors?.['minlength']">At least 10 characters
+                            required.</small>
+                    </div>
                 </div>
 
+                <!-- Image1 -->
                 <div class="col-md-3 col-6" *ngFor="let img of ['image1','image2','image3','image4']">
                     <label class="form-label fw-semibold">{{ img | titlecase }}</label>
-                    <input type="file" class="form-control interactive-input" (change)="onFileSelected($event, img)">
+                    <input type="file" class="form-control interactive-input"
+                        (change)="onFileSelected($event,img)">
+                    <div class="text-danger mt-1"
+                        *ngIf="productForm.get('image1')?.touched && productForm.get('image1')?.invalid">
+                        <small>At least one image is required.</small>
+                    </div>
                 </div>
+
+            
+
+
+
+
+
+
 
                 <div class="col-12 text-center">
                     <button class="btn btn-gradient btn-lg px-5 py-2 rounded-4 shadow-sm" type="submit">
-                       Add Product
+                        Add Product
                     </button>
                 </div>
 

@@ -6,7 +6,7 @@ import { CustomerService } from '../../services/customer.service';
 import { CustomerNavComponent } from "../customer-nav/customer-nav.component";
 
 @Component({
-  selector: 'app-seller-profile',
+  selector: 'app-customer-profile',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, CustomerNavComponent],
   templateUrl: './customer-profile.component.html',

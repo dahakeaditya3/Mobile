@@ -17,6 +17,7 @@ import { ShowProductsComponent } from './components/showproduct/showproduct.comp
 import { CustomerOrdersComponent } from './components/customer-order/customer-order.component';
 import { PublicGuard } from './guards/public.guard';
 import { SellerOrdersComponent } from './components/seller-order/seller-order.component';
+import { ToastComponent } from './components/ReusebleComponent/toast/toast.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [PublicGuard] },
@@ -38,6 +39,7 @@ export const routes: Routes = [
     { path: 'seller-order', component: SellerOrdersComponent, canActivate: [SellerGuard] },
     { path: 'showproduct', component: ShowProductsComponent },
     { path: 'seller-nav', component: SellerNavComponent, canActivate: [SellerGuard] },
+    {path:'toast', component:ToastComponent},
     { path: '**', redirectTo: 'home' }
 
 

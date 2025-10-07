@@ -120,3 +120,11 @@
     align-items: center;
     justify-content: center;
 }
+
+.bounce {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bounce:hover {
+    transform: translateY(-10px) scale(1.05);
+}

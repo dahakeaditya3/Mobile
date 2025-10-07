@@ -1,48 +1,5 @@
 <div class="bg-wrapper">
-
-    <nav class="navbar navbar-expand-lg navbar-dark p-3 navbar-custom">
-        <div class="container-fluid">
-
-            <a class="navbar-brand fw-bold" href="#">
-                <img src="assets/images/mobify.png" alt="Mobify Logo" height="40" class="me-2">
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-
-                <div class="search-bar mx-lg-auto my-3 my-lg-0 d-flex align-items-center gap-3">
-                    <form class="d-flex w-100">
-                        <input class="form-control me-2" type="search" placeholder="Search products..."
-                            aria-label="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
-                    </form>
-
-                    <ul class="navbar-nav ms-5 d-flex flex-row gap-3 nav-buttons">
-                        <li class="nav-item">
-                            <a class="btn btn-outline-light nav-btn" href="home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-light nav-btn" href="about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-light nav-btn" href="contact">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="d-flex ms-lg-auto flex-wrap gap-2">
-                    <a href="login" class="btn btn-outline-light">Login</a>
-                    <a href="customerregister" class="btn btn-success">Sign Up</a>
-                </div>
-
-            </div>
-        </div>
-    </nav>
-
-
+    <app-nav></app-nav>
     <section class="hero-section d-flex align-items-center text-white">
         <div class="container">
             <div class="text-start hero-content">
@@ -98,19 +55,20 @@
             </button>
         </div>
 
-        <div class="row g-4">
-            <div class="col-md-3 col-sm-6" *ngFor="let product of (showAll ? products : products.slice(0,12))">
+        <div class="row g-4" style="cursor: pointer;" (click)="pressButton()">
+            <div class="col-md-3 col-sm-6 bounce" *ngFor="let product of (showAll ? products : products.slice(0,12))">
                 <div class="card h-100 shadow-sm rounded-3">
-                <img *ngIf="product.image1Base64" [src]="'data:image/png;base64,'+product.image1Base64" class="card-img-top"
-                    alt="{{product.productName}}" />
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.productName }}</h5>
-                    <p><strong>Company:</strong> {{ product.productCompany }}</p>
-                    <p><strong>Price:</strong> ₹{{ product.price }}</p>
+                    <img *ngIf="product.image1Base64" [src]="'data:image/png;base64,'+product.image1Base64"
+                        class="card-img-top" alt="{{product.productName}}" />
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.productName }}</h5>
+                        <p><strong>Company:</strong> {{ product.productCompany }}</p>
+                        <p><strong>Price:</strong> ₹{{ product.price }}</p>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
 </div>
 <app-footer></app-footer>
+

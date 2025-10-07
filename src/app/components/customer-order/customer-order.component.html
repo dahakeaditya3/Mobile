@@ -1,13 +1,13 @@
-<app-customer-nav></app-customer-nav>
+<!-- <app-customer-nav></app-customer-nav>
 
 <div class="container mt-4">
   <h3 class="mb-4">My Orders</h3>
 
   <div class="row g-4">
-    <div class="col-md-4" *ngFor="let order of orders">
+    <div class="col-md-3 rounded-1" *ngFor="let order of orders">
       <div class="card h-100 shadow-sm">
         <div id="carousel{{order.id}}" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
+          <div class="carousel-inner p-3 justify-content-center">
             <div class="carousel-item active" *ngIf="order.images.image1">
               <img [src]="'data:image/png;base64,' + order.images.image1" class="d-block w-100" alt="Image 1">
             </div>
@@ -33,20 +33,71 @@
 
         <div class="card-body">
           <h5 class="card-title">{{ order.productName }}</h5>
-          <p class="card-text"><strong>Company:</strong> {{ order.productCompany }}</p>
-          <p class="card-text"><strong>Price:</strong> ₹{{ order.productPrice }}</p>
-          <p class="card-text"><strong>Quantity:</strong> {{ order.quantity }}</p>
-          <p class="card-text"><strong>Total:</strong> ₹{{ order.totalPrice }}</p>
-          <p class="card-text"><strong>Order Date:</strong> {{ order.createdOn | date:'medium' }}</p>
+          <p class="mb-0"><strong>Company:</strong> {{ order.productCompany }}</p>
+          <p class="mb-0"><strong>Price:</strong> ₹{{ order.productPrice }}</p>
+          <p class="mb-0"><strong>Quantity:</strong> {{ order.quantity }}</p>
+          <p class="mb-0"><strong>Total:</strong> ₹{{ order.totalPrice }}</p>
+          <p class="mb-0"><strong>Order Date:</strong> {{ order.createdOn | date:'dd-MM-yyyy' }}</p>
 
-          <hr>
+          <hr class="my-1">
 
-          <h6>Seller Info</h6>
+          <h6 class="mb-0">Seller Info</h6>
           <p class="mb-0"><strong>Name:</strong> {{ order.seller.sellerName }}</p>
           <p class="mb-0"><strong>Store:</strong> {{ order.seller.storeName }}</p>
           <p class="mb-0"><strong>Contact:</strong> {{ order.seller.contact }}</p>
           <p class="mb-0"><strong>Address:</strong> {{ order.seller.address }}</p>
         </div>
+
+
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<app-customer-nav></app-customer-nav>
+<div class="container mt-4">
+
+  <div class="row g-4" #ordersContent>
+       <h3 class="mb-5">My Orders</h3>
+    <div class="col-md-3 " *ngFor="let order of orders">
+      <div class="card h-100 col-shadow rounded-3">
+        <div id="carousel{{order.id}}" class="carousel slide m-0" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active" *ngIf="order.images.image1">
+              <img [src]="'data:image/png;base64,' + order.images.image1" class="d-block mx-auto" alt="Image 1"
+                width="200px" height="200px">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" attr.data-bs-target="#carousel{{order.id}}"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" attr.data-bs-target="#carousel{{order.id}}"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+
+        <div class="card-body">
+          <h5 class="card-title">{{ order.productName }}</h5>
+          <p class="mb-0"><strong>Company:</strong> {{ order.productCompany }}</p>
+          <p class="mb-0"><strong>Price:</strong> ₹{{ order.productPrice }}</p>
+          <p class="mb-0"><strong>Quantity:</strong> {{ order.quantity }}</p>
+          <p class="mb-0"><strong>Total:</strong> ₹{{ order.totalPrice }}</p>
+          <p class="mb-0"><strong>Order Date:</strong> {{ order.createdOn | date:'dd-MM-yyyy' }}</p>
+
+          <hr class="my-1">
+
+          <h6 class="mb-0">Seller Info</h6>
+          <p class="mb-0"><strong>Name:</strong> {{ order.seller.sellerName }}</p>
+          <p class="mb-0"><strong>Store:</strong> {{ order.seller.storeName }}</p>
+          <p class="mb-0"><strong>Contact:</strong> {{ order.seller.contact }}</p>
+          <p class="mb-0"><strong>Address:</strong> {{ order.seller.address }}</p>
+        </div>
+
       </div>
     </div>
   </div>

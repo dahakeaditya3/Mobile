@@ -59,8 +59,8 @@
         </div>
 
         <div class="row g-4">
-            <div class="col-md-3 col-sm-6" *ngFor="let product of (showAll ? products : products.slice(0,9))">
-                <div class="card h-100 shadow-sm rounded-3">
+            <div class="col-md-3 col-sm-6" *ngFor="let product of (showAll ? products : products.slice(0,12))">
+                <div class="card h-100 shadow-sm rounded-3 bounce">
                     <img *ngIf="product.image1Base64" [src]="'data:image/png;base64,'+product.image1Base64"
                         class="card-img-top" alt="{{product.productName}}" />
                     <div class="card-body">

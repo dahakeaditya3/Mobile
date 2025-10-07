@@ -3,6 +3,7 @@ import { FormBuilder, Validators, ReactiveFormsModule, FormGroup, AbstractContro
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { ToastService } from '../../services/toast.service'; // ✅ import ToastService
 
 @Component({
   selector: 'app-customer-register',
@@ -15,15 +16,18 @@ export class CustomerRegisterComponent implements OnInit {
 
   registerForm!: FormGroup;
   submitted = false;
-  successMessage = '';
-  errorMessage = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private toast: ToastService // ✅ inject ToastService
+  ) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group(
       {
-        customerName: ['', [Validators.required]],   // 👈 FIXED
+        customerName: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
         contact: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
         gender: ['', Validators.required],
@@ -58,20 +62,20 @@ export class CustomerRegisterComponent implements OnInit {
     };
   }
 
-
   get f() {
     return this.registerForm.controls;
   }
 
   onSubmit() {
     this.submitted = true;
-    this.successMessage = '';
-    this.errorMessage = '';
 
-    if (this.registerForm.invalid) return;
+    if (this.registerForm.invalid) {
+      this.toast.show('Please fill all required fields correctly!', 'error'); // ⚠️ Toast message
+      return;
+    }
 
     const customerData = {
-      customerName: this.registerForm.value.customerName, // 👈 FIXED
+      customerName: this.registerForm.value.customerName,
       email: this.registerForm.value.email,
       contact: this.registerForm.value.contact,
       gender: this.registerForm.value.gender,
@@ -81,19 +85,17 @@ export class CustomerRegisterComponent implements OnInit {
       createdOn: new Date()
     };
 
-
-    this.http.post('https://localhost:7087/api/Customers', customerData)
-      .subscribe({
-        next: () => {
-          alert(this.successMessage = 'Registration successful 🎉');
-          this.router.navigateByUrl('/login');
-          this.registerForm.reset();
-          this.submitted = false;
-        },
-        error: (err) => {
-          console.error(err);
-          this.errorMessage = 'Something went wrong. Try again!';
-        }
-      });
+    this.http.post('https://localhost:7011/api/Customers', customerData).subscribe({
+      next: () => {
+        this.toast.show('Customer Registered Successfully', 'success'); 
+        this.router.navigateByUrl('/login');
+        this.registerForm.reset();
+        this.submitted = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.toast.show('Something went wrong. Try again!', 'error'); 
+      }
+    });
   }
 }

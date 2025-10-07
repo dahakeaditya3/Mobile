@@ -1,0 +1,26 @@
+<!-- Overlay -->
+<div *ngIf="visible" class="toast-overlay"></div>
+
+<!-- Toast Box -->
+<div *ngIf="visible" class="toast-box position-fixed top-0 start-50 translate-middle-x mt-5 text-center"
+    style="z-index: 2000;">
+
+    <div class="toast-content px-4 py-3 text-white border-0 shadow-lg d-flex align-items-center gap-3" [ngClass]="{
+         'bg-success': type === 'success',
+         'bg-danger': type === 'error',
+         'bg-warning text-dark': type === 'warning'
+       }">
+
+        <!-- Dynamic icon -->
+        <i *ngIf="type === 'success'" class="bi bi-check-circle-fill fs-3"></i>
+        <i *ngIf="type === 'error'" class="bi bi-x-circle-fill fs-3"></i>
+        <i *ngIf="type === 'warning'" class="bi bi-exclamation-triangle-fill fs-3"></i>
+
+        <div class="flex-grow-1 text-start">
+            <strong>{{ message }}</strong>
+        </div>
+
+        <button type="button" class="btn-close" [ngClass]="{'btn-close-white': type !== 'warning'}" aria-label="Close"
+            (click)="visible = false"></button>
+    </div>
+</div>

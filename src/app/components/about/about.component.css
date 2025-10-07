@@ -5,14 +5,6 @@
         url('/assets/images/back.jpg') center/cover no-repeat;
 }
 
-.navbar-custom {
-    background: rgba(5, 5, 5, 0.95);
-}
-
-.search-bar {
-    width: 50%;
-}
-
 @media (max-width: 992px) {
     .search-bar {
         width: 100%;

@@ -1,10 +1,6 @@
-.container {
-    margin-top: 120px;
-}
-
 .register-wrapper {
     display: flex;
-    height: 77vh;
+    height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -24,7 +20,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .register-left h1 {
@@ -87,10 +83,15 @@
     }
 }
 
-.btn-success,
-.btn-primary,
-.btn-danger {
+.btn-primary {
     width: 100%;
+    padding: 10px 18px;
+    border-radius: 8px;
+}
+
+
+.btn-success {
+    width: 90%;
     padding: 10px 18px;
     border-radius: 8px;
 }
@@ -170,4 +171,14 @@
         padding: 20px;
         border-radius: 8px;
     }
+}
+
+.social-icons a {
+    font-size: 1.7rem;
+    color: #cccaca;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: rgb(82, 82, 243);
 }

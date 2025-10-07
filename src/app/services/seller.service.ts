@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SellerService {
-  private baseUrl = 'https://localhost:7087/api/sellers';
+  private baseUrl = 'https://localhost:7011/api/sellers';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getProfile(sellerId: number): Observable<Seller> {
     return this.http.get<Seller>(`${this.baseUrl}/${sellerId}`);
