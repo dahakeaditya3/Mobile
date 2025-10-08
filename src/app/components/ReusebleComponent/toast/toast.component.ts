@@ -18,7 +18,6 @@ export class ToastComponent {
     this.type = type;
     this.visible = true;
 
-    // Auto-close after 2.5 seconds
     setTimeout(() => this.visible = false, 500);
   }
 }

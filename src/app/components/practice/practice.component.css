@@ -1,0 +1,31 @@
+.box-1
+{
+    transition: 1s;
+    animation: fade-in 1s normal ease;
+}
+.box-2
+{ transition: 1s;
+  animation: fade-out 1s normal ease;
+}
+
+@keyframes fade-in {
+    from
+    {
+          transform: translate(-50px);
+    }
+    to{
+    transform: translate(0px);
+    }
+}
+
+
+
+@keyframes fade-out {
+    from
+    {
+          transform: translate(50px);
+    }
+    to{
+    transform: translate(0px);
+    }
+}

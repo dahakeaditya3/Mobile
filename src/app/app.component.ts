@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ChatbotComponent } from "./components/chatbot/chatbot.component";
 import { ToastComponent } from './components/ReusebleComponent/toast/toast.component';
 import { ToastService } from './services/toast.service';
 

@@ -14,7 +14,7 @@ export interface AuthResponse {
 export class AuthService {
   private baseUrl = 'https://localhost:7011/api/auth';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(email: string, password: string, role: string): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseUrl}/login`, { email, password, role });

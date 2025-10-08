@@ -18,9 +18,10 @@ import { CustomerOrdersComponent } from './components/customer-order/customer-or
 import { PublicGuard } from './guards/public.guard';
 import { SellerOrdersComponent } from './components/seller-order/seller-order.component';
 import { ToastComponent } from './components/ReusebleComponent/toast/toast.component';
+import { PracticeComponent } from './components/practice/practice.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [PublicGuard] },
+    { path: '', component: HomeComponent, canActivate: [PublicGuard]},
     { path: 'home', component: HomeComponent, canActivate: [PublicGuard] },
     { path: 'about', component: AboutComponent, canActivate: [PublicGuard] },
     { path: 'contact', component: ContactComponent, canActivate: [PublicGuard] },

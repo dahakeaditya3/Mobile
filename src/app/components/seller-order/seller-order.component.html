@@ -19,7 +19,7 @@
     </div>
 
 
-    <div class="row g-4" #ordersContent>
+    <div class="row g-4 mb-5" #ordersContent>
         <div class="col-md-3 " *ngFor="let order of filteredOrders">
             <div class="card h-100 col-shadow rounded-3">
                 <div id="carousel{{order.id}}" class="carousel slide m-0" data-bs-ride="carousel">
@@ -41,17 +41,17 @@
 
                 <div class="card-body m-0">
                     <h5 class="card-title mb-0">{{ order.product.name }}</h5>
-                    <p class="mb-0"><strong>Company:</strong> {{ order.product.company }}</p>
-                    <p class="mb-0"><strong>Quantity:</strong> {{ order.quantity }}</p>
-                    <p class="mb-0"><strong>Total Price:</strong> ₹{{ order.totalPrice }}</p>
-                    <p class="mb-0"><strong>Order Date:</strong> ₹{{ order.createdOn | date:'dd-MM-yyyy'}}</p>
+                    <p class="mb-0"><strong class="fw-light">Company:</strong> {{ order.product.company }}</p>
+                    <p class="mb-0"><strong class="fw-light">Quantity:</strong> {{ order.quantity }}</p>
+                    <p class="mb-0"><strong class="fw-light">Total Price:</strong> ₹{{ order.totalPrice }}</p>
+                    <p class="mb-0"><strong class="fw-light">Order Date:</strong> ₹{{ order.createdOn | date:'dd-MM-yyyy'}}</p>
                     <hr class="my-1">
                     <h6 class="mb-0 fw-bold">Customer Info:</h6>
-                    <p class="mb-0"><strong>Name:</strong> {{ order.customer.name }}</p>
-                    <p class="mb-0"><strong>Contact:</strong> {{ order.customer.contact }}</p>
-                    <p class="mb-0"><strong>Gender:</strong> {{ order.customer.gender }}</p>
-                    <p class="mb-0"><strong>City:</strong> {{ order.customer.city }}</p>
-                    <p class="mb-0"><strong>Email:</strong> {{ order.customer.email }}</p>
+                    <p class="mb-0"><strong class="fw-light">Name:</strong> {{ order.customer.name }}</p>
+                    <p class="mb-0"><strong class="fw-light">Contact:</strong> {{ order.customer.contact }}</p>
+                    <p class="mb-0"><strong class="fw-light">Gender:</strong> {{ order.customer.gender }}</p>
+                    <p class="mb-0"><strong class="fw-light">City:</strong> {{ order.customer.city }}</p>
+                    <p class="mb-0"><strong class="fw-light">Email:</strong> {{ order.customer.email }}</p>
 
                 </div>
 
