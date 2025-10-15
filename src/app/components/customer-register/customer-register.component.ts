@@ -3,7 +3,7 @@ import { FormBuilder, Validators, ReactiveFormsModule, FormGroup, AbstractContro
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { ToastService } from '../../services/toast.service'; // ✅ import ToastService
+import { ToastService } from '../../services/toast.service'; 
 
 @Component({
   selector: 'app-customer-register',
@@ -21,7 +21,7 @@ export class CustomerRegisterComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private toast: ToastService // ✅ inject ToastService
+    private toast: ToastService 
   ) { }
 
   ngOnInit(): void {

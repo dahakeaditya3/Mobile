@@ -12,10 +12,10 @@
 
             <button class="btn btn-secondary" (click)="applyFilter()">Filter</button>
             <button class="btn btn-secondary" (click)="resetFilter()">Reset</button>
-             <button class="btn btn-primary ms-auto" (click)="exportPDF()">Export</button>
+            <button class="btn btn-primary ms-auto" (click)="exportPDF()">Export</button>
         </div>
 
-       
+
     </div>
 
 
@@ -44,14 +44,19 @@
                     <p class="mb-0"><strong class="fw-light">Company:</strong> {{ order.product.company }}</p>
                     <p class="mb-0"><strong class="fw-light">Quantity:</strong> {{ order.quantity }}</p>
                     <p class="mb-0"><strong class="fw-light">Total Price:</strong> ₹{{ order.totalPrice }}</p>
-                    <p class="mb-0"><strong class="fw-light">Order Date:</strong> ₹{{ order.createdOn | date:'dd-MM-yyyy'}}</p>
+                    <p class="mb-0"><strong class="fw-light">Receiver Name:</strong> {{ order.receiverName}}</p>
+                    <p class="mb-0"><strong class="fw-light">Receiver Contact No:</strong> {{ order.receiverContactNumber}}</p>
+                    <p class="mb-0"><strong class="fw-light">Order Address:</strong> {{ order.orderAddress }}</p>
+                    <p class="mb-0"><strong class="fw-light">PostalCode:</strong> {{ order.postalCode}}</p>
+                    <p class="mb-0"><strong class="fw-light">Order Date:</strong> ₹{{ order.createdOn |
+                        date:'dd-MM-yyyy'}}</p>
                     <hr class="my-1">
                     <h6 class="mb-0 fw-bold">Customer Info:</h6>
                     <p class="mb-0"><strong class="fw-light">Name:</strong> {{ order.customer.name }}</p>
                     <p class="mb-0"><strong class="fw-light">Contact:</strong> {{ order.customer.contact }}</p>
-                    <p class="mb-0"><strong class="fw-light">Gender:</strong> {{ order.customer.gender }}</p>
+                    <!-- <p class="mb-0"><strong class="fw-light">Gender:</strong> {{ order.customer.gender }}</p>
                     <p class="mb-0"><strong class="fw-light">City:</strong> {{ order.customer.city }}</p>
-                    <p class="mb-0"><strong class="fw-light">Email:</strong> {{ order.customer.email }}</p>
+                    <p class="mb-0"><strong class="fw-light">Email:</strong> {{ order.customer.email }}</p> -->
 
                 </div>
 

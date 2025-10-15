@@ -1,0 +1,11 @@
+<div *ngIf="visible" class="modal-overlay" (click)="cancel()"></div>
+
+<div *ngIf="visible" class="modal-box">
+  <div class="modal-content text-center">
+    <p class="mb-4">{{ message }}</p>
+    <div class="d-flex justify-content-center gap-3">
+      <button class="btn btn-danger" (click)="confirm()">Yes</button>
+      <button class="btn btn-secondary" (click)="cancel()">No</button>
+    </div>
+  </div>
+</div>

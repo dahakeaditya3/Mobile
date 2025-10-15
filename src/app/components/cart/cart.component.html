@@ -1,0 +1,194 @@
+<app-customer-nav></app-customer-nav>
+
+<div class="container py-5">
+
+  <div class="mb-4" *ngIf="!form">
+    <h2 class="fw-bold">Your Cart</h2>
+    <p class="text-muted">Review your selected products before placing the order</p>
+  </div>
+
+  <div *ngIf="items.length === 0" class="alert alert-info shadow-sm rounded">
+    <i class="bi bi-info-circle-fill me-2"></i> Your cart is empty.
+  </div>
+
+  <div *ngIf="items.length > 0 && !form" class="table-responsive p-3 mb-3 bg-white">
+    <table class="table align-middle mb-0 shadow rounded-2">
+      <thead class="">
+        <tr class="text-center">
+          <th>Select</th>
+          <th>Product</th>
+          <th>Unit Price</th>
+          <th>Qty</th>
+          <th>Total</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let it of items" class="text-center">
+          <td><input type="checkbox" (change)="toggleSelect(it.id)" /></td>
+          <td>
+            <div class="d-flex align-items-center justify-content-center">
+              <img *ngIf="it.image1Base64" [src]="'data:image/png;base64,' + it.image1Base64"
+                class="product-thumb me-3">
+              <div>
+                <div class="fw-bold">{{ it.productName }}</div>
+                <div class="small text-muted">{{ it.productCompany }}</div>
+              </div>
+            </div>
+          </td>
+          <td>₹{{ it.unitPrice }}</td>
+          <td>
+            <div class="input-group qty-group">
+              <button class="btn btn-outline-primary" (click)="updateQuantity(it, -1)">−</button>
+              <input class="form-control text-center" [value]="it.quantity" readonly>
+              <button class="btn btn-outline-primary" (click)="updateQuantity(it, 1)">+</button>
+            </div>
+          </td>
+          <td>₹{{ it.totalPrice }}</td>
+          <td>
+            <button class="btn btn-sm btn-danger" (click)="remove(it.id)">Remove</button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="5" class="text-end fw-bold border-0 fs-5 py-3">Total Amount: <span class="text-success">₹{{
+              getSelectedTotal() }}</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-end mt-4">
+      <button class="btn btn-primary" (click)="Order()">{{buttonname}}</button>
+    </div>
+  </div>
+
+ <div *ngIf="form" class="card shadow-lg rounded-4">
+  <div class="card-header bg-primary text-white text-center py-3 rounded-top-4">
+    <h3 class="mb-0">Place Your Order</h3>
+  </div>
+
+  <div class="card-body p-4">
+
+    <!-- Selected Products List -->
+    <div class="mb-3">
+      <h4 class="fw-bold text-primary mb-2">Selected Products:</h4>
+      <div *ngFor="let p of SeeselectedItems" class="mb-1 p-2 rounded-3 border bg-light">
+        <div class="d-flex justify-content-between align-items-center pb-0">
+          <span class="fw-bold">{{ p.productName }}</span>
+          <span class="badge bg-success fs-6">₹{{ p.unitPrice }}</span>
+        </div>
+        <div class="d-flex align-items-center">Quantity: <span class="text-success ms-1">{{ p.quantity }}</span></div>
+        Total: <span class="text-success">₹{{ p.totalPrice }}</span>
+      </div>
+      <div class="fw-bold fs-5 mt-2">
+        Total Amount: <span class="text-success">₹{{ getSelectedTotal() }}</span>
+      </div>
+    </div>
+
+    <!-- Checkout Form -->
+    <form #checkoutForm="ngForm" (ngSubmit)="checkoutSelected(checkoutForm)">
+      <div class="row g-3">
+
+        <!-- Receiver Name -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Receiver Name</label>
+          <input
+            type="text"
+            name="receiverName"
+            class="form-control"
+            [(ngModel)]="receiverName"
+            required
+            minlength="3"
+            #receiverNameCtrl="ngModel"
+            [ngClass]="{ 'is-invalid': receiverNameCtrl.invalid && receiverNameCtrl.touched }"
+            placeholder="Full Name"
+          />
+          <div class="invalid-feedback" *ngIf="receiverNameCtrl.invalid && receiverNameCtrl.touched">
+            <small *ngIf="receiverNameCtrl.errors?.['required']">Name is required.</small>
+            <small *ngIf="receiverNameCtrl.errors?.['minlength']">At least 3 characters.</small>
+          </div>
+        </div>
+
+        <!-- Contact Number -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Contact Number</label>
+          <input
+            type="text"
+            name="receiverContact"
+            class="form-control"
+            [(ngModel)]="receiverContact"
+            required
+            pattern="[0-9]{10}"
+            maxlength="10"
+            #receiverContactCtrl="ngModel"
+            [ngClass]="{ 'is-invalid': receiverContactCtrl.invalid && receiverContactCtrl.touched }"
+            placeholder="10-digit number"
+          />
+          <div class="invalid-feedback" *ngIf="receiverContactCtrl.invalid && receiverContactCtrl.touched">
+            <small *ngIf="receiverContactCtrl.errors?.['required']">Contact number is required.</small>
+            <small *ngIf="receiverContactCtrl.errors?.['pattern']">Enter a valid 10-digit number.</small>
+          </div>
+        </div>
+
+        <!-- Delivery Address -->
+        <div class="col-12">
+          <label class="form-label fw-semibold">Delivery Address</label>
+          <textarea
+            name="address"
+            class="form-control"
+            rows="3"
+            [(ngModel)]="address"
+            required
+            minlength="10"
+            #addressCtrl="ngModel"
+            [ngClass]="{ 'is-invalid': addressCtrl.invalid && addressCtrl.touched }"
+            placeholder="House, Street, City"
+          ></textarea>
+          <div class="invalid-feedback" *ngIf="addressCtrl.invalid && addressCtrl.touched">
+            <small *ngIf="addressCtrl.errors?.['required']">Address is required.</small>
+            <small *ngIf="addressCtrl.errors?.['minlength']">Please enter a complete address.</small>
+          </div>
+        </div>
+
+        <!-- Postal Code -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Postal Code</label>
+          <input
+            type="text"
+            name="postalCode"
+            class="form-control"
+            [(ngModel)]="postalCode"
+            required
+            pattern="[0-9]{6}"
+            maxlength="6"
+            #postalCodeCtrl="ngModel"
+            [ngClass]="{ 'is-invalid': postalCodeCtrl.invalid && postalCodeCtrl.touched }"
+            placeholder="6-digit postal code"
+          />
+          <div class="invalid-feedback" *ngIf="postalCodeCtrl.invalid && postalCodeCtrl.touched">
+            <small *ngIf="postalCodeCtrl.errors?.['required']">Postal code is required.</small>
+            <small *ngIf="postalCodeCtrl.errors?.['pattern']">Enter a valid 6-digit postal code.</small>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-12">
+          <button
+            type="submit"
+            class="btn btn-success w-100 py-2 fw-semibold"
+            [disabled]="checkoutForm.invalid || selected.size === 0"
+          >
+            <i class="bi bi-bag-check-fill me-2"></i> Place Order
+          </button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="card-footer text-center text-muted small py-2">
+    Secure checkout • Fast delivery • Trusted sellers
+  </div>
+</div>
+
+
+</div>

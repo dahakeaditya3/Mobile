@@ -1,17 +1,17 @@
 <app-seller-nav></app-seller-nav>
-
-<div class="container my-5">
+<app-toast #toast></app-toast>
+<div class="container my-3">
     <div class="card shadow-lg border-0 rounded-4 animate-fade-in-up">
         <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 fw-bold text-center">Add New Product</h3>
+            <h3 class="mb-2 fw-bold text-center">Add New Product</h3>
 
             <form [formGroup]="productForm" (ngSubmit)="submit()" class="row g-4">
 
-                <!-- Product Name -->
-                <div class="col-md-6">
+             
+                <div class="col-md-3">
                     <label class="form-label fw-semibold">Product Name</label>
                     <input type="text" class="form-control form-control-lg interactive-input"
-                        formControlName="productName">
+                        formControlName="productName" placeholder="Enter product name">
                     <div class="text-danger mt-1"
                         *ngIf="productForm.get('productName')?.touched && productForm.get('productName')?.invalid">
                         <small *ngIf="productForm.get('productName')?.errors?.['required']">Product Name is
@@ -21,21 +21,33 @@
                     </div>
                 </div>
 
-                <!-- Company -->
-                <div class="col-md-6">
+                
+                <div class="col-md-3">
                     <label class="form-label fw-semibold">Company</label>
                     <input type="text" class="form-control form-control-lg interactive-input"
-                        formControlName="productCompany">
+                        formControlName="productCompany" placeholder="Enter company name">
                     <div class="text-danger mt-1"
                         *ngIf="productForm.get('productCompany')?.touched && productForm.get('productCompany')?.invalid">
                         <small>Company name is required.</small>
                     </div>
                 </div>
 
-                <!-- Price -->
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Model</label>
+                    <input type="text" class="form-control form-control-lg interactive-input" 
+                        formControlName="model" placeholder="e.g. A2643">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Original Price</label>
+                    <input type="number" class="form-control form-control-lg interactive-input"
+                        formControlName="originalPrice" placeholder="Enter original price">
+                </div>
+
+                <div class="col-md-3">
                     <label class="form-label fw-semibold">Price</label>
-                    <input type="number" class="form-control form-control-lg interactive-input" formControlName="price">
+                    <input type="number" class="form-control form-control-lg interactive-input" 
+                        formControlName="price" placeholder="Enter selling price">
                     <div class="text-danger mt-1"
                         *ngIf="productForm.get('price')?.touched && productForm.get('price')?.invalid">
                         <small *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</small>
@@ -43,10 +55,99 @@
                     </div>
                 </div>
 
-                <!-- Description -->
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Color</label>
+                    <input type="text" class="form-control form-control-lg interactive-input" 
+                        formControlName="color" placeholder="e.g. Black">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Condition</label>
+                    <select class="form-select form-select-lg interactive-input" formControlName="condition">
+                        <option value="">Select Condition</option>
+                        <option value="New">New</option>
+                        <option value="Second Hand">Second Hand</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">RAM (in GB)</label>
+                    <select class="form-select form-select-lg interactive-input" formControlName="ram">
+                        <option value="">Select RAM</option>
+                        <option value="2GB">2 GB</option>
+                        <option value="3GB">3 GB</option>
+                        <option value="4GB">4 GB</option>
+                        <option value="6GB">6 GB</option>
+                        <option value="8GB">8 GB</option>
+                        <option value="12GB">12 GB</option>
+                        <option value="16GB">16 GB</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Storage (in GB)</label>
+                    <select class="form-select form-select-lg interactive-input" formControlName="storage">
+                        <option value="">Select Storage</option>
+                        <option value="16GB">16 GB</option>
+                        <option value="32GB">32 GB</option>
+                        <option value="64GB">64 GB</option>
+                        <option value="128GB">128 GB</option>
+                        <option value="256GB">256 GB</option>
+                        <option value="512GB">512 GB</option>
+                        <option value="1024GB">1 TB</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Display Size (in inch)</label>
+                    <input type="text" class="form-control form-control-lg interactive-input"
+                        formControlName="displaySize" placeholder="Enter display size (e.g. 6.5)">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Battery Capacity (in mAh)</label>
+                    <input type="text" class="form-control form-control-lg interactive-input"
+                        formControlName="batteryCapacity" placeholder="e.g., 5000">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Camera</label>
+                    <input type="text" class="form-control form-control-lg interactive-input" 
+                        formControlName="camera" placeholder="e.g. 12MP+12MP+12MP">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Operating System</label>
+                    <select class="form-select form-select-lg interactive-input" formControlName="operatingSystem">
+                        <option value="">Select Operating System</option>
+                        <option value="Android">Android</option>
+                        <option value="Windows">Windows</option>
+                        <option value="Mac">Mac</option>
+                        <option value="Linux">Linux</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Network</label>
+                    <select class="form-select form-select-lg interactive-input" formControlName="network">
+                        <option value="">Select Network</option>
+                        <option value="2G">2G</option>
+                        <option value="3G">3G</option>
+                        <option value="4G">4G</option>
+                        <option value="5G">5G</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Warranty (in Month)</label>
+                    <input type="text" class="form-control form-control-lg interactive-input"
+                        formControlName="warranty" placeholder="Enter warranty">
+                </div>
+
                 <div class="col-12">
                     <label class="form-label fw-semibold">Description</label>
-                    <textarea class="form-control interactive-input" formControlName="description" rows="3"></textarea>
+                    <textarea class="form-control interactive-input" formControlName="description" rows="3"
+                        placeholder="e.g. 128GB, Sierra Blue, lightly used, original box included"></textarea>
                     <div class="text-danger mt-1"
                         *ngIf="productForm.get('description')?.touched && productForm.get('description')?.invalid">
                         <small *ngIf="productForm.get('description')?.errors?.['required']">Description is
@@ -56,27 +157,14 @@
                     </div>
                 </div>
 
-                <!-- Image1 -->
                 <div class="col-md-3 col-6" *ngFor="let img of ['image1','image2','image3','image4']">
                     <label class="form-label fw-semibold">{{ img | titlecase }}</label>
-                    <input type="file" class="form-control interactive-input"
-                        (change)="onFileSelected($event,img)">
-                    <div class="text-danger mt-1"
-                        *ngIf="productForm.get('image1')?.touched && productForm.get('image1')?.invalid">
-                        <small>At least one image is required.</small>
-                    </div>
+                    <input type="file" class="form-control interactive-input" (change)="onFileSelected($event,img)" 
+                        placeholder="Select {{img}}">
                 </div>
 
-            
-
-
-
-
-
-
-
                 <div class="col-12 text-center">
-                    <button class="btn btn-gradient btn-lg px-5 py-2 rounded-4 shadow-sm" type="submit">
+                    <button class="btn btn-gradient px-5 py-2 rounded-4 shadow" type="submit">
                         Add Product
                     </button>
                 </div>

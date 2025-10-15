@@ -18,13 +18,17 @@ import { CustomerOrdersComponent } from './components/customer-order/customer-or
 import { PublicGuard } from './guards/public.guard';
 import { SellerOrdersComponent } from './components/seller-order/seller-order.component';
 import { ToastComponent } from './components/ReusebleComponent/toast/toast.component';
-import { PracticeComponent } from './components/practice/practice.component';
+import { DetailsComponent } from './components/details/details.component';
+import { OrderProductComponent } from './components/order-product/order-product.component';
+import { CartComponent } from './components/cart/cart.component';
+import { NavComponent } from './components/nav/nav.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [PublicGuard]},
+    { path: '', component: HomeComponent, canActivate: [PublicGuard] },
     { path: 'home', component: HomeComponent, canActivate: [PublicGuard] },
     { path: 'about', component: AboutComponent, canActivate: [PublicGuard] },
     { path: 'contact', component: ContactComponent, canActivate: [PublicGuard] },
+    {path:'nav',component:NavComponent},
 
     { path: 'customerregister', component: CustomerRegisterComponent, canActivate: [PublicGuard] },
     { path: 'sellerregister', component: SellerRegisterComponent, canActivate: [PublicGuard] },
@@ -33,6 +37,9 @@ export const routes: Routes = [
     { path: 'main', component: MainPageComponent, canActivate: [CustomerGuard] },
     { path: 'customer-profile', component: CustomerProfileComponent, canActivate: [CustomerGuard] },
     { path: 'customer-order', component: CustomerOrdersComponent, canActivate: [CustomerGuard] },
+    { path: 'details/:id', component: DetailsComponent, canActivate: [CustomerGuard] },
+    { path: 'order/:id', component: OrderProductComponent, canActivate: [CustomerGuard] },
+     { path: 'cart', component: CartComponent, canActivate: [CustomerGuard] },
 
     { path: 'seller-profile', component: SellerProfileComponent, canActivate: [SellerGuard] },
     { path: 'addproduct', component: AddProductComponent, canActivate: [SellerGuard] },
@@ -40,7 +47,7 @@ export const routes: Routes = [
     { path: 'seller-order', component: SellerOrdersComponent, canActivate: [SellerGuard] },
     { path: 'showproduct', component: ShowProductsComponent },
     { path: 'seller-nav', component: SellerNavComponent, canActivate: [SellerGuard] },
-    {path:'toast', component:ToastComponent},
+    { path: 'toast', component: ToastComponent },
     { path: '**', redirectTo: 'home' }
 
 

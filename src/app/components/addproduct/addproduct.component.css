@@ -1,55 +1,53 @@
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-in-out;
+  animation: fadeInUp 0.5s ease-in-out;
 }
 
-.interactive-input {
-    transition: all 0.3s ease;
-}
+@keyframes fadeInUp {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
 
-.interactive-input:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 10px rgba(13, 110, 253, 0.3);
-    transform: scale(1.02);
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .btn-gradient {
-    background: linear-gradient(90deg, #0d6efd, #6610f2);
-    color: #fff;
-    transition: all 0.3s ease;
+  background: linear-gradient(135deg, #0d6efd, #0abcf9);
+  color: #fff;
+  border: none;
+  transition: all 0.3s ease;
 }
 
 .btn-gradient:hover {
-    background: linear-gradient(90deg, #6610f2, #0d6efd);
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #0abcf9, #0d6efd);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(13, 110, 253, 0.3);
 }
 
-.card {
-    border-radius: 1.25rem;
+
+.interactive-input:focus {
+  border-color: #0d6efd !important;
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
 }
 
-@media (max-width: 576px) {
-    h3 {
-        font-size: 1.5rem;
-    }
-
-    .btn-gradient {
-        width: 100%;
-    }
+.interactive-input:hover {
+  border-color: #0abcf9;
 }
 
-.interactive-input.ng-invalid.ng-touched {
-    border: 1px solid #dc3545 !important;
+
+body,
+.form-label,
+input,
+select,
+textarea,
+button,
+small {
+  font-size: 0.85rem !important;
+}
+
+.card-header h5 {
+  font-size: 1rem !important;
 }

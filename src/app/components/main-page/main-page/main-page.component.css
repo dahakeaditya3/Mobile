@@ -48,6 +48,8 @@
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+     cursor: pointer;
 }
 
 .product-img {
@@ -79,4 +81,9 @@
 .carousel img {
     height: 300px;
     object-fit: contain;
+}
+
+
+.card:hover {
+    transform: translateY(-5px) scale(1.01);
 }

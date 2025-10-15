@@ -6,7 +6,6 @@ import { IProduct } from '../../../models/product';
 import { ProductService } from '../../../services/product.service';
 import { CustomerNavComponent } from "../../customer-nav/customer-nav.component";
 import { FormsModule } from '@angular/forms';
-import { OrderCreate } from '../../../models/order';
 import { OrderService } from '../../../services/order.service';
 
 declare var bootstrap: any; 
@@ -104,50 +103,14 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  orderNow(product: IProduct) {
-    this.selectedProduct = product;
-    this.quantity = 1;
-    this.updateTotal();
-
-    const offcanvasEl = document.getElementById('orderCanvas');
-    if (offcanvasEl) {
-      const bsOffcanvas = new bootstrap.Offcanvas(offcanvasEl);
-      bsOffcanvas.show();
-    }
-  }
+viewDetails(productId: number) {
+  this.router.navigate(['/details', productId]);
+}
+  
 
   updateTotal() {
     if (this.selectedProduct) {
       this.totalPrice = this.selectedProduct.price * this.quantity;
-    }
-  }
-
-  bookNow() {
-    if (this.selectedProduct) {
-      const customerId = Number(localStorage.getItem('userId')); // 👈 must be stored at login
-
-      if (!customerId) {
-        alert("No customer logged in!");
-        return;
-      }
-
-      const newOrder: OrderCreate = {
-        customerId: customerId,
-        productId: this.selectedProduct.productId,
-        quantity: this.quantity
-      };
-
-      this.orderService.createOrder(newOrder).subscribe({
-        next: (order) => {
-          alert(`Order placed! Order ID: ${order.id}, Total: ₹${order.totalPrice}`);
-        
-          this.router.navigate(['/customer-order']);
-        },
-        error: (err) => {
-          console.error('Order failed:', err);
-          alert('Failed to place order');
-        }
-      });
     }
   }
 }

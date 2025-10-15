@@ -6,14 +6,25 @@ export interface Order {
   productName: string;
   quantity: number;
   totalPrice: number;
+  receiverName: string;
+  receiverContactNumber: string;
+  orderAddress: string;
+  postalCode: string;
   createdOn: string;
 }
 
 
 export interface OrderCreate {
-  customerId: number;
+ customerId: number;
+  customerName: string;
   productId: number;
+  productName: string;
   quantity: number;
+  totalPrice: number;
+  receiverName: string;
+  receiverContactNumber: string;
+  orderAddress: string;
+  postalCode: string;
 }
 
 
@@ -42,6 +53,10 @@ export interface CustomerOrder {
   quantity: number;
   totalPrice: number;
   createdOn: string;
+  receiverName: string;
+  receiverContactNumber: string;
+  orderAddress: string;
+  postalCode: string;
 }
 
 
@@ -49,6 +64,10 @@ export interface SellerOrder {
   id: number;
   quantity: number;
   totalPrice: number;
+  receiverName: string;
+  receiverContactNumber: string;
+  orderAddress: string;
+  postalCode: string;
   createdOn: string;
   customer: {
     customerId: number;

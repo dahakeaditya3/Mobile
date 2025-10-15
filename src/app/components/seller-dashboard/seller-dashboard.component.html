@@ -1,8 +1,7 @@
 
 <div class="bg-wrapper">
 
-    <app-seller-nav></app-seller-nav>
-
+   <app-seller-nav></app-seller-nav>
     <section class="hero-section d-flex align-items-center text-white">
         <div class="container">
             <div class="text-start hero-content">
@@ -49,10 +48,10 @@
     </div>
 </div>
 
-<div class="container-fluid bg-secondary py-5">
+<div class="container-fluid py-5" style="background-color: #F5F5DC;">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="fw-bold text-white mb-0">Our Products</h2>
+            <h2 class="fw-bold mb-0">Our Products</h2>
             <button class="btn btn-success shadow-sm px-4" (click)="toggleView()">
                 {{ showAll ? 'Show Less' : 'View All' }}
             </button>
@@ -60,17 +59,27 @@
 
         <div class="row g-4">
             <div class="col-md-3 col-sm-6" *ngFor="let product of (showAll ? products : products.slice(0,12))">
-                <div class="card h-100 shadow-sm rounded-3 bounce">
-                    <img *ngIf="product.image1Base64" [src]="'data:image/png;base64,'+product.image1Base64"
-                        class="card-img-top" alt="{{product.productName}}" />
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.productName }}</h5>
-                        <p><strong>Company:</strong> {{ product.productCompany }}</p>
-                        <p><strong>Price:</strong> ₹{{ product.price }}</p>
-                    </div>
-                </div>
+                <div class="card shadow-lg border-0 rounded-4 h-100">
+        <img *ngIf="product.image1Base64" [src]="'data:image/png;base64,'+product.image1Base64"
+          class="card-img-top rounded-top-4" alt="Mobile image">
+
+        <div class="card-body">
+          <h6 class="text-secondary mb-1">{{product.productCompany}}</h6>
+          <h5 class="card-title fw-semibold">{{ product.productName }}</h5>
+
+          <p class="mb-1 text-muted small">
+            {{product.ram}} | {{product.storage}} | {{product.color}}
+          </p>
+
+          <p class="fw-bold text-success fs-5 mb-0">
+            ₹{{ product.price}}
+          </p>
+          <p class="text-muted small mb-2">{{product.condition}}</p>
+
+        </div>
+      </div>
             </div>
         </div>
     </div>
 </div>
-<app-footer></app-footer>
+<app-footer></app-footer> 

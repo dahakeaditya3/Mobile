@@ -8,7 +8,7 @@ import { SellerNavComponent } from "../seller-nav/seller-nav.component";
 @Component({
   selector: 'app-seller-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, SellerNavComponent],
+  imports: [CommonModule, ReactiveFormsModule,SellerNavComponent],
   templateUrl: './seller-profile.component.html',
   styleUrls: ['./seller-profile.component.css']
 })
@@ -17,6 +17,7 @@ export class SellerProfileComponent implements OnInit {
   isEditing = false;
   dropdownOpen = false;
   isMenuOpen = true;
+
 
   constructor(private fb: FormBuilder, private sellerService: SellerService, private router: Router) { }
 

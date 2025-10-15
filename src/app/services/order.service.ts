@@ -30,8 +30,8 @@ export class OrderService {
     return this.http.delete(`${this.baseUrl}/${orderId}`);
   }
 
-  createOrder(order: OrderCreate): Observable<Order> {
-    return this.http.post<Order>(this.baseUrl, order);
+  createOrder(orderData: OrderCreate): Observable<Order> {
+    return this.http.post<Order>(this.baseUrl, orderData);
   }
 
   getOrdersByCustomer(customerId: number): Observable<CustomerOrder[]> {

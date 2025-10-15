@@ -1,0 +1,29 @@
+.main-image {
+  height: 320px;
+  object-fit: contain;
+}
+
+.thumb-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.thumb-img:hover {
+  transform: scale(1.05);
+}
+
+.table td {
+  padding: 6px 12px;
+}
+
+.btn-lg {
+  padding: 10px 20px;
+  font-weight: 500;
+}
+
+.badge {
+  font-size: 0.8rem;
+}

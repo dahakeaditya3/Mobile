@@ -1,26 +1,27 @@
-
 .regi-left {
   background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center/cover;
   position: relative;
   color: #fff;
   text-align: center;
-  padding: 20px;
+  padding: 40px 20px;
 }
 .regi-left .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.logo-img {
+  width: 90px;
+  height: auto;
 }
 
 .form-container {
-  max-width: 600px;
+  max-width: 500px;
   background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes slideIn {
@@ -36,18 +37,45 @@
 .animate-slide-in {
   animation: slideIn 0.6s ease-in-out;
 }
-.animate-fade {
-  animation: fadeIn 0.8s ease;
-}
 
 .btn {
   border-radius: 8px;
-  padding: 10px;
+  padding: 10px 12px;
+  font-weight: 500;
 }
 
-@media (max-width: 768px) {
+/* ✅ Mobile Devices */
+@media (max-width: 767px) {
   .form-container {
     padding: 20px;
-    margin: 0 10px;
+    margin: 20px auto;
+    width: 100%;
+  }
+
+  .logo-img {
+    width: 80px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-label {
+    font-size: 0.95rem;
+  }
+}
+
+/* ✅ Tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+  .form-container {
+    max-width: 600px;
+    padding: 25px;
+  }
+}
+
+/* ✅ Large Screens */
+@media (min-width: 992px) {
+  .form-container {
+    max-width: 500px;
   }
 }

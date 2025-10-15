@@ -5,7 +5,7 @@ import { SellerOrder } from '../../models/order';
 import { HttpClient } from '@angular/common/http';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { FormsModule } from '@angular/forms'; // needed for ngModel
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-seller-orders',
@@ -21,7 +21,7 @@ export class SellerOrdersComponent implements OnInit {
   filteredOrders: SellerOrder[] = [];
   sellerId: number = 0;
 
-  filterFrom!: string; // 'yyyy-MM-dd'
+  filterFrom!: string; 
   filterTo!: string;
 
   constructor(private http: HttpClient) { }
@@ -39,7 +39,7 @@ export class SellerOrdersComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.orders = data;
-          this.filteredOrders = [...this.orders]; // initially show all
+          this.filteredOrders = [...this.orders]; 
         },
         error: (err) => console.error(err)
       });
@@ -60,7 +60,7 @@ export class SellerOrdersComponent implements OnInit {
   resetFilter() {
     this.filterFrom = '';
     this.filterTo = '';
-    this.filteredOrders = [...this.orders]; // show all orders
+    this.filteredOrders = [...this.orders];
   }
 
 

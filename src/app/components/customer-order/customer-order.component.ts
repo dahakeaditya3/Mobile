@@ -1,4 +1,4 @@
-// components/customer-order/customer-order.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerNavComponent } from '../customer-nav/customer-nav.component';
