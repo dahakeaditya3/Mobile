@@ -1,8 +1,12 @@
 .navbar-custom {
-    background: rgba(0,0,0,0.3);
+  background: linear-gradient(90deg, #1c1f26, #2a2f38);
 }
 
-.search-bar {
-    width: 60%;
+.navbar-custom .btn {
+  font-weight: 500;
 }
 
+.navbar-custom .btn:hover {
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}

@@ -1,15 +1,13 @@
+.col-shadow {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.col-shadow:hover {
+  transform: translateY(-5px);
+}
 
 .card img {
-    height: 200px;
-    object-fit: cover;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-}
-
-.card-body h5 {
-    font-weight: bold;
-}
-
-.card-body p {
-    font-size: 0.9rem;
+  width: 100%;
+  border-bottom: 1px solid #eee;
 }

@@ -28,7 +28,7 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [PublicGuard] },
     { path: 'about', component: AboutComponent, canActivate: [PublicGuard] },
     { path: 'contact', component: ContactComponent, canActivate: [PublicGuard] },
-    {path:'nav',component:NavComponent},
+    { path: 'nav', component: NavComponent },
 
     { path: 'customerregister', component: CustomerRegisterComponent, canActivate: [PublicGuard] },
     { path: 'sellerregister', component: SellerRegisterComponent, canActivate: [PublicGuard] },
@@ -39,7 +39,7 @@ export const routes: Routes = [
     { path: 'customer-order', component: CustomerOrdersComponent, canActivate: [CustomerGuard] },
     { path: 'details/:id', component: DetailsComponent, canActivate: [CustomerGuard] },
     { path: 'order/:id', component: OrderProductComponent, canActivate: [CustomerGuard] },
-     { path: 'cart', component: CartComponent, canActivate: [CustomerGuard] },
+    { path: 'cart', component: CartComponent, canActivate: [CustomerGuard] },
 
     { path: 'seller-profile', component: SellerProfileComponent, canActivate: [SellerGuard] },
     { path: 'addproduct', component: AddProductComponent, canActivate: [SellerGuard] },
@@ -49,8 +49,6 @@ export const routes: Routes = [
     { path: 'seller-nav', component: SellerNavComponent, canActivate: [SellerGuard] },
     { path: 'toast', component: ToastComponent },
     { path: '**', redirectTo: 'home' }
-
-
 ];
 
 

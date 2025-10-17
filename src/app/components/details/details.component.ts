@@ -108,13 +108,12 @@ export class DetailsComponent implements OnInit {
     const dto: ICartItemCreate = {
       customerId,
       productId: this.product.productId,
-      // quantity: this.quantity
     };
 
     this.cartService.addToCart(dto).subscribe({
       next: () => {
         this.toast.show('Added to cart', 'success');
-        this.router.navigate(['/cart']); // Navigate to cart page
+        this.router.navigate(['/cart']); 
       },
       error: (err) => {
         console.error(err);

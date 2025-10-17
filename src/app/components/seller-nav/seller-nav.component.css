@@ -1,7 +1,6 @@
-
 .navbar {
   color: #fff;
-   background: linear-gradient(90deg, #1c2340, #3b185f);
+  background: linear-gradient(90deg, #1c2340, #3b185f);
 }
 
 .navbar-brand {
@@ -15,6 +14,14 @@
 .nav-btn:hover {
   color: black;
   background-color: white;
+}
+
+.navbar .nav-link :active {
+    color: #ffc107;
+}
+
+.navbar .nav-link:hover {
+    color: #ffc107 !important;
 }
 
 .profile-pic {

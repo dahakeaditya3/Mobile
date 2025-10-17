@@ -12,18 +12,26 @@
 
     <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
 
-    <div class="row g-4">
-        <div class="col-md-3 col-sm-6" *ngFor="let product of products; let i = index">
-            <div class="card h-100 shadow-sm rounded-3 loaded">
-                <img *ngIf="product.image1Base64" [src]="'data:image/png;base64,'+product.image1Base64"
-                    class="card-img-top" alt="{{product.productName}}" />
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.productName }}</h5>
-                    <p><strong>Company:</strong> {{ product.productCompany }}</p>
-                    <p><strong>Price:</strong> ₹{{ product.price }}</p>
-                    <button class="btn btn-danger w-100" (click)="promptDelete(product.productId)">Delete</button>
+    
+            <div class="row g-4">
+            <div class="col-md-3 col-sm-6" *ngFor="let product of products">
+                <div class="card shadow-lg border-0 rounded-4 h-100">
+                    <img *ngIf="product.image1Base64" [src]="'data:image/png;base64,'+product.image1Base64"
+                        class="card-img-top rounded-top-4" alt="Mobile image" />
+
+                    <div class="card-body">
+                        <h6 class="text-secondary mb-1">{{product.productCompany}}</h6>
+                        <h5 class="card-title fw-semibold">{{ product.productName }}</h5>
+
+                        <p class="mb-1 text-muted small">
+                            {{product.ram}} | {{product.storage}} | {{product.color}}
+                        </p>
+
+                        <p class="fw-bold text-success fs-5 mb-0">₹{{ product.price }}</p>
+                        <p class="text-muted small mb-2">{{product.condition}}</p>
+                        <button class="btn btn-danger w-100" (click)="promptDelete(product.productId)">Delete</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>

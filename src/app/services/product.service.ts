@@ -56,4 +56,10 @@ export class ProductService {
   return this.http.post<number>(this.baseUrl, formData);
 }
 
+  updateStatus(productId: number, isActive: boolean): Observable<any> {
+    return this.http.put(`${this.baseUrl}/update-status`, { 
+      productId, 
+      isActive 
+    });
+  }
 }

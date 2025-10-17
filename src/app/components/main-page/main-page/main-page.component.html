@@ -46,19 +46,24 @@
     </div>
   </div>
   <div class="row mb-4">
-    <div class="col-md-6"> <label class="form-label fw-bold">Sort by Price</label> <select
+    <div class="col-md-4"> <label class="form-label fw-bold">Sort by Price</label> <select
         class="form-select shadow-sm rounded-pill" (change)="onPriceFilterChange($event)">
         <option value="">-- Select --</option>
         <option value="lowToHigh">Low to High</option>
         <option value="highToLow">High to Low</option>
       </select> </div>
-    <div class="col-md-6"> <label class="form-label fw-bold">Filter by Company</label> <select
+    <div class="col-md-4"> <label class="form-label fw-bold">Filter by Color</label> <select
+        class="form-select shadow-sm rounded-pill" (change)="onColorFilterChange($event)">
+        <option value="">-- All Colors --</option>
+        <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+      </select> </div>
+    <div class="col-md-4"> <label class="form-label fw-bold">Filter by Company</label> <select
         class="form-select shadow-sm rounded-pill" (change)="onCompanyFilterChange($event)">
         <option value="">-- All Companies --</option>
         <option *ngFor="let company of companies" [value]="company">{{ company }}</option>
       </select> </div>
   </div>
- 
+
   <div class="row g-4">
     <div class="col-md-3" *ngFor="let product of paginatedProducts">
       <div class="card shadow-sm border-0 rounded-4 h-100" (click)="viewDetails(product.productId)">

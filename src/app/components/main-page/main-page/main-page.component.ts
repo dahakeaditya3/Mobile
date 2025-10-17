@@ -8,7 +8,7 @@ import { CustomerNavComponent } from "../../customer-nav/customer-nav.component"
 import { FormsModule } from '@angular/forms';
 import { OrderService } from '../../../services/order.service';
 
-declare var bootstrap: any; 
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-main-page',
@@ -22,6 +22,7 @@ export class MainPageComponent implements OnInit {
   filteredProducts: IProduct[] = [];
   paginatedProducts: IProduct[] = [];
   companies: string[] = [];
+  colors: string[] = [];
 
   currentPage: number = 1;
   itemsPerPage: number = 12;
@@ -29,6 +30,7 @@ export class MainPageComponent implements OnInit {
 
   selectedPriceOrder: string = '';
   selectedCompany: string = '';
+  selectedColor: string = '';
 
   selectedProduct: IProduct | null = null;
   quantity: number = 1;
@@ -41,6 +43,7 @@ export class MainPageComponent implements OnInit {
       next: (data) => {
         this.products = data;
         this.companies = [...new Set(data.map(p => p.productCompany))];
+        this.colors = [...new Set(data.map(p => p.color))];
         this.applyFilters();
       },
       error: (err) => console.error('Error loading products:', err)
@@ -52,6 +55,10 @@ export class MainPageComponent implements OnInit {
 
     if (this.selectedCompany) {
       result = result.filter(p => p.productCompany === this.selectedCompany);
+    }
+
+    if (this.selectedColor) {
+      result = result.filter(p => p.color === this.selectedColor)
     }
 
     if (this.selectedPriceOrder === 'lowToHigh') {
@@ -73,6 +80,11 @@ export class MainPageComponent implements OnInit {
 
   onCompanyFilterChange(event: any) {
     this.selectedCompany = event.target.value;
+    this.applyFilters();
+  }
+
+  onColorFilterChange(event: any) {
+    this.selectedColor = event.target.value;
     this.applyFilters();
   }
 
@@ -103,10 +115,10 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-viewDetails(productId: number) {
-  this.router.navigate(['/details', productId]);
-}
-  
+  viewDetails(productId: number) {
+    this.router.navigate(['/details', productId]);
+  }
+
 
   updateTotal() {
     if (this.selectedProduct) {

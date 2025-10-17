@@ -5,7 +5,7 @@ import { SellerOrder } from '../../models/order';
 import { HttpClient } from '@angular/common/http';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-seller-orders',
@@ -20,8 +20,9 @@ export class SellerOrdersComponent implements OnInit {
   orders: SellerOrder[] = [];
   filteredOrders: SellerOrder[] = [];
   sellerId: number = 0;
+  loading:boolean=false;
 
-  filterFrom!: string; 
+  filterFrom!: string;
   filterTo!: string;
 
   constructor(private http: HttpClient) { }
@@ -35,11 +36,13 @@ export class SellerOrdersComponent implements OnInit {
   }
 
   loadOrders() {
+    this.loading=true;
     this.http.get<SellerOrder[]>(`https://localhost:7011/api/orders/byseller/${this.sellerId}`)
       .subscribe({
         next: (data) => {
           this.orders = data;
-          this.filteredOrders = [...this.orders]; 
+          this.filteredOrders = [...this.orders];
+           this.loading = false;
         },
         error: (err) => console.error(err)
       });

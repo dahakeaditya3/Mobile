@@ -96,7 +96,7 @@ decreaseQuantity() {
  submitOrder(form: any) {
   if (form.invalid) {
     this.toast.show('Please fill all required fields correctly!', 'error');
-    form.form.markAllAsTouched(); // Highlight all invalid fields
+    form.form.markAllAsTouched(); 
     return;
   }
 

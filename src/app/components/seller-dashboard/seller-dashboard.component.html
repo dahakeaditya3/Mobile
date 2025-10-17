@@ -1,85 +1,176 @@
-
 <div class="bg-wrapper">
 
-   <app-seller-nav></app-seller-nav>
+    <app-seller-nav></app-seller-nav>
+
+
     <section class="hero-section d-flex align-items-center text-white">
         <div class="container">
             <div class="text-start hero-content">
                 <h1 class="fw-bolder display-3 mb-4">Raining Offers For<br />Hot Summer!</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa libero quibusdam quam quia sed <br>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa libero quibusdam quam quia sed <br>
                     sapiente enim error deleniti praesentium exercitationem ipsam quaerat deserunt officia assumenda
-                    voluptas magni, aut earum itaque.</p>
+                    voluptas magni, aut earum itaque.
+                </p>
                 <p class="lead fs-4 mb-4">25% Off On All Products</p>
                 <div>
-                    <a href="#" class="btn btn-primary btn-lg me-3 px-4">Shop Now</a>
-                    <a href="#" class="btn btn-outline-light btn-lg px-4">Find More</a>
+                    <a href="#ourProduct" class="btn btn-primary btn-lg me-3 px-4 mb-2 mb-md-0">Shop Now</a>
+                    <a href="#whyus" class="btn btn-outline-light btn-lg px-4">Why Choose Us</a>
                 </div>
             </div>
         </div>
     </section>
-
 </div>
-
-<div class="container py-5">
-    <div class="row text-center py-5">
-        <div class="col-md-3 col-6 feature-box">
-            <img src="assets/images/globe.png" alt="Worldwide Shipping" class="icon-img">
-            <h5>Worldwide Shipping</h5>
-            <p>It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+<div class="container-fluid">
+    <div class="container py-5" id="whyus">
+        <div class="text-center pt-5">
+            <h3 class="fw-semibold">Why Choose Us ?</h3>
+            <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus aliquam maiores
+                doloremque <br>
+                perferendis veniam qui repellat sed explicabo quas esse.</p>
         </div>
+        <div class="row text-center py-5">
+            <div class="col-md-3 col-6 feature-box">
+                <img src="assets/images/globe.png" alt="Worldwide Shipping" class="icon-img">
+                <h5>Worldwide Shipping</h5>
+                <p>It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+            </div>
 
-        <div class="col-md-3 col-6 feature-box">
-            <img src="assets/images/exclusive.png" alt="Best Quality" class="icon-img">
-            <h5>Best Quality</h5>
-            <p>It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+            <div class="col-md-3 col-6 feature-box">
+                <img src="assets/images/exclusive.png" alt="Best Quality" class="icon-img">
+                <h5>Best Quality</h5>
+                <p>It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+            </div>
+
+            <div class="col-md-3 col-6 feature-box">
+                <img src="assets/images/discount.png" alt="Best Offers" class="icon-img">
+                <h5>Best Offers</h5>
+                <p>It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+            </div>
+
+            <div class="col-md-3 col-6 feature-box">
+                <img src="assets/images/secure-payment.png" alt="Secure Payments" class="icon-img">
+                <h5>Secure Payments</h5>
+                <p>It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+            </div>
         </div>
-
-        <div class="col-md-3 col-6 feature-box">
-            <img src="assets/images/discount.png" alt="Best Offers" class="icon-img">
-            <h5>Best Offers</h5>
-            <p>It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-        </div>
-
-        <div class="col-md-3 col-6 feature-box">
-            <img src="assets/images/secure-payment.png" alt="Secure Payments" class="icon-img">
-            <h5>Secure Payments</h5>
-            <p>It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid py-5" style="background-color: #F5F5DC;">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="fw-bold mb-0">Our Products</h2>
-            <button class="btn btn-success shadow-sm px-4" (click)="toggleView()">
-                {{ showAll ? 'Show Less' : 'View All' }}
-            </button>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-md-3 col-sm-6" *ngFor="let product of (showAll ? products : products.slice(0,12))">
-                <div class="card shadow-lg border-0 rounded-4 h-100">
-        <img *ngIf="product.image1Base64" [src]="'data:image/png;base64,'+product.image1Base64"
-          class="card-img-top rounded-top-4" alt="Mobile image">
-
-        <div class="card-body">
-          <h6 class="text-secondary mb-1">{{product.productCompany}}</h6>
-          <h5 class="card-title fw-semibold">{{ product.productName }}</h5>
-
-          <p class="mb-1 text-muted small">
-            {{product.ram}} | {{product.storage}} | {{product.color}}
-          </p>
-
-          <p class="fw-bold text-success fs-5 mb-0">
-            ₹{{ product.price}}
-          </p>
-          <p class="text-muted small mb-2">{{product.condition}}</p>
-
-        </div>
-      </div>
+        <div class="row mx-md-5 pb-5">
+            <div class="col mx-md-5">
+                <div class="container stats-section text-center py-5 rounded-5" style="background-color: #ffeae5;">
+                    <div class="row">
+                        <div class="col-md-3 col-6" *ngFor="let stat of stats">
+                            <h2 class="fw-bold">{{ stat.value }}</h2>
+                            <p>{{ stat.label }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<app-footer></app-footer> 
+
+<div class="how-to-buy-section py-5" style="background-color: #ffeae5;">
+    <div class="container text-center py-5">
+        <h2 class="section-title mb-5">Steps to Buy Products</h2>
+
+        <div class="row justify-content-center g-5">
+
+            <div class="col-lg-4 col-md-6">
+                <div class="step-card">
+                    <div class="step-icon bg-primary text-white">
+                        <i class="bi bi-search"></i>
+                    </div>
+                    <h5 class="step-title mt-3">1. Browse & Search</h5>
+                    <p class="step-desc">Explore our wide range of products using categories, filters, and search
+                        options to find exactly what you want.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="step-card">
+                    <div class="step-icon bg-success text-white">
+                        <i class="bi bi-eye"></i>
+                    </div>
+                    <h5 class="step-title mt-3">2. See Details of Product</h5>
+                    <p class="step-desc">Click on a product to view images, specifications, prices, reviews, and all the
+                        important details before buying.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="step-card">
+                    <div class="step-icon bg-warning text-white">
+                        <i class="bi bi-cart-plus"></i>
+                    </div>
+                    <h5 class="step-title mt-3">3. Add to Cart</h5>
+                    <p class="step-desc">Select quantity and add your chosen products to your cart for a convenient
+                        shopping experience.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="step-card">
+                    <div class="step-icon bg-danger text-white">
+                        <i class="bi bi-bag-check"></i>
+                    </div>
+                    <h5 class="step-title mt-3">4. Place Your Order</h5>
+                    <p class="step-desc">Enter your delivery details, choose your payment option, and confirm your order
+                        safely and securely.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="step-card">
+                    <div class="step-icon bg-info text-white">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                    <h5 class="step-title mt-3">5. Get Your Delivery</h5>
+                    <p class="step-desc">Sit back and relax! Your order will be delivered quickly and safely to your
+                        doorstep.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid py-5" id="ourProduct">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold mb-2">Our Products</h2>
+            <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid in eaque, dignissimos
+                odit <br>
+                necessitatibus sequi laborum.</p>
+        </div>
+
+        <div class="row g-4" style="cursor: pointer;" (click)="pressButton()">
+            <div class="col-md-3 col-sm-6" *ngFor="let product of displayedProducts">
+                <div class="card shadow-lg border-0 rounded-4 h-100">
+                    <img *ngIf="product.image1Base64" [src]="'data:image/png;base64,'+product.image1Base64"
+                        class="card-img-top rounded-top-4" alt="Mobile image" />
+
+                    <div class="card-body">
+                        <h6 class="text-secondary mb-1">{{product.productCompany}}</h6>
+                        <h5 class="card-title fw-semibold">{{ product.productName }}</h5>
+
+                        <p class="mb-1 text-muted small">
+                            {{product.ram}} | {{product.storage}} | {{product.color}}
+                        </p>
+
+                        <p class="fw-bold text-success fs-5 mb-0">₹{{ product.price }}</p>
+                        <p class="text-muted small mb-2">{{product.condition}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4" *ngIf="!showAll && products.length > 12">
+            <button class="btn btn-success shadow-sm px-4 py-2 rounded-3" (click)="loadMore()">
+                Load More Mobiles...
+            </button>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

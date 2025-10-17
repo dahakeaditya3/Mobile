@@ -17,6 +17,7 @@ export interface IProduct {
   network: string;
   warranty?: string;
   description: string;
+  isActive:boolean;
   image1Base64?: string;
   image2Base64?: string;
   image3Base64?: string;
@@ -24,7 +25,6 @@ export interface IProduct {
   createdOn: string;
   sellerId: number;
   sellerName: string;
-  isActive:boolean;
 }
 export interface ProductCreate {
   productName: string;

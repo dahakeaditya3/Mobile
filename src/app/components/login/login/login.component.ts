@@ -40,7 +40,7 @@ export class LoginComponent {
         }
       },
       error: () => {
-        this.toast.show('Invalid credentials', 'error');
+        this.toast.show('Invalid credentials', 'warning');
       }
     });
   }

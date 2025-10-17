@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { SellerService } from '../../services/seller.service';
@@ -8,9 +8,10 @@ import { SellerNavComponent } from "../seller-nav/seller-nav.component";
 @Component({
   selector: 'app-seller-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,SellerNavComponent],
+  imports: [CommonModule, ReactiveFormsModule, SellerNavComponent],
   templateUrl: './seller-profile.component.html',
-  styleUrls: ['./seller-profile.component.css']
+  styleUrls: ['./seller-profile.component.css'],
+  providers: [DatePipe]
 })
 export class SellerProfileComponent implements OnInit {
   sellerForm!: FormGroup;
@@ -19,13 +20,14 @@ export class SellerProfileComponent implements OnInit {
   isMenuOpen = true;
 
 
-  constructor(private fb: FormBuilder, private sellerService: SellerService, private router: Router) { }
+  constructor(private fb: FormBuilder, private sellerService: SellerService, private router: Router, private datePipe: DatePipe) { }
 
   ngOnInit() {
     const userId = Number(localStorage.getItem('userId'));
     if (!userId) { this.router.navigate(['/login']); return; }
 
     this.sellerService.getProfile(userId).subscribe(res => {
+       const formattedDate = this.datePipe.transform(res.createdOn, 'dd/MM/yyyy');
       this.sellerForm = this.fb.group({
         sellerName: [res.sellerName],
         storeName: [res.storeName],
@@ -34,7 +36,7 @@ export class SellerProfileComponent implements OnInit {
         state: [res.state],
         city: [res.city],
         address: [res.address],
-        creadedOn: [res.createdOn],
+        creadedOn: [formattedDate],
         profilePictureUrl: [res.profilePictureUrl]
       });
     });
