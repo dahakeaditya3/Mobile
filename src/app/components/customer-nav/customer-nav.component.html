@@ -1,8 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top " style="background: linear-gradient(90deg, #1c2340, #3b185f);">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: linear-gradient(90deg, #1c2340, #3b185f);">
   <div class="container-fluid px-3 px-md-4">
 
-    <!-- Brand / Logo -->
-    <a class="navbar-brand fw-bold d-flex align-items-center" href="home">
+    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/main">
       <img src="assets/images/logo.png" alt="Mobify Logo" width="100" height="50" class="me-2">
     </a>
 
@@ -22,19 +21,19 @@
 
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center fw-semibold">
         <li class="nav-item">
-          <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" href="main">Home</a>
+          <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/main">Home</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" href="cart">My Cart</a>
+          <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/cart">My Cart</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" href="customer-order">My Orders</a>
+          <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/customer-order">My Orders</a>
         </li>
       </ul>
 
       <ul class="navbar-nav ms-lg-4 text-center">
         <li class="nav-item d-flex justify-content-center align-items-center">
-          <a class="nav-link d-flex align-items-center fw-semibold" href="customer-profile">
+          <a class="nav-link d-flex align-items-center fw-semibold" routerLink="/customer-profile">
             <i class="bi bi-person-circle fs-5 me-2"></i> Profile
           </a>
         </li>

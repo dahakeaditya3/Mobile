@@ -12,17 +12,5 @@ import { NavComponent } from "../nav/nav.component";
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
-  contactForm = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    message: ''
-  };
 
-  submitForm() {
-    console.log("Form Data: ", this.contactForm);
-    alert('Message Sent Successfully!');
-    this.contactForm = { firstName: '', lastName: '', email: '', phone: '', message: '' };
-  }
 }

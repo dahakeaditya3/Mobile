@@ -9,15 +9,15 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
-  standalone:true,
+  standalone: true,
   imports: [FormsModule, CustomerNavComponent, CommonModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  form:boolean=false;
-  buttonname:string='Order Now';
-   productId!: number;
+  form: boolean = false;
+  buttonname: string = 'Order Now';
+  productId!: number;
   items: ICartItemRead[] = [];
   selected: Set<number> = new Set<number>();
   customerId: number = 0;
@@ -25,14 +25,14 @@ export class CartComponent implements OnInit {
   receiverContact = '';
   address = '';
   postalCode = '';
-selectedItems: any;
+  selectedItems: any;
 
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
     private router: Router,
     private toast: ToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
 
@@ -46,23 +46,23 @@ selectedItems: any;
     this.loadCart();
   }
 
-  Order()
-  {
-    if(this.form==false)
-    {
-      this.form=true;
-       this.buttonname='Back';
+  Order() {
+    if (this.selected.size === 0) {
+      this.toast.show('Select at least one product to order.', 'error');
+      return;
     }
-    else
-    {
-      this.form=false;
-
+    if (this.form == false) {
+      this.form = true;
+      this.buttonname = 'Back';
+    }
+    else {
+      this.form = false;
     }
   }
 
   get SeeselectedItems(): ICartItemRead[] {
-  return this.items.filter(i => this.selected.has(i.id));
-}
+    return this.items.filter(i => this.selected.has(i.id));
+  }
 
   loadCart() {
     this.cartService.getCart(this.customerId).subscribe({
@@ -111,39 +111,38 @@ selectedItems: any;
       .reduce((sum, i) => sum + (i.unitPrice * i.quantity), 0);
   }
 
-  
 
- checkoutSelected(form: any) {
-  if (form.invalid) {
-    this.toast.show('Please fill all required fields correctly!', 'error');
-    form.form.markAllAsTouched();
-    return;
-  }
-
-  if (this.selected.size === 0) {
-    this.toast.show('Select at least one product to order.', 'error');
-    return;
-  }
-
-  const dto: IBulkCheckoutDto = {
-    customerId: this.customerId,
-    cartItemIds: Array.from(this.selected),
-    receiverName: this.receiverName,
-    receiverContactNumber: this.receiverContact,
-    orderAddress: this.address,
-    postalCode: this.postalCode
-  };
-
-  this.cartService.checkout(dto).subscribe({
-    next: () => {
-      this.toast.show('Order placed successfully!', 'success');
-      this.router.navigate(['/customer-order']);
-    },
-    error: (err) => {
-      console.error(err);
-      this.toast.show('Checkout failed', 'error');
+  checkoutSelected(form: any) {
+    if (form.invalid) {
+      this.toast.show('Please fill all required fields correctly!', 'error');
+      form.form.markAllAsTouched();
+      return;
     }
-  });
-}
+
+    if (this.selected.size === 0) {
+      this.toast.show('Select at least one product to order.', 'error');
+      return;
+    }
+
+    const dto: IBulkCheckoutDto = {
+      customerId: this.customerId,
+      cartItemIds: Array.from(this.selected),
+      receiverName: this.receiverName,
+      receiverContactNumber: this.receiverContact,
+      orderAddress: this.address,
+      postalCode: this.postalCode
+    };
+
+    this.cartService.checkout(dto).subscribe({
+      next: () => {
+        this.toast.show('Order placed successfully!', 'success');
+        this.router.navigate(['/customer-order']);
+      },
+      error: (err) => {
+        console.error(err);
+        this.toast.show('Checkout failed', 'error');
+      }
+    });
+  }
 
 }

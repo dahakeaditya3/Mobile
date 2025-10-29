@@ -25,9 +25,9 @@ export interface ICartItemRead {
 export interface IBulkCheckoutDto {
   customerId: number;
   cartItemIds: number[];
-  // optional receiver info for checkout:
   receiverName?: string;
   receiverContactNumber?: string;
   orderAddress?: string;
   postalCode?: string;
 }
+

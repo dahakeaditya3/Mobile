@@ -33,14 +33,12 @@ export const routes: Routes = [
     { path: 'customerregister', component: CustomerRegisterComponent, canActivate: [PublicGuard] },
     { path: 'sellerregister', component: SellerRegisterComponent, canActivate: [PublicGuard] },
     { path: 'login', component: LoginComponent, canActivate: [PublicGuard] },
-
     { path: 'main', component: MainPageComponent, canActivate: [CustomerGuard] },
     { path: 'customer-profile', component: CustomerProfileComponent, canActivate: [CustomerGuard] },
     { path: 'customer-order', component: CustomerOrdersComponent, canActivate: [CustomerGuard] },
     { path: 'details/:id', component: DetailsComponent, canActivate: [CustomerGuard] },
     { path: 'order/:id', component: OrderProductComponent, canActivate: [CustomerGuard] },
     { path: 'cart', component: CartComponent, canActivate: [CustomerGuard] },
-
     { path: 'seller-profile', component: SellerProfileComponent, canActivate: [SellerGuard] },
     { path: 'addproduct', component: AddProductComponent, canActivate: [SellerGuard] },
     { path: 'seller-dashboard', component: SellerDashboardComponent, canActivate: [SellerGuard] },

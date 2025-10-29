@@ -20,10 +20,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   displayedProducts: IProduct[] = [];
   showAll: boolean = false;
 
-  // 👉 change numeric stats for animation
   stats = [
     { value: 10, suffix: '+', label: 'Years Experience', displayValue: 0 },
-    { value: 99, suffix: 'Cr+', label: 'Users', displayValue: 0 },
+    { value: 79, suffix: ' Cr+', label: 'Users', displayValue: 0 },
     { value: 50000, suffix: '+', label: 'Positive Reviews', displayValue: 0 },
     { value: 600, suffix: '+', label: 'Trusted Partners', displayValue: 0 }
   ];

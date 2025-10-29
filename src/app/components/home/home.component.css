@@ -227,17 +227,3 @@
     background-color: grey;
     border-radius: 50%;
 }
-
-.stats-section h2 {
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-  
-
-.stats-section h2:hover {
-  transform: scale(1.1);
-}
-
-
-.container-fluid{
-  padding: 20px 200px;
-}

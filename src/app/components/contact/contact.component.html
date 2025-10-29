@@ -1,5 +1,5 @@
 <div class="bg-wrapper">
-<app-nav></app-nav>
+    <app-nav></app-nav>
     <div class="container contact-page ">
         <div class="row contact-wrapper rounded p-4">
 
@@ -34,36 +34,32 @@
             </div>
 
             <div class="col-md-7 ps-4 d-flex flex-column">
-                <form class="h-100 d-flex flex-column" (ngSubmit)="submitForm()">
+                <form class="h-100 d-flex flex-column">
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">First Name:</label>
-                            <input type="text" class="form-control" [(ngModel)]="contactForm.firstName" name="firstName"
-                                placeholder="Your first name">
+                            <input type="text" class="form-control" name="firstName" placeholder="Your first name">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Last Name:</label>
-                            <input type="text" class="form-control" [(ngModel)]="contactForm.lastName" name="lastName"
-                                placeholder="Your last name">
+                            <input type="text" class="form-control" name="lastName" placeholder="Your last name">
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Email:</label>
-                        <input type="email" class="form-control" [(ngModel)]="contactForm.email" name="email"
-                            placeholder="youremail&#64;email.com">
+                        <input type="email" class="form-control" name="email" placeholder="youremail&#64;email.com">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Phone Number:</label>
-                        <input type="text" class="form-control" [(ngModel)]="contactForm.phone" name="phone"
-                            placeholder="+9876543210">
+                        <input type="text" class="form-control" name="phone" placeholder="+9876543210">
                     </div>
 
                     <div class="mb-3 flex-grow-1">
                         <label class="form-label">Message:</label>
-                        <textarea class="form-control h-100" [(ngModel)]="contactForm.message" name="message"
+                        <textarea class="form-control h-100" name="message"
                             placeholder="Type your message here..."></textarea>
                     </div>
 
@@ -76,6 +72,5 @@
     </div>
 
 </div>
-
 
 <app-footer></app-footer>

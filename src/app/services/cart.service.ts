@@ -7,7 +7,7 @@ import { IBulkCheckoutDto, ICartItemCreate, ICartItemRead, ICartItemUpdate } fro
   providedIn: 'root'
 })
 export class CartService {
-  private base = 'https://localhost:7011/api/Cart'; // adjust base url if needed
+  private base = 'https://localhost:7011/api/Cart';
 
   constructor(private http: HttpClient) { }
 

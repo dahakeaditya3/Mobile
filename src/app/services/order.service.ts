@@ -18,7 +18,6 @@ export class OrderService {
   }
 
   getBySellerId(sellerId: number): Observable<Order[]> {
-    debugger;
     return this.http.get<Order[]>(`${this.baseUrl}/byseller/${sellerId}`);
   }
 
@@ -35,7 +34,7 @@ export class OrderService {
   }
 
   getOrdersByCustomer(customerId: number): Observable<CustomerOrder[]> {
-    debugger;
+
     return this.http.get<CustomerOrder[]>(`${this.baseUrl}/bycustomer/${customerId}`);
   }
 
