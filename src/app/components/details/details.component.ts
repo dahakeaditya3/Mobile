@@ -24,6 +24,7 @@ export class DetailsComponent implements OnInit {
   quantity: number = 1;
   totalPrice: number = 0;
   relatedProducts: IProduct[] = [];
+  deliveryDate: Date = new Date();
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,9 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+     const future = new Date();
+  future.setDate(future.getDate() + 7);
+  this.deliveryDate = future;
     const idParam = this.route.snapshot.paramMap.get('id');
     if (!idParam) {
       this.toast.show('Invalid product', 'error');

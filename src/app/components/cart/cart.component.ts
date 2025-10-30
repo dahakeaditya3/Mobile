@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { ICartItemRead, ICartItemUpdate, IBulkCheckoutDto } from '../../models/cart';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +6,10 @@ import { ToastService } from '../../services/toast.service';
 import { FormsModule } from '@angular/forms';
 import { CustomerNavComponent } from "../customer-nav/customer-nav.component";
 import { CommonModule } from '@angular/common';
+import { OrderService } from '../../services/order.service';
+import { OrderCreate } from '../../models/order';
+import { ToastComponent } from '../ReusebleComponent/toast/toast.component';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-cart',
@@ -26,16 +30,20 @@ export class CartComponent implements OnInit {
   address = '';
   postalCode = '';
   selectedItems: any;
+  deliveryDate: Date = new Date();
 
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
     private router: Router,
-    private toast: ToastService
+    private toast: ToastService,
+    private orderService: OrderService,
   ) { }
 
   ngOnInit(): void {
-
+    const future = new Date();
+    future.setDate(future.getDate() + 7);
+    this.deliveryDate = future;
     this.productId = Number(this.route.snapshot.paramMap.get('id'));
     this.customerId = Number(localStorage.getItem('userId') || 0);
     if (!this.customerId) {
@@ -95,12 +103,12 @@ export class CartComponent implements OnInit {
   remove(itemId: number) {
     this.cartService.removeItem(itemId).subscribe({
       next: () => {
-        this.toast.show('Removed', 'success');
+        this.toast.show('Order placed successfully!', 'success');
         this.loadCart();
       },
       error: (err) => {
         console.error(err);
-        this.toast.show('Failed to remove', 'error');
+        this.toast.show('Failed to place order', 'error');
       }
     });
   }
@@ -124,25 +132,38 @@ export class CartComponent implements OnInit {
       return;
     }
 
-    const dto: IBulkCheckoutDto = {
-      customerId: this.customerId,
-      cartItemIds: Array.from(this.selected),
-      receiverName: this.receiverName,
-      receiverContactNumber: this.receiverContact,
-      orderAddress: this.address,
-      postalCode: this.postalCode
-    };
+    const selectedItems = this.items.filter(i => this.selected.has(i.id));
 
-    this.cartService.checkout(dto).subscribe({
-      next: () => {
-        this.toast.show('Order placed successfully!', 'success');
-        this.router.navigate(['/customer-order']);
-      },
-      error: (err) => {
-        console.error(err);
-        this.toast.show('Checkout failed', 'error');
-      }
+    selectedItems.forEach(item => {
+      const orderData: OrderCreate = {
+        customerId: this.customerId,
+        customerName: '',
+        productId: item.productId,
+        productName: item.productName!,
+        quantity: item.quantity,
+        totalPrice: item.totalPrice,
+        receiverName: this.receiverName,
+        receiverContactNumber: this.receiverContact,
+        orderAddress: this.address,
+        postalCode: this.postalCode
+      };
+
+      this.orderService.createOrder(orderData).subscribe({
+
+        next: () => {
+
+          this.toast.show(`Order placed for ${item.productName}`, 'success');
+          this.remove(item.id);
+        },
+        error: (err) => {
+          console.error(err);
+          this.toast.show(`Failed to order ${item.productName}`, 'error');
+        }
+      });
     });
+
+    this.router.navigate(['/customer-order']);
   }
+
 
 }

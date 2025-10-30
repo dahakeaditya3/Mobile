@@ -25,9 +25,10 @@ export interface ICartItemRead {
 export interface IBulkCheckoutDto {
   customerId: number;
   cartItemIds: number[];
-  receiverName?: string;
-  receiverContactNumber?: string;
-  orderAddress?: string;
-  postalCode?: string;
+  receiverName: string;
+  receiverContactNumber: string;
+  orderAddress: string;
+  postalCode: string;
 }
+
 

@@ -1,46 +1,52 @@
 <app-customer-nav></app-customer-nav>
 
-<div class="container mt-4 mb-5">
-  <h3 class="mb-4">My Orders</h3>
+<div class="container mt-5 mb-5">
+  <h3 class="fw-bold mb-4">My Orders</h3>
 
-  <div class="row g-4" #ordersContent>
-    <div class="col-md-3" *ngFor="let order of orders.slice().reverse()">
-      
-      <div class="card h-100 col-shadow rounded-3">
-
-        <div class="row g-0">
-          <div class="col-12 text-center">
-            <img
-              *ngIf="order.images.image1"
-              [src]="'data:image/png;base64,' + order.images.image1"
-              class="img-fluid rounded-top pt-2"
-              alt="{{ order.productName }}"
-              style="max-height: 180px; object-fit: contain;"
-            />
-          </div>
+  <div class="row g-4 justify-content-center" #ordersContent>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let order of orders.slice().reverse()">
+      <div class="card order-card shadow-sm border-0 rounded-4 h-100">
+        <div class="text-center bg-light rounded-top-4 p-3">
+          <img *ngIf="order.images.image1" [src]="'data:image/png;base64,' + order.images.image1"
+            class="img-fluid rounded-3" alt="{{ order.productName }}" style="max-height: 180px; object-fit: contain;" />
         </div>
 
         <div class="card-body">
-          <h5 class="card-title">{{ order.productName }}</h5>
-          <div class="mb-2">
-            <p class="mb-0"><strong>Company:</strong> {{ order.productCompany }}</p>
-            <p class="mb-0"><strong>Price:</strong> ₹{{ order.productPrice }}</p>
-            <p class="mb-0"><strong>Quantity:</strong> {{ order.quantity }}</p>
-            <p class="mb-0"><strong>Total:</strong> ₹{{ order.totalPrice }}</p>
-            <p class="mb-0"><strong>Receiver:</strong> {{ order.receiverName }}</p>
-            <p class="mb-0"><strong>Date:</strong> {{ order.createdOn | date:'dd-MM-yyyy' }}</p>
+          <h5 class="card-title fw-semibold text-primary">{{ order.productName }}</h5>
+          <div class="small text-muted mb-3">
+            <p class="mb-1"><strong>Company:</strong> {{ order.productCompany }}</p>
+            <p class="mb-1"><strong>Price:</strong> ₹{{ order.productPrice }}</p>
+            <p class="mb-1"><strong>Quantity:</strong> {{ order.quantity }}</p>
+            <p class="mb-1"><strong>Total:</strong> ₹{{ order.totalPrice }}</p>
+            <p class="mb-1"><strong>Receiver:</strong> {{ order.receiverName }}</p>
+            <p class="mb-1"><strong>Order Date:</strong> {{ order.createdOn | date:'dd-MM-yyyy' }}</p>
+            <p class="mb-1"><strong>Delivery Date:</strong> {{ order.deliveryDate | date:'dd-MM-yyyy' }}</p>
           </div>
 
-          <hr class="my-2">
+          <div class="border-top pt-2">
+            <h6 class="text-secondary mb-2">Seller Info</h6>
+            <div class="small text-muted">
+              <p class="mb-1"><strong>Name:</strong> {{ order.seller.sellerName }}</p>
+              <p class="mb-1"><strong>Store:</strong> {{ order.seller.storeName }}</p>
+              <p class="mb-1"><strong>Contact:</strong> {{ order.seller.contact }}</p>
+              <p class="mb-1"><strong>Address:</strong> {{ order.seller.address }}</p>
+            </div>
+          </div>
 
-          <h6 class="mb-1">Seller Info</h6>
-          <p class="mb-0"><strong>Name:</strong> {{ order.seller.sellerName }}</p>
-          <p class="mb-0"><strong>Store:</strong> {{ order.seller.storeName }}</p>
-          <p class="mb-0"><strong>Contact:</strong> {{ order.seller.contact }}</p>
-          <p class="mb-0"><strong>Address:</strong> {{ order.seller.address }}</p>
+          <div class="d-flex align-items-center justify-content-between mt-3">
+            <span class="badge fs-6 px-3 py-2 rounded-pill" [ngClass]="getStatusClass(order.status)">
+              {{ order.status }}
+            </span>
+            <button *ngIf="canCancel(order.status)" class="btn btn-sm btn-outline-danger rounded-pill px-3"
+              (click)="cancelOrder(order)">
+              Cancel
+            </button>
+          </div>
         </div>
-
       </div>
     </div>
   </div>
 </div>
+
+<app-confirm-modal #confirmModal (onConfirm)="onConfirmCancel()" (onCancel)="onCancelModal()">
+</app-confirm-modal>

@@ -10,7 +10,9 @@ export interface Order {
   receiverContactNumber: string;
   orderAddress: string;
   postalCode: string;
+  status:string;
   createdOn: string;
+  deliveryDate:string;
 }
 
 
@@ -53,10 +55,12 @@ export interface CustomerOrder {
   quantity: number;
   totalPrice: number;
   createdOn: string;
+  deliveryDate:string;
   receiverName: string;
   receiverContactNumber: string;
   orderAddress: string;
   postalCode: string;
+  status:string;
 }
 
 
@@ -68,7 +72,9 @@ export interface SellerOrder {
   receiverContactNumber: string;
   orderAddress: string;
   postalCode: string;
+  status:string;
   createdOn: string;
+  deliveryDate:string;
   customer: {
     customerId: number;
     name: string;
@@ -96,4 +102,8 @@ export interface SellerOrder {
       address: string;
     };
   };
+}
+
+export interface OrderUpdateStatusDto {
+  newStatus: string;
 }

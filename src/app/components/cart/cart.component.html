@@ -39,12 +39,12 @@
           <td>₹{{ it.unitPrice }}</td>
           <td>
             <div class="input-group qty-group">
-              <button class="btn btn-outline-primary" (click)="updateQuantity(it, -1)"
-                [disabled]="selected.has(it.id)">−</button>
+              <button class="btn btn-outline-primary fw-bold" (click)="updateQuantity(it, -1)"
+                [disabled]="selected.has(it.id)">-</button>
 
               <input class="form-control text-center" [value]="it.quantity" readonly>
 
-              <button class="btn btn-outline-primary" (click)="updateQuantity(it, 1)"
+              <button class="btn btn-outline-primary fw-bold" (click)="updateQuantity(it, 1)"
                 [disabled]="selected.has(it.id)">+</button>
             </div>
 
@@ -86,6 +86,12 @@
         <div class="fw-bold fs-5 mt-2">
           Total Amount: <span class="text-success">₹{{ getSelectedTotal() }}</span>
         </div>
+        <div class="d-grid w-100 justify-content-end p-0">
+              <span class="badge bg-warning text-dark ms-1 fs-6">
+                Delivery by {{ deliveryDate | date:'MMM d, y' }}
+              </span>
+              <span class="fw-semibold text-danger">For now cash on delivery available only</span>
+            </div>
       </div>
 
       <form #checkoutForm="ngForm" (ngSubmit)="checkoutSelected(checkoutForm)">

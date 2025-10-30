@@ -18,6 +18,7 @@ import { ToastService } from '../../services/toast.service';
 })
 export class OrderProductComponent implements OnInit {
 
+  deliveryDate: Date = new Date();
   product: IProduct | null = null;
   productId!: number;
   quantity: number = 1;
@@ -41,10 +42,13 @@ export class OrderProductComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
     private orderService: OrderService,
-    private toast: ToastService 
+    private toast: ToastService
   ) { }
 
   ngOnInit(): void {
+    const future = new Date();
+    future.setDate(future.getDate() + 7);
+    this.deliveryDate = future;
     const customerId = Number(localStorage.getItem('userId'));
     this.orderData.customerId = customerId;
 
@@ -53,35 +57,35 @@ export class OrderProductComponent implements OnInit {
     this.loadProductDetails();
   }
 
-loadProductDetails() {
-  this.productService.getById(this.productId).subscribe({
-    next: (data) => {
-      this.product = data;
+  loadProductDetails() {
+    this.productService.getById(this.productId).subscribe({
+      next: (data) => {
+        this.product = data;
 
-      const customerName = localStorage.getItem('userName') || 'Customer';
+        const customerName = localStorage.getItem('userName') || 'Customer';
 
-      this.updateTotal();
-    },
-    error: (err) => {
-      console.error('Error loading product:', err);
-       this.toast.show('Product not found!', 'error'); 
-      this.router.navigate(['/main-page']);
-    }
-  });
-}
+        this.updateTotal();
+      },
+      error: (err) => {
+        console.error('Error loading product:', err);
+        this.toast.show('Product not found!', 'error');
+        this.router.navigate(['/main-page']);
+      }
+    });
+  }
 
 
-increaseQuantity() {
-  this.quantity++;
-  this.updateTotal();
-}
-
-decreaseQuantity() {
-  if (this.quantity > 1) {
-    this.quantity--;
+  increaseQuantity() {
+    this.quantity++;
     this.updateTotal();
   }
-}
+
+  decreaseQuantity() {
+    if (this.quantity > 1) {
+      this.quantity--;
+      this.updateTotal();
+    }
+  }
 
 
   updateTotal() {
@@ -92,23 +96,24 @@ decreaseQuantity() {
       this.orderData.totalPrice = this.totalPrice;
     }
   }
+  
 
- submitOrder(form: any) {
-  if (form.invalid) {
-    this.toast.show('Please fill all required fields correctly!', 'error');
-    form.form.markAllAsTouched(); 
-    return;
+  submitOrder(form: any) {
+    if (form.invalid) {
+      this.toast.show('Please fill all required fields correctly!', 'error');
+      form.form.markAllAsTouched();
+      return;
+    }
+
+    this.orderService.createOrder(this.orderData).subscribe({
+      next: () => {
+        this.toast.show('Order placed successfully!', 'success');
+        this.router.navigate(['/customer-order']);
+      },
+      error: (err) => {
+        console.error(err);
+        this.toast.show('Failed to place order', 'error');
+      },
+    });
   }
-
-  this.orderService.createOrder(this.orderData).subscribe({
-    next: () => {
-      this.toast.show('Order placed successfully!', 'success');
-      this.router.navigate(['/customer-order']);
-    },
-    error: (err) => {
-      console.error(err);
-      this.toast.show('Failed to place order', 'error');
-    },
-  });
-}
 }

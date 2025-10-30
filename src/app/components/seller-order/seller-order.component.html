@@ -1,69 +1,84 @@
 <app-seller-nav></app-seller-nav>
-<div class="container mt-4">
-    <div class="d-lg-flex justify-content-between align-items-center mb-3">
-        <h3 class="mb-5">My Orders</h3>
 
-        <div class="d-flex gap-2 align-items-center flex-wrap flex-lg-nowrap">
-            <label>From:</label>
-            <input type="date" [(ngModel)]="filterFrom" class="form-control form-control">
+<div class="container py-4">
+  <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4">
+    <h3 class="fw-bold mb-3 mb-lg-0 text-dark">My Orders</h3>
 
-            <label>To:</label>
-            <input type="date" [(ngModel)]="filterTo" class="form-control form-control">
+    <div class="d-flex flex-wrap gap-2 align-items-center">
+      <label class="fw-semibold">From:</label>
+      <input type="date" [(ngModel)]="filterFrom" class="form-control form-control-sm w-auto" />
 
-            <button class="btn btn-secondary" (click)="applyFilter()">Filter</button>
-            <button class="btn btn-secondary" (click)="resetFilter()">Reset</button>
-            <button class="btn btn-primary ms-auto" (click)="exportPDF()">Export</button>
-        </div>
+      <label class="fw-semibold">To:</label>
+      <input type="date" [(ngModel)]="filterTo" class="form-control form-control-sm w-auto" />
 
-
+      <button class="btn btn-outline-secondary btn-sm" (click)="applyFilter()">Filter</button>
+      <button class="btn btn-outline-secondary btn-sm" (click)="resetFilter()">Reset</button>
+      <button class="btn btn-primary btn-sm ms-auto" (click)="exportPDF()">Export</button>
     </div>
+  </div>
 
+  <div *ngIf="loading" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status"></div>
+  </div>
 
-    <div class="row g-4 mb-5" #ordersContent>
-            <div *ngIf="loading" class="text-center my-3">
-        <div class="spinner-border text-primary" role="status"></div>
-    </div>
-        <div class="col-md-3 " *ngFor="let order of filteredOrders">
-            <div class="card h-100 col-shadow rounded-3">
-                <div id="carousel{{order.id}}" class="carousel slide m-0" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" *ngIf="order.product.images.image1">
-                            <img [src]="'data:image/png;base64,' + order.product.images.image1" class="d-block mx-auto"
-                                alt="Image 1" width="200px" height="200px">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" attr.data-bs-target="#carousel{{order.id}}"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" attr.data-bs-target="#carousel{{order.id}}"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
-                </div>
+  <div class="row g-4" #ordersContent>
+    <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let order of filteredOrders.slice().reverse()">
+      <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-scale">
 
-                <div class="card-body m-0">
-                    <h5 class="card-title mb-0">{{ order.product.name }}</h5>
-                    <p class="mb-0"><strong class="fw-light">Company:</strong> {{ order.product.company }}</p>
-                    <p class="mb-0"><strong class="fw-light">Quantity:</strong> {{ order.quantity }}</p>
-                    <p class="mb-0"><strong class="fw-light">Total Price:</strong> ₹{{ order.totalPrice }}</p>
-                    <p class="mb-0"><strong class="fw-light">Receiver Name:</strong> {{ order.receiverName}}</p>
-                    <p class="mb-0"><strong class="fw-light">Receiver Contact No:</strong> {{ order.receiverContactNumber}}</p>
-                    <p class="mb-0"><strong class="fw-light">Order Address:</strong> {{ order.orderAddress }}</p>
-                    <p class="mb-0"><strong class="fw-light">PostalCode:</strong> {{ order.postalCode}}</p>
-                    <p class="mb-0"><strong class="fw-light">Order Date:</strong> ₹{{ order.createdOn |
-                        date:'dd-MM-yyyy'}}</p>
-                    <hr class="my-1">
-                    <h6 class="mb-0 fw-bold">Customer Info:</h6>
-                    <p class="mb-0"><strong class="fw-light">Name:</strong> {{ order.customer.name }}</p>
-                    <p class="mb-0"><strong class="fw-light">Contact:</strong> {{ order.customer.contact }}</p>
-                    <!-- <p class="mb-0"><strong class="fw-light">Gender:</strong> {{ order.customer.gender }}</p>
-                    <p class="mb-0"><strong class="fw-light">City:</strong> {{ order.customer.city }}</p>
-                    <p class="mb-0"><strong class="fw-light">Email:</strong> {{ order.customer.email }}</p> -->
-
-                </div>
-
+        <div id="carousel{{order.id}}" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner text-center bg-light">
+            <div class="carousel-item active" *ngIf="order.product.images.image1">
+              <img
+                [src]="'data:image/png;base64,' + order.product.images.image1"
+                alt="Product Image"
+                class="img-fluid p-2"
+                style="height: 200px; object-fit: contain;"
+              />
             </div>
+          </div>
         </div>
+
+       
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <span class="badge px-3 py-2" [ngClass]="getStatusClass(order.status)">
+              {{ order.status }}
+            </span>
+
+            <select
+              *ngIf="order.status !== 'Cancelled'"
+              class="form-select form-select-sm w-auto"
+              [(ngModel)]="order.status"
+              (change)="updateStatus(order)"
+            >
+              <option value="Pending">Pending</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+            </select>
+          </div>
+
+          <h5 class="card-title text-primary mb-1">{{ order.product.name }}</h5>
+
+          <ul class="list-unstyled small mb-2">
+             <li><strong>Company Name:</strong> {{ order.product.company }}</li>
+            <li><strong>Quantity:</strong> {{ order.quantity }}</li>
+            <li><strong>Total:</strong> ₹{{ order.totalPrice }}</li>
+            <li><strong>Receiver:</strong> {{ order.receiverName }}</li>
+            <li><strong>Contact:</strong> {{ order.receiverContactNumber }}</li>
+            <li><strong>Address:</strong> {{ order.orderAddress }}</li>
+            <li><strong>Postal Code:</strong> {{ order.postalCode }}</li>
+            <li><strong>Order Date:</strong> {{ order.createdOn | date:'dd-MM-yyyy' }}</li>
+            <li><strong>Delivery Date:</strong> {{ order.deliveryDate | date:'dd-MM-yyyy' }}</li>
+          </ul>
+
+          <hr class="my-2" />
+
+          <h6 class="fw-bold mb-1">Customer Info</h6>
+          <p class="small mb-0"><strong>Name:</strong> {{ order.customer.name }}</p>
+          <p class="small mb-0"><strong>Contact:</strong> {{ order.customer.contact }}</p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

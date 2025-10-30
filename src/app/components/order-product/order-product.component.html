@@ -1,6 +1,6 @@
 <app-customer-nav></app-customer-nav>
 
-<div class="container py-5">
+<div class="container py-4">
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-10">
       <div class="card shadow-lg border-0 rounded-4">
@@ -19,28 +19,14 @@
             <div class="d-flex align-items-center mb-3">
               <label class="me-3 fw-bold">Quantity:</label>
               <div class="input-group" style="width: 130px;">
-                <button
-                  class="btn btn-outline-primary"
-                  type="button"
-                  (click)="decreaseQuantity()"
-                >
+                <button class="btn btn-outline-primary" type="button" (click)="decreaseQuantity()">
                   −
                 </button>
 
-                <input
-                  type="number"
-                  class="form-control text-center"
-                  [(ngModel)]="quantity"
-                  min="1"
-                  (ngModelChange)="updateTotal()"
-                  name="quantity"
-                />
+                <input type="number" class="form-control text-center" [(ngModel)]="quantity" min="1"
+                  (ngModelChange)="updateTotal()" name="quantity" />
 
-                <button
-                  class="btn btn-outline-primary"
-                  type="button"
-                  (click)="increaseQuantity()"
-                >
+                <button class="btn btn-outline-primary" type="button" (click)="increaseQuantity()">
                   +
                 </button>
               </div>
@@ -49,102 +35,76 @@
             <h5 class="fw-semibold">
               Total: <span class="text-success">₹{{ totalPrice }}</span>
             </h5>
+
+            <div class="d-grid w-100 justify-content-end p-0">
+              <span class="badge bg-warning text-dark ms-1 fs-6">
+                Delivery by {{ deliveryDate | date:'MMM d, y' }}
+              </span>
+              <span class="fw-semibold text-danger">For now cash on delivery available only</span>
+            </div>
           </div>
 
-         <form #orderForm="ngForm" (ngSubmit)="submitOrder(orderForm)">
-  <div class="row g-3">
+          <form #orderForm="ngForm" (ngSubmit)="submitOrder(orderForm)">
+            <div class="row g-3">
 
- 
-    <div class="col-md-6">
-      <label class="form-label fw-semibold">Receiver Name</label>
-      <input
-        type="text"
-        class="form-control"
-        name="receiverName"
-        required
-        minlength="3"
-        [(ngModel)]="orderData.receiverName"
-        #receiverName="ngModel"
-        [ngClass]="{ 'is-invalid': receiverName.invalid && receiverName.touched }"
-        placeholder="Enter receiver's full name"
-      />
-      <div class="invalid-feedback" *ngIf="receiverName.invalid && receiverName.touched">
-        <small *ngIf="receiverName.errors?.['required']">Name is required.</small>
-        <small *ngIf="receiverName.errors?.['minlength']">At least 3 characters.</small>
-      </div>
-    </div>
 
-    <div class="col-md-6">
-      <label class="form-label fw-semibold">Contact Number</label>
-      <input
-        type="text"
-        class="form-control"
-        name="receiverContactNumber"
-        required
-        pattern="[0-9]{10}"
-        maxlength="10"
-        [(ngModel)]="orderData.receiverContactNumber"
-        #receiverContactNumber="ngModel"
-        [ngClass]="{ 'is-invalid': receiverContactNumber.invalid && receiverContactNumber.touched }"
-        placeholder="Enter 10-digit number"
-      />
-      <div class="invalid-feedback" *ngIf="receiverContactNumber.invalid && receiverContactNumber.touched">
-        <small *ngIf="receiverContactNumber.errors?.['required']">Contact number is required.</small>
-        <small *ngIf="receiverContactNumber.errors?.['pattern']">Enter a valid 10-digit number.</small>
-      </div>
-    </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Receiver Name</label>
+                <input type="text" class="form-control" name="receiverName" required minlength="3"
+                  [(ngModel)]="orderData.receiverName" #receiverName="ngModel"
+                  [ngClass]="{ 'is-invalid': receiverName.invalid && receiverName.touched }"
+                  placeholder="Enter receiver's full name" />
+                <div class="invalid-feedback" *ngIf="receiverName.invalid && receiverName.touched">
+                  <small *ngIf="receiverName.errors?.['required']">Name is required.</small>
+                  <small *ngIf="receiverName.errors?.['minlength']">At least 3 characters.</small>
+                </div>
+              </div>
 
-    <div class="col-12">
-      <label class="form-label fw-semibold">Delivery Address</label>
-      <textarea
-        class="form-control"
-        name="orderAddress"
-        rows="3"
-        required
-        minlength="10"
-        [(ngModel)]="orderData.orderAddress"
-        #orderAddress="ngModel"
-        [ngClass]="{ 'is-invalid': orderAddress.invalid && orderAddress.touched }"
-        placeholder="House number, street, city"
-      ></textarea>
-      <div class="invalid-feedback" *ngIf="orderAddress.invalid && orderAddress.touched">
-        <small *ngIf="orderAddress.errors?.['required']">Address is required.</small>
-        <small *ngIf="orderAddress.errors?.['minlength']">Please enter a complete address.</small>
-      </div>
-    </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Contact Number</label>
+                <input type="text" class="form-control" name="receiverContactNumber" required pattern="[0-9]{10}"
+                  maxlength="10" [(ngModel)]="orderData.receiverContactNumber" #receiverContactNumber="ngModel"
+                  [ngClass]="{ 'is-invalid': receiverContactNumber.invalid && receiverContactNumber.touched }"
+                  placeholder="Enter 10-digit number" />
+                <div class="invalid-feedback" *ngIf="receiverContactNumber.invalid && receiverContactNumber.touched">
+                  <small *ngIf="receiverContactNumber.errors?.['required']">Contact number is required.</small>
+                  <small *ngIf="receiverContactNumber.errors?.['pattern']">Enter a valid 10-digit number.</small>
+                </div>
+              </div>
 
-    <div class="col-md-6">
-      <label class="form-label fw-semibold">Postal Code</label>
-      <input
-        type="text"
-        class="form-control"
-        name="postalCode"
-        required
-        pattern="[0-9]{6}"
-        maxlength="6"
-        [(ngModel)]="orderData.postalCode"
-        #postalCode="ngModel"
-        [ngClass]="{ 'is-invalid': postalCode.invalid && postalCode.touched }"
-        placeholder="6-digit postal code"
-      />
-      <div class="invalid-feedback" *ngIf="postalCode.invalid && postalCode.touched">
-        <small *ngIf="postalCode.errors?.['required']">Postal code is required.</small>
-        <small *ngIf="postalCode.errors?.['pattern']">Enter a valid 6-digit postal code.</small>
-      </div>
-    </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Delivery Address</label>
+                <textarea class="form-control" name="orderAddress" rows="3" required minlength="10"
+                  [(ngModel)]="orderData.orderAddress" #orderAddress="ngModel"
+                  [ngClass]="{ 'is-invalid': orderAddress.invalid && orderAddress.touched }"
+                  placeholder="House number, street, city"></textarea>
+                <div class="invalid-feedback" *ngIf="orderAddress.invalid && orderAddress.touched">
+                  <small *ngIf="orderAddress.errors?.['required']">Address is required.</small>
+                  <small *ngIf="orderAddress.errors?.['minlength']">Please enter a complete address.</small>
+                </div>
+              </div>
 
-    <div class="col-12">
-      <button
-        type="submit"
-        class="btn btn-success w-100 py-2 mt-3 fw-normal"
-        [disabled]="!product || orderForm.invalid"
-      >
-        <i class="bi bi-bag-check-fill me-2"></i> Book Now
-      </button>
-    </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Postal Code</label>
+                <input type="text" class="form-control" name="postalCode" required pattern="[0-9]{6}" maxlength="6"
+                  [(ngModel)]="orderData.postalCode" #postalCode="ngModel"
+                  [ngClass]="{ 'is-invalid': postalCode.invalid && postalCode.touched }"
+                  placeholder="6-digit postal code" />
+                <div class="invalid-feedback" *ngIf="postalCode.invalid && postalCode.touched">
+                  <small *ngIf="postalCode.errors?.['required']">Postal code is required.</small>
+                  <small *ngIf="postalCode.errors?.['pattern']">Enter a valid 6-digit postal code.</small>
+                </div>
+              </div>
 
-  </div>
-</form>
+              <div class="col-12">
+                <button type="submit" class="btn btn-success w-100 py-2 mt-3 fw-normal"
+                  [disabled]="!product || orderForm.invalid">
+                  <i class="bi bi-bag-check-fill me-2"></i> Book Now
+                </button>
+              </div>
+
+            </div>
+          </form>
 
         </div>
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CustomerOrder, Order, OrderCreate } from '../models/order';
+import { CustomerOrder, Order, OrderCreate, OrderUpdateStatusDto, SellerOrder } from '../models/order';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
@@ -41,5 +41,17 @@ export class OrderService {
   getOrdersBySeller(sellerId: number): Observable<CustomerOrder[]> {
     return this.http.get<CustomerOrder[]>(`${this.baseUrl}/byseller/${sellerId}`);
   }
+
+   updateStatus(id: number, dto: OrderUpdateStatusDto): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${id}/status`, dto);
+  }
+
+  updateOrderStatus(orderId: number, dto: { newStatus: string }) {
+  return this.http.put(`https://localhost:7011/api/orders/${orderId}/status`, dto);
+}
+getOrdersBySellerr(sellerId: number): Observable<SellerOrder[]> {
+  return this.http.get<SellerOrder[]>(`${this.baseUrl}/byseller/${sellerId}`);
+}
 }
 
+  

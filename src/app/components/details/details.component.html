@@ -58,14 +58,23 @@
         <strong>Total: </strong> ₹{{ totalPrice | number:'1.0-0' }}
       </div> -->
 
-      <div class="mt-3">
-        <button class="btn btn-primary rounded-pill me-3" (click)="buyNow()">
-          🛒 Buy Now
-        </button>
-        <button class="btn btn-outline-success rounded-pill me-3" (click)="addToCart()">
-          ➕ Add to Cart
-        </button>
-      </div>
+     <div class="mt-3 d-flex align-items-center gap-3">
+  <button class="btn btn-primary rounded-pill me-2" (click)="buyNow()">
+    🛒 Buy Now
+  </button>
+  
+  <div class="position-relative d-flex align-items-center">
+    <button class="btn btn-outline-success rounded-pill me-2" (click)="addToCart()">
+      ➕ Add to Cart
+    </button>
+
+    <!-- Delivery Date Badge -->
+    <span class="badge bg-warning text-dark ms-1 fs-6">
+      Delivery by {{ deliveryDate | date:'MMM d, y' }}
+    </span>
+  </div>
+</div>
+
 
       <hr class="my-4">
 
