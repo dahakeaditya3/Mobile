@@ -41,7 +41,15 @@
               (click)="cancelOrder(order)">
               Cancel
             </button>
+
+            <div *ngIf="order.status === 'Delivered'">
+              <button class="btn btn-outline-primary btn-sm rounded-pill px-3" (click)="openRatingModal(order)">
+                Give Rating
+              </button>
+            </div>
+
           </div>
+
         </div>
       </div>
     </div>
@@ -50,3 +58,24 @@
 
 <app-confirm-modal #confirmModal (onConfirm)="onConfirmCancel()" (onCancel)="onCancelModal()">
 </app-confirm-modal>
+
+<!-- Rating Modal -->
+<div class="modal fade" tabindex="-1" [ngClass]="{'show d-block': showRatingModal}" style="background-color: rgba(0,0,0,0.5);" *ngIf="showRatingModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary">Rate This Product</h5>
+        <button type="button" class="btn-close" (click)="closeRatingModal()"></button>
+      </div>
+      <div class="modal-body">
+       <app-product-rating
+  *ngIf="selectedProductId"
+  [productId]="selectedProductId!"
+  [customerId]="customerId"
+  (ratingSubmitted)="onRatingSubmitted(selectedOrderId!)"
+></app-product-rating>
+
+      </div>
+    </div>
+  </div>
+</div>

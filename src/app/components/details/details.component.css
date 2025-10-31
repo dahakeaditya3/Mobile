@@ -85,3 +85,17 @@
 .card:hover {
     transform: translateY(-5px) scale(1.01);
 }
+
+.bg-light-subtle {
+  background-color: #fafafa;
+}
+
+.bi-star,
+.bi-star-fill {
+  font-size: 1.1rem;
+}
+
+.border {
+  border-color: #eaeaea !important;
+}
+

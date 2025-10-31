@@ -2,7 +2,6 @@
   max-width: 1300px;
 }
 
-/* Card hover effect */
 .order-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -11,7 +10,6 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Product image area */
 .order-card img {
   transition: transform 0.3s ease;
 }
@@ -19,7 +17,6 @@
   transform: scale(1.05);
 }
 
-/* Badge styles for status */
 .bg-warning {
   background-color: #ffc107 !important;
   color: #212529;
@@ -40,7 +37,6 @@
   background-color: #6c757d !important;
 }
 
-/* Responsive layout for small devices */
 @media (max-width: 768px) {
   h3 {
     font-size: 1.5rem;
@@ -53,7 +49,6 @@
   }
 }
 
-/* Make buttons and badges slightly more modern */
 .btn-outline-danger {
   border-width: 1.5px;
   font-weight: 500;

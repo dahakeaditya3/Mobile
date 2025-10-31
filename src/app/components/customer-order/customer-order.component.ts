@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerNavComponent } from '../customer-nav/customer-nav.component';
@@ -5,25 +7,31 @@ import { CustomerOrder } from '../../models/order';
 import { OrderService } from '../../services/order.service';
 import { ToastService } from '../../services/toast.service';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { ProductRatingComponent } from "../product-rating/product-rating.component";
 
 @Component({
   selector: 'app-customer-orders',
   standalone: true,
-  imports: [CommonModule, CustomerNavComponent, ConfirmModalComponent],
+  imports: [CommonModule, CustomerNavComponent, ConfirmModalComponent, ProductRatingComponent],
   templateUrl: './customer-order.component.html',
   styleUrls: ['./customer-order.component.css']
 })
 export class CustomerOrdersComponent implements OnInit {
   orders: CustomerOrder[] = [];
   private selectedOrder?: CustomerOrder;
+  customerId!: number;
+  showRatingModal = false;
+  selectedProductId?: number;
+  selectedOrderId?: number;
+  ratingVisible: { [key: number]: boolean } = {};
 
   @ViewChild('confirmModal') confirmModal!: ConfirmModalComponent;
 
-  constructor(private orderService: OrderService, private toast: ToastService) {}
+  constructor(private orderService: OrderService, private toast: ToastService) { }
 
   ngOnInit(): void {
-    const customerId = Number(localStorage.getItem('userId'));
-    this.orderService.getOrdersByCustomer(customerId).subscribe({
+    this.customerId = Number(localStorage.getItem('userId'));
+    this.orderService.getOrdersByCustomer(this.customerId).subscribe({
       next: (data) => (this.orders = data),
       error: (err) => console.error('Error fetching orders:', err),
     });
@@ -69,4 +77,29 @@ export class CustomerOrdersComponent implements OnInit {
   onCancelModal() {
     this.selectedOrder = undefined;
   }
+
+  toggleRatingForm(orderId: number) {
+    this.ratingVisible[orderId] = !this.ratingVisible[orderId];
+  }
+
+
+
+
+  openRatingModal(order: CustomerOrder) {
+    this.selectedProductId = order.productId;
+    this.selectedOrderId = order.id;
+    this.showRatingModal = true;
+  }
+
+  closeRatingModal() {
+    this.showRatingModal = false;
+    this.selectedProductId = undefined;
+    this.selectedOrderId = undefined;
+  }
+
+  onRatingSubmitted(orderId: number) {
+    this.closeRatingModal();
+    this.toast.show('Thank you for rating this product!', 'success');
+  }
+
 }

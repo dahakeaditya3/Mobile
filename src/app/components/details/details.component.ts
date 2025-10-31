@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../models/product';
 import { CustomerNavComponent } from "../customer-nav/customer-nav.component";
@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
 import { ICartItemCreate } from '../../models/cart';
 import { ToastService } from '../../services/toast.service';
+import { ProductRatingService } from '../../services/product-rating.service';
+import { ProductRatingResponse } from '../../models/product-rating.model';
 
 @Component({
   selector: 'app-details',
@@ -25,19 +27,28 @@ export class DetailsComponent implements OnInit {
   totalPrice: number = 0;
   relatedProducts: IProduct[] = [];
   deliveryDate: Date = new Date();
+  customerId!: number;
+  averageRating: number = 0;
+  ratingCount: number = 0;
+  stars = [1, 2, 3, 4, 5];
+  Math = Math;
+  reviews: ProductRatingResponse[] = [];
+  showReviews = false;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private router: Router,
     private cartService: CartService,
-    private toast: ToastService
-  ) {}
+    private toast: ToastService,
+    private ratingService: ProductRatingService
+  ) { }
 
   ngOnInit(): void {
-     const future = new Date();
-  future.setDate(future.getDate() + 7);
-  this.deliveryDate = future;
+    this.customerId = Number(localStorage.getItem('userId'));
+    const future = new Date();
+    future.setDate(future.getDate() + 7);
+    this.deliveryDate = future;
     const idParam = this.route.snapshot.paramMap.get('id');
     if (!idParam) {
       this.toast.show('Invalid product', 'error');
@@ -65,6 +76,8 @@ export class DetailsComponent implements OnInit {
         this.selectedImage = this.images.length ? this.images[0] : '';
         this.updateTotal();
         this.loadRelatedProducts();
+        this.loadAverageRating();
+        this.loadReviews();
       },
       error: (err) => {
         console.error('Error loading product:', err);
@@ -73,6 +86,16 @@ export class DetailsComponent implements OnInit {
       }
     });
   }
+
+  loadAverageRating() {
+    this.ratingService.getAverageRating(this.productId).subscribe({
+      next: (avg) => {
+        this.averageRating = avg;
+      },
+      error: (err) => console.error('Error loading rating:', err)
+    });
+  }
+
 
   loadRelatedProducts() {
     if (!this.product) return;
@@ -131,4 +154,23 @@ export class DetailsComponent implements OnInit {
       }
     });
   }
+
+
+  loadReviews() {
+    this.ratingService.getRatings(this.productId).subscribe({
+      next: (data) => this.reviews = data,
+      error: (err) => console.error('Error loading reviews:', err)
+    });
+  }
+
+  showAllReviews = false;
+
+get visibleReviews() {
+  return this.showAllReviews ? this.reviews : this.reviews.slice(0, 6);
+}
+
+toggleReviews() {
+  this.showAllReviews = !this.showAllReviews;
+}
+
 }

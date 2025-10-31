@@ -22,6 +22,8 @@ import { DetailsComponent } from './components/details/details.component';
 import { OrderProductComponent } from './components/order-product/order-product.component';
 import { CartComponent } from './components/cart/cart.component';
 import { NavComponent } from './components/nav/nav.component';
+import { Component } from '@angular/core';
+import { ProductRatingComponent } from './components/product-rating/product-rating.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [PublicGuard] },
@@ -46,6 +48,7 @@ export const routes: Routes = [
     { path: 'showproduct', component: ShowProductsComponent },
     { path: 'seller-nav', component: SellerNavComponent, canActivate: [SellerGuard] },
     { path: 'toast', component: ToastComponent },
+    {path:'rating' ,component:ProductRatingComponent},
     { path: '**', redirectTo: 'home' }
 ];
 
