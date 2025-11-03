@@ -24,6 +24,7 @@ export class CustomerOrdersComponent implements OnInit {
   selectedProductId?: number;
   selectedOrderId?: number;
   ratingVisible: { [key: number]: boolean } = {};
+   loading = false;
 
   @ViewChild('confirmModal') confirmModal!: ConfirmModalComponent;
 
@@ -31,11 +32,20 @@ export class CustomerOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerId = Number(localStorage.getItem('userId'));
+     this.loading = true;
     this.orderService.getOrdersByCustomer(this.customerId).subscribe({
-      next: (data) => (this.orders = data),
-      error: (err) => console.error('Error fetching orders:', err),
+       next: (data) => {
+        this.orders = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching orders:',err);
+        this.loading = false;
+      }
     });
   }
+
+ 
 
   getStatusClass(status: string): string {
     switch (status) {

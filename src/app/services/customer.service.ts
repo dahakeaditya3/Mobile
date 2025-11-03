@@ -9,7 +9,7 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-getProfile(customerId: number): Observable<Customer> {
+  getProfile(customerId: number): Observable<Customer> {
     return this.http.get<Customer>(`${this.baseUrl}/${customerId}`);
   }
 
@@ -17,9 +17,4 @@ getProfile(customerId: number): Observable<Customer> {
     return this.http.put(`${this.baseUrl}/${customer.customerId}`, customer);
   }
 
-  uploadProfilePicture(file: File): Observable<{ fileUrl: string }> {
-    const formData = new FormData();
-    formData.append('file', file);
-    return this.http.post<{ fileUrl: string }>(`${this.baseUrl}/upload-profile-picture`, formData);
-  }
 }

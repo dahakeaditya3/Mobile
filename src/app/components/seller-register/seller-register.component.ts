@@ -3,7 +3,7 @@ import { FormBuilder, Validators, ReactiveFormsModule, FormGroup, AbstractContro
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { ToastService } from '../../services/toast.service'; 
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-customer-register',
@@ -20,8 +20,8 @@ export class SellerRegisterComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private toast: ToastService 
-  ) {}
+    private toast: ToastService
+  ) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group(
@@ -90,7 +90,7 @@ export class SellerRegisterComponent implements OnInit {
 
     this.http.post('https://localhost:7011/api/Sellers', sellerData).subscribe({
       next: () => {
-        this.toast.show('Seller Registered Successfully 🎉', 'success'); 
+        this.toast.show('Seller Registered Successfully 🎉', 'success');
         this.router.navigateByUrl('/login');
         this.registerForm.reset();
         this.submitted = false;

@@ -74,7 +74,7 @@ export class DetailsComponent implements OnInit {
           .map(img => 'data:image/png;base64,' + img);
 
         this.selectedImage = this.images.length ? this.images[0] : '';
-        this.updateTotal();
+        // this.updateTotal();
         this.loadRelatedProducts();
         this.loadAverageRating();
         this.loadReviews();
@@ -122,11 +122,11 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  updateTotal() {
-    if (!this.product) return;
-    if (this.quantity < 1) this.quantity = 1;
-    this.totalPrice = this.product.price * this.quantity;
-  }
+  // updateTotal() {
+  //   if (!this.product) return;
+  //   if (this.quantity < 1) this.quantity = 1;
+  //   this.totalPrice = this.product.price * this.quantity;
+  // }
 
   buyNow() {
     if (!this.product) return;

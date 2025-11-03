@@ -120,9 +120,9 @@ export class MainPageComponent implements OnInit {
   }
 
 
-  updateTotal() {
-    if (this.selectedProduct) {
-      this.totalPrice = this.selectedProduct.price * this.quantity;
-    }
-  }
+  // updateTotal() {
+  //   if (this.selectedProduct) {
+  //     this.totalPrice = this.selectedProduct.price * this.quantity;
+  //   }
+  // }
 }

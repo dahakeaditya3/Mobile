@@ -26,6 +26,8 @@ export interface IProduct {
   sellerId: number;
   sellerName: string;
 }
+
+
 export interface ProductCreate {
   productName: string;
   productCompany: string;

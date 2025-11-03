@@ -26,7 +26,7 @@ export class ShowProductsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private toastService: ToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadSellerProducts();

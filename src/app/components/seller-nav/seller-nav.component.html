@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark px-4">
+<!-- <nav class="navbar navbar-expand-lg sticky-top navbar-dark px-4">
     <a class="navbar-brand fw-bold" routerLink="/seller-dashboard">
         <img src="assets/images/logo.png" alt="Mobify Logo" width="100px" height="50px" class="me-2">
     </a>
@@ -8,28 +8,89 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+        <ul class="navbar-nav ms-lg-auto gap-2">
             <li class="nav-item">
-                <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/seller-dashboard">Home</a>
+                <a class="btn btn-outline-light nav-btn my-1 my-lg-0" routerLink="/seller-dashboard">Home</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/addproduct">Add Products</a>
+                <a class="btn btn-outline-light nav-btn my-1 my-lg-0" routerLink="/addproduct">Add Products</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/showproduct">My Products</a>
+                <a class="btn btn-outline-light nav-btn my-1 my-lg-0" routerLink="/showproduct">My Products</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/seller-order">Orders</a>
+                <a class="btn btn-outline-light nav-btn my-1 my-lg-0" routerLink="/seller-order">Orders</a>
             </li>
         </ul>
 
-        <ul class="navbar-nav me-0 me-lg-2">
+        <ul class="navbar-nav ms-lg-4">
             <li class="nav-item d-flex align-items-center">
                 <a class="nav-link d-flex align-items-center fw-semibold" routerLink="/seller-profile">
                     <i class="bi bi-person-circle fs-5 me-1 text-light"></i> <strong class="text-light">Profile</strong>
                 </a>
             </li>
         </ul>
+    </div>
+</nav> -->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top"
+    style="background: linear-gradient(90deg, #1c2340, #3b185f);">
+    <div class="container-fluid px-3 px-md-4">
+
+        <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/seller-dashboard">
+            <img src="assets/images/logo.png" alt="Mobify Logo" width="100" height="50" class="me-2">
+        </a>
+
+        <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+
+            <form class="d-none d-lg-flex mx-auto w-50 searchform">
+                <div class="input-group">
+                    <input class="form-control rounded-start-pill shadow-sm" type="search"
+                        placeholder="Search products..." />
+                    <button class="btn btn-success rounded-end-pill px-4">Search</button>
+                </div>
+            </form>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center fw-semibold">
+                <li class="nav-item">
+                    <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/seller-dashboard">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/addproduct">Add Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/showproduct">My
+                    Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-light nav-btn mx-2 my-1 my-lg-0" routerLink="/seller-order">
+                        Orders</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-lg-4 text-center">
+                <li class="nav-item d-flex justify-content-center align-items-center">
+                    <a class="nav-link d-flex align-items-center fw-semibold" routerLink="/seller-profile">
+                        <i class="bi bi-person-circle fs-5 me-2"></i> Profile
+                    </a>
+                </li>
+            </ul>
+
+            <form class="d-lg-none mt-3 px-2">
+                <div class="input-group">
+                    <input class="form-control rounded-start-pill" type="search" placeholder="Search products..." />
+                    <button class="btn btn-success rounded-end-pill">Go</button>
+                </div>
+            </form>
+
+        </div>
     </div>
 </nav>

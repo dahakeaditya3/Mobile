@@ -46,7 +46,6 @@
   font-weight: 500;
 }
 
-/* Animations */
 @keyframes slideIn {
   from {
     transform: translateY(30px);
@@ -77,11 +76,9 @@
   animation: fadeIn 1s ease forwards;
 }
 
-/* ✅ Responsive Design */
 @media (max-width: 992px) {
   .regi-left {
     display: none;
-    /* Hide image side on tablets */
   }
 }
 

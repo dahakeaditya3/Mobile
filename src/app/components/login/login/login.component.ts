@@ -17,11 +17,12 @@ export class LoginComponent {
   password = '';
   role = 'Customer';
   error = '';
-
+ username!:string;
   constructor(
     private authService: AuthService,
     private router: Router,
     private toast: ToastService 
+    
   ) { }
 
   submit() {
@@ -32,10 +33,11 @@ export class LoginComponent {
         localStorage.setItem('role', res.role);
 
         if (res.role === 'Customer') {
-          this.toast.show('Customer logged in successfully', 'success');
+          this.toast.show('Welcome, logged in successfully', 'success');
           this.router.navigate(['/main']);
         } else {
-          this.toast.show('Seller logged in successfully', 'success');
+          
+         this.toast.show('Welcome, logged in successfully', 'success');
           this.router.navigate(['/seller-dashboard']);
         }
       },

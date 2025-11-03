@@ -46,15 +46,6 @@ export class CustomerProfileComponent implements OnInit {
     this.customerService.updateProfile({ ...updated, customerId: userId }).subscribe(() => this.isEditing = false);
   }
 
-  onFileSelected(event: any) {
-    if (!event.target.files || event.target.files.length === 0) return;
-    const file: File = event.target.files[0];
-
-    this.customerService.uploadProfilePicture(file).subscribe(res => {
-      this.customerForm.patchValue({ profilePictureUrl: res.fileUrl });
-    });
-  }
-
   logout() {
     localStorage.clear();
     this.router.navigate(['/home']);

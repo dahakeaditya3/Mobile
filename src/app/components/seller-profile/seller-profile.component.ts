@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router} from '@angular/router';
 import { SellerService } from '../../services/seller.service';
 import { SellerNavComponent } from "../seller-nav/seller-nav.component";
 
@@ -56,15 +56,6 @@ export class SellerProfileComponent implements OnInit {
     const updated = this.sellerForm.value;
     const userId = Number(localStorage.getItem('userId'));
     this.sellerService.updateProfile({ ...updated, sellerId: userId }).subscribe(() => this.isEditing = false);
-  }
-
-  onFileSelected(event: any) {
-    if (!event.target.files || event.target.files.length === 0) return;
-    const file: File = event.target.files[0];
-
-    this.sellerService.uploadProfilePicture(file).subscribe(res => {
-      this.sellerForm.patchValue({ profilePictureUrl: res.fileUrl });
-    });
   }
 
   logout() {

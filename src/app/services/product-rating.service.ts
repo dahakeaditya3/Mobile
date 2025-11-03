@@ -22,6 +22,4 @@ export class ProductRatingService {
   getRatings(productId: number): Observable<ProductRatingResponse[]> {
     return this.http.get<ProductRatingResponse[]>(`${this.apiUrl}/${productId}`);
   }
-
-
 }

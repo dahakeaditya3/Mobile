@@ -17,9 +17,4 @@ export class SellerService {
     return this.http.put(`${this.baseUrl}/${seller.sellerId}`, seller);
   }
 
-  uploadProfilePicture(file: File): Observable<{ fileUrl: string }> {
-    const formData = new FormData();
-    formData.append('file', file);
-    return this.http.post<{ fileUrl: string }>(`${this.baseUrl}/upload-profile-picture`, formData);
-  }
 }

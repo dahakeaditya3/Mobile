@@ -8,7 +8,7 @@
 }
 
 .card-img-top {
-    height: 220px;
+    height: 25%;
     width: 100%;
     object-fit: cover;
     border-top-left-radius: 15px;
@@ -48,8 +48,8 @@
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-     transition: transform 0.3s ease, box-shadow 0.3s ease;
-     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .product-img {

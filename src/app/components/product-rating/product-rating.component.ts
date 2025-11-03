@@ -14,14 +14,14 @@ import { ProductRating } from '../../models/product-rating.model';
 export class ProductRatingComponent implements OnInit {
   @Input() productId!: number;
   @Input() customerId!: number;
-  @Output() ratingSubmitted = new EventEmitter<void>(); 
+  @Output() ratingSubmitted = new EventEmitter<void>();
   averageRating: number = 0;
   selectedRating: number = 0;
   reviewText: string = '';
   ratingsCount: number = 0;
   stars: number[] = [1, 2, 3, 4, 5];
 
-  constructor(private ratingService: ProductRatingService) {}
+  constructor(private ratingService: ProductRatingService) { }
 
   ngOnInit(): void {
     this.loadAverageRating();
@@ -42,7 +42,7 @@ export class ProductRatingComponent implements OnInit {
     };
 
     this.ratingService.addRating(rating).subscribe(() => {
-    
+
       this.selectedRating = 0;
       this.reviewText = '';
       this.loadAverageRating();

@@ -21,10 +21,6 @@ form button {
   font-weight: 500;
 }
 
-.searchform {
-  visibility: visible;
-}
-
 @media (max-width: 992px) {
   .navbar .nav-btn {
     width: 100%;

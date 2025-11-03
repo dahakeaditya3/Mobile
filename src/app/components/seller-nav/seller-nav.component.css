@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
   color: #fff;
   background: linear-gradient(90deg, #1c2340, #3b185f);
 }
@@ -17,11 +17,11 @@
 }
 
 .navbar .nav-link :active {
-    color: #ffc107;
+  color: #ffc107;
 }
 
 .navbar .nav-link:hover {
-    color: #ffc107 !important;
+  color: #ffc107 !important;
 }
 
 .profile-pic {
@@ -30,4 +30,57 @@
   border-radius: 50%;
   border: 2px solid #fff;
   object-fit: cover;
+} */
+
+
+.navbar .nav-link {
+  color: #fff !important;
+  margin: 0 8px;
+  transition: 0.3s;
+}
+
+.navbar .nav-link:active,
+.navbar .nav-link:hover {
+  color: #ffc107 !important;
+}
+
+.navbar-brand {
+  font-size: 1.4rem;
+}
+
+form input {
+  border: 1px solid #ddd;
+}
+
+form button {
+  font-weight: 500;
+}
+
+.searchform {
+  visibility: visible;
+}
+
+@media (max-width: 992px) {
+  .navbar .nav-btn {
+    width: 100%;
+  }
+
+  .navbar-nav {
+    margin-top: 10px;
+  }
+
+  .searchform {
+    display: none !important;
+  }
+
+  .navbar-collapse {
+    background: linear-gradient(90deg, #1c2340, #3b185f);
+    padding: 1rem;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+  }
 }

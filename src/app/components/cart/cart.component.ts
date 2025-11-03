@@ -8,8 +8,6 @@ import { CustomerNavComponent } from "../customer-nav/customer-nav.component";
 import { CommonModule } from '@angular/common';
 import { OrderService } from '../../services/order.service';
 import { OrderCreate } from '../../models/order';
-import { ToastComponent } from '../ReusebleComponent/toast/toast.component';
-import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-cart',
@@ -103,7 +101,7 @@ export class CartComponent implements OnInit {
   remove(itemId: number) {
     this.cartService.removeItem(itemId).subscribe({
       next: () => {
-        this.toast.show('Order placed successfully!', 'success');
+        this.toast.show('Item remove from cart successfully!', 'success');
         this.loadCart();
       },
       error: (err) => {
@@ -164,6 +162,4 @@ export class CartComponent implements OnInit {
 
     this.router.navigate(['/customer-order']);
   }
-
-
 }

@@ -13,16 +13,8 @@ export class OrderService {
     return this.http.get<Order[]>(this.baseUrl);
   }
 
-  getById(id: number): Observable<Order> {
-    return this.http.get<Order>(`${this.baseUrl}/${id}`);
-  }
-
   getBySellerId(sellerId: number): Observable<Order[]> {
     return this.http.get<Order[]>(`${this.baseUrl}/byseller/${sellerId}`);
-  }
-
-  getByCustomerId(customerId: number): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.baseUrl}/bycustomer/${customerId}`);
   }
 
   delete(orderId: number): Observable<any> {
@@ -38,20 +30,27 @@ export class OrderService {
     return this.http.get<CustomerOrder[]>(`${this.baseUrl}/bycustomer/${customerId}`);
   }
 
-  getOrdersBySeller(sellerId: number): Observable<CustomerOrder[]> {
-    return this.http.get<CustomerOrder[]>(`${this.baseUrl}/byseller/${sellerId}`);
-  }
-
-   updateStatus(id: number, dto: OrderUpdateStatusDto): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}/status`, dto);
-  }
-
   updateOrderStatus(orderId: number, dto: { newStatus: string }) {
-  return this.http.put(`https://localhost:7011/api/orders/${orderId}/status`, dto);
-}
-getOrdersBySellerr(sellerId: number): Observable<SellerOrder[]> {
-  return this.http.get<SellerOrder[]>(`${this.baseUrl}/byseller/${sellerId}`);
-}
+    return this.http.put(`${this.baseUrl}/${orderId}/status`, dto);
+  }
+  getOrdersBySellerr(sellerId: number): Observable<SellerOrder[]> {
+    return this.http.get<SellerOrder[]>(`${this.baseUrl}/byseller/${sellerId}`);
+  }
+
+  // getOrdersBySeller(sellerId: number): Observable<CustomerOrder[]> {
+  //   return this.http.get<CustomerOrder[]>(`${this.baseUrl}/byseller/${sellerId}`);
+  // }
+
+  //  updateStatus(id: number, dto: OrderUpdateStatusDto): Observable<any> {
+  //   return this.http.put(`${this.baseUrl}/${id}/status`, dto);
+  // }
+
+  // getById(id: number): Observable<Order> {
+  //   return this.http.get<Order>(`${this.baseUrl}/${id}`);
+  // }
+
+   // getByCustomerId(customerId: number): Observable<Order[]> {
+  //   return this.http.get<Order[]>(`${this.baseUrl}/bycustomer/${customerId}`);
+  // }
 }
 
-  

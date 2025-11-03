@@ -20,7 +20,7 @@ export class AddProductComponent {
   @ViewChild('toast') toast!: ToastComponent;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private productService: ProductService,
     private toastService: ToastService
   ) {
@@ -56,7 +56,7 @@ export class AddProductComponent {
 
   submit() {
     if (this.productForm.invalid) {
-      this.productForm.markAllAsTouched(); 
+      this.productForm.markAllAsTouched();
       return;
     }
 
