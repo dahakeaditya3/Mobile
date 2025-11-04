@@ -158,19 +158,22 @@ export class DetailsComponent implements OnInit {
 
   loadReviews() {
     this.ratingService.getRatings(this.productId).subscribe({
-      next: (data) => this.reviews = data,
-      error: (err) => console.error('Error loading reviews:', err)
+      next: (data) => {
+        this.reviews = data,
+          this.ratingCount = this.reviews.length
+      },
+      error: (err) => { console.error('Error loading reviews:', err) }
     });
   }
 
   showAllReviews = false;
 
-get visibleReviews() {
-  return this.showAllReviews ? this.reviews : this.reviews.slice(0, 6);
-}
+  get visibleReviews() {
+    return this.showAllReviews ? this.reviews : this.reviews.slice(0, 6);
+  }
 
-toggleReviews() {
-  this.showAllReviews = !this.showAllReviews;
-}
+  toggleReviews() {
+    this.showAllReviews = !this.showAllReviews;
+  }
 
 }
