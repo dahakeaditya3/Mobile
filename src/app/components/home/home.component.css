@@ -99,7 +99,7 @@
     background: #ffffff;
     border-radius: 20px;
     padding: 2rem 1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
 }
 
@@ -152,6 +152,7 @@
     .step-title {
         font-size: 1rem;
     }
+
     .step-desc {
         font-size: 0.85rem;
     }
@@ -227,4 +228,3 @@
     background-color: grey;
     border-radius: 50%;
 }
-
