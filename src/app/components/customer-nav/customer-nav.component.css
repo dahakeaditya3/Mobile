@@ -1,47 +1,14 @@
-.navbar .nav-link {
-  color: #fff !important;
-  margin: 0 8px;
-  transition: 0.3s;
+
+.navbar-custom {
+  background: linear-gradient(90deg, #1c2340, #3b185f);
+
 }
 
-.navbar .nav-link:active,
-.navbar .nav-link:hover {
-  color: #ffc107 !important;
-}
-
-.navbar-brand {
-  font-size: 1.4rem;
-}
-
-form input {
-  border: 1px solid #ddd;
-}
-
-form button {
+.navbar-custom .btn {
   font-weight: 500;
 }
 
-@media (max-width: 992px) {
-  .navbar .nav-btn {
-    width: 100%;
-  }
-
-  .navbar-nav {
-    margin-top: 10px;
-  }
-
-  .searchform {
-    display: none !important;
-  }
-
-  .navbar-collapse {
-    background: linear-gradient(90deg, #1c2340, #3b185f);
-    padding: 1rem;
-    border-radius: 0 0 12px 12px;
-  }
-
-  .navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-  }
+.navbar-custom .btn:hover {
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
 }

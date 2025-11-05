@@ -28,29 +28,21 @@
         <div id="carousel{{order.id}}" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner text-center bg-light">
             <div class="carousel-item active" *ngIf="order.product.images.image1">
-              <img
-                [src]="'data:image/png;base64,' + order.product.images.image1"
-                alt="Product Image"
-                class="img-fluid p-2"
-                style="height: 200px; object-fit: contain;"
-              />
+              <img [src]="'data:image/png;base64,' + order.product.images.image1" alt="Product Image"
+                class="img-fluid p-2" style="height: 200px; object-fit: contain;" />
             </div>
           </div>
         </div>
 
-       
+
         <div class="card-body">
           <div class="d-flex align-items-center justify-content-between mb-2">
             <span class="badge px-3 py-2" [ngClass]="getStatusClass(order.status)">
               {{ order.status }}
             </span>
 
-            <select
-              *ngIf="order.status !== 'Cancelled'"
-              class="form-select form-select-sm w-auto"
-              [(ngModel)]="order.status"
-              (change)="updateStatus(order)"
-            >
+            <select *ngIf="order.status !== 'Cancelled'" class="form-select form-select-sm w-auto"
+              [(ngModel)]="order.status" (change)="updateStatus(order)">
               <option value="Pending">Pending</option>
               <option value="Confirmed">Confirmed</option>
               <option value="Shipped">Shipped</option>
@@ -61,7 +53,7 @@
           <h5 class="card-title text-primary mb-1">{{ order.product.name }}</h5>
 
           <ul class="list-unstyled small mb-2">
-             <li><strong>Company Name:</strong> {{ order.product.company }}</li>
+            <li><strong>Company Name:</strong> {{ order.product.company }}</li>
             <li><strong>Quantity:</strong> {{ order.quantity }}</li>
             <li><strong>Total:</strong> ₹{{ order.totalPrice }}</li>
             <li><strong>Receiver:</strong> {{ order.receiverName }}</li>

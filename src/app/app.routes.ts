@@ -15,7 +15,6 @@ import { SellerDashboardComponent } from './components/seller-dashboard/seller-d
 import { SellerNavComponent } from './components/seller-nav/seller-nav.component';
 import { ShowProductsComponent } from './components/showproduct/showproduct.component';
 import { CustomerOrdersComponent } from './components/customer-order/customer-order.component';
-import { SellerOrdersComponent } from './components/seller-order/seller-order.component';
 import { ToastComponent } from './components/ReusebleComponent/toast/toast.component';
 import { DetailsComponent } from './components/details/details.component';
 import { OrderProductComponent } from './components/order-product/order-product.component';
@@ -24,6 +23,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ProductRatingComponent } from './components/product-rating/product-rating.component';
 import { LoginGuard } from './guards/guards/login.guard';
 import { PublicGuard } from './guards/guards/public.guard';
+import { SellerOrdersComponent } from './components/seller-order/seller-order.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [PublicGuard] },
