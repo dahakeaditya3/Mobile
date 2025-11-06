@@ -1,46 +1,56 @@
 <app-seller-nav></app-seller-nav>
 
-<div class="container pt-lg-5">
-    <div class="row mb-4 align-items-center">
-        <div class="col-md-3 mb-2">
-            <label class="fw-semibold">Month</label>
-            <select class="form-select" [(ngModel)]="selectedMonth">
-                <option value="">All</option>
-                <option *ngFor="let m of months" [value]="m.value">{{ m.name }}</option>
-            </select>
-        </div>
-
-        <div class="col-md-3 mb-2">
-            <label class="fw-semibold">Year</label>
-            <select class="form-select" [(ngModel)]="selectedYear">
-                <option value="">All</option>
-                <option *ngFor="let y of years" [value]="y">{{ y }}</option>
-            </select>
-        </div>
-
-        <div class="col-md-6 mb-2 d-flex gap-3 align-items-end">
-            <button class="btn btn-primary w-50" (click)="applyMonthYearFilter()">Apply Filter</button>
-            <button class="btn btn-secondary w-50" (click)="resetMonthYearFilter()">Reset</button>
-        </div>
+<div class="container py-2 py-lg-5">
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-3 mb-2">
+      <label class="fw-semibold">Month</label>
+      <select class="form-select" [(ngModel)]="selectedMonth">
+        <option value="">All</option>
+        <option *ngFor="let m of months" [value]="m.value">{{ m.name }}</option>
+      </select>
     </div>
 
-    <div class="row g-4 text-center">
-        <div class="col-md-4" *ngFor="let card of [
+    <div class="col-md-3 mb-2">
+      <label class="fw-semibold">Year</label>
+      <select class="form-select" [(ngModel)]="selectedYear">
+        <option value="">All</option>
+        <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 mb-2 d-flex gap-3 align-items-end">
+      <button class="btn btn-primary w-50" (click)="applyMonthYearFilter()">Apply Filter</button>
+      <button class="btn btn-secondary w-50" (click)="resetMonthYearFilter()">Reset</button>
+    </div>
+  </div>
+
+  <div class="row g-4 text-center">
+    <div
+      class="col-md-4"
+      *ngFor="let card of [
         {title:'Total Orders', value:totalOrders, quantity:totalQuantity, price:totalPrice, color:'primary'},
         {title:'Pending', value:pendingOrders, quantity:pendingQuantity, price:pendingTotal, color:'warning'},
         {title:'Confirmed', value:confirmedOrders, quantity:confirmedQuantity, price:confirmedTotal, color:'info'},
-        {title:'Shipped', value:shippedOrders, quantity:shippedQuantity, price:shippedTotal, color:'primary'},
+        {title:'Shipped', value:shippedOrders, quantity:shippedQuantity, price:shippedTotal, color:'secondary'},
         {title:'Delivered', value:deliveredOrders, quantity:deliveredQuantity, price:deliveredTotal, color:'success'},
         {title:'Cancelled', value:cancelledOrders, quantity:cancelledQuantity, price:cancelledTotal, color:'danger'}
-      ]">
-            <div class="card shadow-sm rounded-4 border-0 hover-card p-3 h-100">
-                <div class="card-body">
-                    <h6 class="fw-bold text-uppercase">{{ card.title }}</h6>
-                    <p class="fs-3 fw-bold text-{{card.color}}">{{ card.value }}</p>
-                    <p class="m-1">Quantity of Product: {{ card.quantity }}</p>
-                    <p class="m-0">Price of Product: ₹{{ card.price | number:'1.0-2' }}</p>
-                </div>
-            </div>
+      ]"
+    >
+      <div class="card shadow-sm rounded-4 border-0 hover-card p-2 h-100 bg-{{card.color}}">
+        <div class="card-body">
+          <h5 class="fw-bold text-uppercase text-light">{{ card.title }}</h5>
+          <p class="fs-3 fw-bold text-light">{{ card.value }}</p>
+          <p class="m-1">Quantity of Product: {{ card.quantity }}</p>
+          <p class="m-0">Price of Product: ₹{{ card.price | number:'1.0-2' }}</p>
         </div>
+      </div>
     </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12">
+      <h5 class="text-center fw-bold mb-3">Month-wise Sales (₹)</h5>
+      <canvas #salesChart></canvas>
+    </div>
+  </div>
 </div>

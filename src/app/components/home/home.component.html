@@ -147,7 +147,7 @@
 
         <div class="row g-4" style="cursor: pointer;" (click)="pressButton()">
             <div class="col-md-3 col-sm-6" *ngFor="let product of displayedProducts">
-                <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card border-0 h-100">
                     <img *ngIf="product.image1Base64" [src]="'data:image/png;base64,'+product.image1Base64"
                         class="card-img-top rounded-top-4" alt="Mobile image" />
 
@@ -161,6 +161,9 @@
 
                         <p class="fw-bold text-success fs-5 mb-0">₹{{ product.price }}</p>
                         <p class="text-muted small mb-2">{{product.condition}}</p>
+                        <button class="btn btn-primary w-100 rounded-4" (click)="pressButton()">
+                            Order Now
+                        </button>
                     </div>
                 </div>
             </div>

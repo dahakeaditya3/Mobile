@@ -4,15 +4,15 @@
   cursor: pointer;
   border-radius: 1rem;
   padding: 1rem;
-  background: linear-gradient(135deg, #ffffff, #f1f3f5); /* subtle light gradient */
+  /* background: linear-gradient(135deg, #ffffff, #f1f3f5); */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  color: white;
 }
 
 .hover-card:hover {
   transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(135deg, #e9f7ff, #ffffff); /* light interactive hover */
-}
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);}
+  /* background: linear-gradient(135deg, #e9f7ff, #ffffff);  */
 
 .card-body h6 {
   font-size: 0.9rem;
@@ -35,6 +35,16 @@ button.btn-primary {
 }
 button.btn-primary:hover {
   background-color: #2e59d9;
+  transform: scale(1.05);
+}
+
+button.btn-secondary {
+  background-color: grey;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+button.btn-secondary:hover {
+  background-color: rgb(158, 157, 157);
   transform: scale(1.05);
 }
 
