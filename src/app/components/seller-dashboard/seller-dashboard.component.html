@@ -25,17 +25,14 @@
   </div>
 
   <div class="row g-4 text-center">
-    <div
-      class="col-md-4"
-      *ngFor="let card of [
+    <div class="col-md-4" *ngFor="let card of [
         {title:'Total Orders', value:totalOrders, quantity:totalQuantity, price:totalPrice, color:'primary'},
         {title:'Pending', value:pendingOrders, quantity:pendingQuantity, price:pendingTotal, color:'warning'},
         {title:'Confirmed', value:confirmedOrders, quantity:confirmedQuantity, price:confirmedTotal, color:'info'},
         {title:'Shipped', value:shippedOrders, quantity:shippedQuantity, price:shippedTotal, color:'secondary'},
         {title:'Delivered', value:deliveredOrders, quantity:deliveredQuantity, price:deliveredTotal, color:'success'},
         {title:'Cancelled', value:cancelledOrders, quantity:cancelledQuantity, price:cancelledTotal, color:'danger'}
-      ]"
-    >
+      ]">
       <div class="card shadow-sm rounded-4 border-0 hover-card p-2 h-100 bg-{{card.color}}">
         <div class="card-body">
           <h5 class="fw-bold text-uppercase text-light">{{ card.title }}</h5>
@@ -47,10 +44,19 @@
     </div>
   </div>
 
+
   <div class="row mt-5">
-    <div class="col-12">
+    <div class="col-12 p-2 p-md-5">
       <h5 class="text-center fw-bold mb-3">Month-wise Sales (₹)</h5>
       <canvas #salesChart></canvas>
+    </div>
+  </div>
+
+
+  <div class="row mt-5">
+    <div class="col-12 p-2 p-md-5">
+      <h5 class="text-center fw-bold mb-3">Company-wise Sales (₹)</h5>
+      <canvas #companySalesChart></canvas>
     </div>
   </div>
 </div>

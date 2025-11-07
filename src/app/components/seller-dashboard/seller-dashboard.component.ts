@@ -44,6 +44,9 @@ export class SellerDashboardComponent implements OnInit {
   shippedTotal = 0;
   deliveredTotal = 0;
   cancelledTotal = 0;
+  @ViewChild('companySalesChart') companySalesChartRef!: ElementRef<HTMLCanvasElement>;
+  companySalesChart!: Chart;
+
 
   filterFrom = '';
   filterTo = '';
@@ -69,7 +72,7 @@ export class SellerDashboardComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private toast: ToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const role = localStorage.getItem('role');
@@ -90,6 +93,8 @@ export class SellerDashboardComponent implements OnInit {
         this.filteredOrders = [...data];
         this.calculateOrderSummaryForFiltered();
         this.generateMonthlySalesChart();
+        this.generateCompanySalesChart();
+
       },
       error: (err) => {
         console.error(err);
@@ -148,6 +153,8 @@ export class SellerDashboardComponent implements OnInit {
     this.filteredOrders = [...this.orders];
     this.calculateOrderSummaryForFiltered();
     this.generateMonthlySalesChart();
+    this.generateCompanySalesChart();
+
   }
 
   generateMonthlySalesChart(): void {
@@ -162,18 +169,23 @@ export class SellerDashboardComponent implements OnInit {
       monthlySales[monthIndex] += order.totalPrice;
     });
 
+    const backgroundColors = Array.from({ length: 12 }, (_, i) =>
+      `hsl(${(i * 30) % 360}, 80%, 79%)`
+    );
+    const borderColors = backgroundColors.map(c => c.replace('10%', '90%'));
+
     const ctx = this.salesChartRef.nativeElement.getContext('2d');
     if (!ctx) return;
 
     this.salesChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
           label: 'Total Sales (₹)',
           data: monthlySales,
-          backgroundColor: 'rgba(54, 162, 235, 0.6)',
-          borderColor: 'rgba(54, 162, 235, 1)',
+          backgroundColor: backgroundColors,
+          borderColor: borderColors,
           borderWidth: 1
         }]
       },
@@ -199,4 +211,66 @@ export class SellerDashboardComponent implements OnInit {
       }
     });
   }
+
+
+  generateCompanySalesChart(): void {
+    if (this.companySalesChart) {
+      this.companySalesChart.destroy();
+    }
+
+    const companySales: { [key: string]: number } = {};
+
+    this.filteredOrders.forEach(order => {
+      const company = order.product.company || 'Unknown';
+      companySales[company] = (companySales[company] || 0) + order.totalPrice;
+    });
+
+    const companyNames = Object.keys(companySales);
+    const companyTotals = Object.values(companySales);
+
+    const backgroundColors = companyNames.map(() =>
+      `hsl(${Math.floor(Math.random() * 360)}, 90%, 60%)`
+    );
+    const borderColors = backgroundColors.map(color => color.replace('26%', '50%'));
+
+    const ctx = this.companySalesChartRef.nativeElement.getContext('2d');
+    if (!ctx) return;
+
+    this.companySalesChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: companyNames,
+        datasets: [{
+          label: 'Sales by Company (₹)',
+          data: companyTotals,
+          backgroundColor: backgroundColors,
+          borderColor: borderColors,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: { display: true, text: 'Sales (₹)' }
+          },
+          x: {
+            title: { display: true, text: 'Company' },
+            ticks: { autoSkip: false, maxRotation: 45, minRotation: 45 }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => `₹${ctx.formattedValue}`
+            }
+          }
+        }
+      }
+    });
+  }
+
+
 }
