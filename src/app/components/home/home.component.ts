@@ -5,7 +5,6 @@ import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../models/product';
 import { Router } from '@angular/router';
 import { NavComponent } from "../nav/nav.component";
-import { SellerNavComponent } from "../seller-nav/seller-nav.component";
 
 @Component({
   selector: 'app-home',
@@ -90,11 +89,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.showAll = true;
   }
 
-   isShow: boolean = false; // Show/hide button
+   isShow: boolean = false; 
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    // Show button when scrolled down 200px
     this.isShow = window.pageYOffset > 200;
   }
 

@@ -4,7 +4,6 @@
   cursor: pointer;
   border-radius: 1rem;
   padding: 1rem;
-  /* background: linear-gradient(135deg, #ffffff, #f1f3f5); */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   color: white;
 }
@@ -12,7 +11,6 @@
 .hover-card:hover {
   transform: translateY(-6px) scale(1.03);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);}
-  /* background: linear-gradient(135deg, #e9f7ff, #ffffff);  */
 
 .card-body h6 {
   font-size: 0.9rem;
