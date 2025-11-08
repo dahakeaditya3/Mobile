@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
 import { ProductService } from '../../services/product.service';
@@ -88,5 +88,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
   loadMore() {
     this.displayedProducts = this.products;
     this.showAll = true;
+  }
+
+   isShow: boolean = false; // Show/hide button
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    // Show button when scrolled down 200px
+    this.isShow = window.pageYOffset > 200;
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

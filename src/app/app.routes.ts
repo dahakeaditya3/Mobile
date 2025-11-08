@@ -24,6 +24,7 @@ import { ProductRatingComponent } from './components/product-rating/product-rati
 import { LoginGuard } from './guards/guards/login.guard';
 import { PublicGuard } from './guards/guards/public.guard';
 import { SellerOrdersComponent } from './components/seller-order/seller-order.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [PublicGuard] },
@@ -49,6 +50,7 @@ export const routes: Routes = [
     { path: 'seller-nav', component: SellerNavComponent, canActivate: [SellerGuard] },
     { path: 'toast', component: ToastComponent },
     { path: 'rating', component: ProductRatingComponent },
+    { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: '**', redirectTo: 'home' }
 ];
 
