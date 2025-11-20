@@ -12,23 +12,20 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
 
-      <form class="d-none d-lg-flex ms-auto me-5 w-50">
+      <form class="d-none d-xxl-flex ms-auto me-5 w-50">
         <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
         <button class="btn btn-success me-5 w-25" type="submit">Search</button>
       </form>
 
-      <ul class="navbar-nav d-block d-sm-flex flex-row gap-2 gap-lg-3 me-lg-5 flex-wrap">
+      <ul class="navbar-nav d-flex gap-2 gap-lg-3 flex-wrap ms-auto justify-content-center">
         <li class="nav-item"><a class="btn btn-outline-light" routerLink="/seller-dashboard">Home</a></li>
         <li class="nav-item"><a class="btn btn-outline-light" routerLink="/addproduct">Add Products</a></li>
         <li class="nav-item"><a class="btn btn-outline-light" routerLink="/showproduct">My Product</a></li>
         <li class="nav-item"><a class="btn btn-outline-light" routerLink="/seller-order">Orders</a></li>
+        <li class="nav-item">  <a class="nav-link btn fw-semibold text-white" routerLink="/seller-profile">
+            <i class="bi bi-person-circle"></i> Profile
+          </a></li>
       </ul>
-
-      <div class="d-flex flex-wrap gap-2 my-2 my-sm-0" >
-         <a class="nav-link d-flex align-items-center fw-semibold text-white" routerLink="/seller-profile">
-            <i class="bi bi-person-circle fs-5 me-2"></i> Profile
-          </a>
-      </div>
 
     </div>
   </div>

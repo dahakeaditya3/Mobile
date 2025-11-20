@@ -6,13 +6,14 @@ import { SellerOrder } from '../../models/order';
 import { ToastService } from '../../services/toast.service';
 import { OrderService } from '../../services/order.service';
 import { Chart, registerables } from 'chart.js';
+import { FooterComponent } from "../footer/footer.component";
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-seller-dashboard',
   standalone: true,
-  imports: [CommonModule, SellerNavComponent, FormsModule],
+  imports: [CommonModule, SellerNavComponent, FormsModule, FooterComponent],
   templateUrl: './seller-dashboard.component.html',
   styleUrls: ['./seller-dashboard.component.css']
 })

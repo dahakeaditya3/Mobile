@@ -1,4 +1,7 @@
 <app-customer-nav></app-customer-nav>
+<div class="image-popup" *ngIf="popupImage" (click)="closePopup()">
+  <img [src]="popupImage" class="popup-img" alt="Popup Image">
+</div>
 
 <div class="container my-5" *ngIf="product">
   <div class="row g-4">
@@ -141,44 +144,68 @@
 
     </div>
 
-    <div class="mt-5">
-      <h4 class="fw-bold mb-3">Customer Reviews</h4>
-      <div *ngIf="reviews.length === 0" class="text-muted text-center py-3 border rounded-3 shadow-sm"> No reviews yet
-        for this product. </div>
-      <div class="row g-4" *ngIf="reviews.length > 0">
-        <div class="col-md-4 col-sm-6" *ngFor="let review of visibleReviews">
-          <div class="border rounded-4 p-3 shadow-sm h-100 bg-light-subtle">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <div>
-                <h6 class="fw-semibold mb-0 ms-2">
-                  <i class="bi bi-person-circle text-primary me-1"></i>
-                  {{ review.customer.customerName}}
-                </h6>
-              </div>
-              <small class="text-muted">{{ review.ratedOn | date:'mediumDate' }}</small>
-            </div>
+   <div class="mt-5 reviews-section">
+  <h4 class="fw-bold mb-3">Customer Reviews</h4>
 
-            <div class="mt-2 ms-2">
-              <ng-container *ngFor="let star of stars; let i = index">
-                <i class="bi" [ngClass]="{
+  <div *ngIf="reviews.length === 0" class="text-muted text-center py-3 border rounded-3 shadow-sm">
+    No reviews yet for this product.
+  </div>
+
+  <div class="row g-4" *ngIf="reviews.length > 0">
+    <div class="col-md-4 col-sm-6" *ngFor="let review of visibleReviews">
+      <div class="review-card">
+
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="review-user-name mb-0 ms-1">
+            <i class="bi bi-person-circle text-primary me-1"></i>
+            {{ review.customer.customerName }}
+          </h6>
+
+          <small class="review-date">{{ review.ratedOn | date:'mediumDate' }}</small>
+        </div>
+
+        <div class="mt-2 ms-1 review-stars">
+          <ng-container *ngFor="let star of stars; let i = index">
+            <i class="bi" [ngClass]="{
               'bi-star-fill text-warning': i < review.ratingValue,
               'bi-star text-muted': i >= review.ratingValue
             }"></i>
-              </ng-container>
-            </div>
-
-            <p class="mt-2 ms-2 mb-0 text-secondary fst-italic">
-              “{{ review.review || 'No comment provided.' }}”
-            </p>
-          </div>
+          </ng-container>
         </div>
-      </div>
 
-      <div class="text-center mt-3" *ngIf="reviews.length > 6">
-        <button class="btn btn-success shadow-sm px-4 py-2 rounded-3" (click)="toggleReviews()">
-          {{ showAllReviews ? 'Show Less Reviews' : 'Load All Reviews...' }}
-        </button>
+        <p class="review-text mt-2 ms-1 mb-2">
+          “{{ review.review || 'No comment provided.' }}”
+        </p>
+
+      <div class="review-img-grid mt-3">
+  <img *ngIf="review.image1"
+       [src]="'data:image/png;base64,' + review.image1"
+       (click)="openPopup('data:image/png;base64,' + review.image1)" />
+
+  <img *ngIf="review.image2"
+       [src]="'data:image/png;base64,' + review.image2"
+       (click)="openPopup('data:image/png;base64,' + review.image2)" />
+
+  <img *ngIf="review.image3"
+       [src]="'data:image/png;base64,' + review.image3"
+       (click)="openPopup('data:image/png;base64,' + review.image3)" />
+
+  <img *ngIf="review.image4"
+       [src]="'data:image/png;base64,' + review.image4"
+       (click)="openPopup('data:image/png;base64,' + review.image4)" />
+</div>
+
+
       </div>
     </div>
+  </div>
+
+  <div class="text-center mt-3" *ngIf="reviews.length > 6">
+    <button class="btn btn-success shadow-sm px-4 py-2 rounded-3" (click)="toggleReviews()">
+                {{ showAllReviews ? 'Show Less Reviews' : 'Load All Reviews...' }}
+            </button>
+  </div>
+</div>
+
   </div>
 </div>

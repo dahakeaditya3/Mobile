@@ -96,7 +96,7 @@ export class OrderProductComponent implements OnInit {
       this.orderData.totalPrice = this.totalPrice;
     }
   }
-  
+
 
   submitOrder(form: any) {
     if (form.invalid) {
@@ -117,3 +117,5 @@ export class OrderProductComponent implements OnInit {
     });
   }
 }
+
+

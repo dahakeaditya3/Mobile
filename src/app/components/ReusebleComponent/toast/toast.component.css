@@ -1,41 +1,42 @@
 .toast-overlay {
     position: fixed;
     inset: 0;
-    backdrop-filter: blur(5px);
-    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.15);
     z-index: 1999;
-    animation: fadeIn 0.3s ease-out;
+    animation: fadeInOverlay 0.4s ease forwards;
 }
 
 .toast-box {
-    animation: slideDown 0.4s ease-out;
+    animation: slideFadeDown 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 .toast-content {
     border-radius: 1rem;
     font-size: 1rem;
-    min-width: 300px;
+    min-width: 320px;
     max-width: 90vw;
-    animation: pop 0.25s ease-out;
+    animation: popFade 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem 1.5rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .toast-content:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
 
 .toast-success {
-    background: linear-gradient(135deg, #4caf50, #81c784);
+    background: linear-gradient(135deg, #4caf50, #66bb6a);
     color: white;
 }
 
 .toast-error {
-    background: linear-gradient(135deg, #f44336, #e57373);
+    background: linear-gradient(135deg, #f44336, #ef5350);
     color: white;
 }
 
@@ -44,31 +45,40 @@
     color: #3c2f00;
 }
 
-@keyframes slideDown {
-    from {
-        transform: translate(-50%, -60px);
+/* Animations */
+@keyframes slideFadeDown {
+    0% {
+        transform: translate(-50%, -50px);
         opacity: 0;
     }
 
-    to {
+    60% {
+        transform: translate(-50%, 10px);
+        opacity: 1;
+    }
+
+    100% {
         transform: translate(-50%, 0);
-        opacity: 1;
     }
 }
 
-@keyframes pop {
-    from {
-        transform: scale(0.95);
-        opacity: 0.7;
+@keyframes popFade {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
     }
 
-    to {
+    70% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
         transform: scale(1);
-        opacity: 1;
     }
 }
 
-@keyframes fadeIn {
+@keyframes fadeInOverlay {
     from {
         opacity: 0;
     }
@@ -77,4 +87,3 @@
         opacity: 1;
     }
 }
-

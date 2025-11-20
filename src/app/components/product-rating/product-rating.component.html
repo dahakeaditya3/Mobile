@@ -2,11 +2,29 @@
   <h5 class="mb-3 text-primary fw-semibold">Rate This Product</h5>
 
   <div class="mb-3">
-    <span *ngFor="let star of stars" class="star fs-3" [class.selected]="star <= selectedRating"
-      (click)="rate(star)">&#9733;</span>
+    <span *ngFor="let star of stars" 
+          class="star fs-3" 
+          [class.selected]="star <= selectedRating"
+          (click)="rate(star)">&#9733;</span>
   </div>
 
   <textarea [(ngModel)]="reviewText" placeholder="Write your review..." class="form-control mb-3" rows="3"></textarea>
+
+  <!-- Image Uploads -->
+  <div class="row g-2 mb-3">
+    <div class="col-6">
+      <input type="file" (change)="onFileSelect($event, 'image1')" class="form-control" />
+    </div>
+    <div class="col-6">
+      <input type="file" (change)="onFileSelect($event, 'image2')" class="form-control" />
+    </div>
+    <div class="col-6 mt-2">
+      <input type="file" (change)="onFileSelect($event, 'image3')" class="form-control" />
+    </div>
+    <div class="col-6 mt-2">
+      <input type="file" (change)="onFileSelect($event, 'image4')" class="form-control" />
+    </div>
+  </div>
 
   <button class="btn btn-success px-4" (click)="submitRating()">Submit</button>
 

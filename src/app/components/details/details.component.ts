@@ -175,5 +175,14 @@ export class DetailsComponent implements OnInit {
   toggleReviews() {
     this.showAllReviews = !this.showAllReviews;
   }
+popupImage: string | null = null;
+
+openPopup(img: string) {
+  this.popupImage = img;
+}
+
+closePopup() {
+  this.popupImage = null;
+}
 
 }

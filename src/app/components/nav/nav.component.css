@@ -1,12 +1,27 @@
-.navbar-custom {
-  background: linear-gradient(90deg, #1c1f26, #2a2f38);
+.navbar {
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.navbar-custom .btn {
-  font-weight: 500;
+.navbar .btn {
+  border-radius: 7px;
+  transition: all 0.3s ease;
 }
 
-.navbar-custom .btn:hover {
+.navbar .btn:hover {
   transform: scale(1.05);
-  transition: all 0.2s ease-in-out;
 }
+
+.navbar .form-control {
+  border-radius: 7px;
+  box-shadow: none;
+}
+
+@media (max-width: 991px) {
+  .navbar .btn{
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+}
+
+
